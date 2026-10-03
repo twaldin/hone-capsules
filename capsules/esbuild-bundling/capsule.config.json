@@ -1,0 +1,215 @@
+{
+  "objective": "Improve bundling time for frozen TS, JSX, ESM, and CommonJS graphs without changing output or sourcemap semantics or increasing output bytes by more than 1%. Only internal/linker is mutable.",
+  "image": "hone-esbuild-capsule@sha256:c84301668b0a6c93044ceb323541f0e70454d7af8ce112e64e5cc939bbdf1d56",
+  "evalEntrypoint": [
+    "python3",
+    "-I",
+    "-B",
+    "eval.py"
+  ],
+  "protectedPaths": [
+    "eval.py",
+    "workload.py",
+    "go.mod",
+    "go.sum",
+    "LICENSE.md",
+    "version.txt",
+    "cmd",
+    "pkg",
+    "vendor",
+    "internal/api_helpers",
+    "internal/ast",
+    "internal/bundler",
+    "internal/bundler_tests",
+    "internal/cache",
+    "internal/cli_helpers",
+    "internal/compat",
+    "internal/config",
+    "internal/css_ast",
+    "internal/css_lexer",
+    "internal/css_parser",
+    "internal/css_printer",
+    "internal/fs",
+    "internal/graph",
+    "internal/helpers",
+    "internal/js_ast",
+    "internal/js_lexer",
+    "internal/js_parser",
+    "internal/js_printer",
+    "internal/logger",
+    "internal/renamer",
+    "internal/resolver",
+    "internal/runtime",
+    "internal/sourcemap",
+    "internal/test",
+    "internal/xxhash"
+  ],
+  "assetGroups": [
+    {
+      "id": "train",
+      "visibility": "public",
+      "paths": [
+        "assets/train"
+      ]
+    },
+    {
+      "id": "validation",
+      "visibility": "protected",
+      "paths": [
+        "assets/validation"
+      ]
+    }
+  ],
+  "budget": {
+    "maxTokens": 12000000,
+    "maxUsd": 25,
+    "maxWallClockSec": 10800,
+    "maxEvaluatorInvocations": 200
+  },
+  "diagnosticOrdering": {
+    "path": "diagnostics/ordering-report.json"
+  },
+  "meta": {
+    "evaluatorSource": "user",
+    "partition": "m2-frozen-corpus",
+    "license": "MIT",
+    "provenance": "Current-head OSS-T03 at evanw/esbuild 6ff1d8b0d8c134e867a397eef39702a223ebef9e; no reference patch or privileged winning artifact; the captain-authorized native evaluator migration changes only the fresh scratch cap from 64 MiB to 512 MiB and is recorded at diagnostics/native-amd64-image-evidence.json; final numeric recalibration remains frozen-host admission work.",
+    "sourceDetails": {
+      "repository": "evanw/esbuild",
+      "commit": "6ff1d8b0d8c134e867a397eef39702a223ebef9e",
+      "url": "https://github.com/evanw/esbuild/commit/6ff1d8b0d8c134e867a397eef39702a223ebef9e",
+      "licenseFile": "LICENSE.md",
+      "derivation": "License-preserving offline source subset containing the CLI, Go packages, vendored module dependency, parser/bundler tests, and snapshots; repository metadata and upstream prose/history are excluded.",
+      "mutableEnvelope": [
+        "internal/linker/debug.go",
+        "internal/linker/linker.go",
+        "internal/linker/*.go additions"
+      ]
+    },
+    "toolchain": {
+      "go": "1.26.4",
+      "baseImage": "golang:1.26.4-bookworm@sha256:b305420a68d0f229d91eb3b3ed9e519fcf2cf5461da4bef997bf927e8c0bfd2b",
+      "image": "hone-esbuild-capsule@sha256:c84301668b0a6c93044ceb323541f0e70454d7af8ce112e64e5cc939bbdf1d56",
+      "network": "none",
+      "goFlags": "-mod=vendor",
+      "moduleCache": "vendor plus read-only image-baked Go build cache with anonymous per-evaluation overlay"
+    },
+    "imageProvenance": {
+      "schemaVersion": 1,
+      "ticket": "HONE-38/HONE-41/HONE-45",
+      "definition": {
+        "status": "native-amd64-pair-refrozen-after-authorized-evaluator-cap-migration",
+        "sourceCommit": "540bdb80b",
+        "baselineCommit": "1eeef273a89ede13c1a357ea69fc1c6466318762",
+        "sourcePatch": {
+          "path": "hone-ticket-037-build/source.patch",
+          "sha256": "sha256:1e52d2faf72400867bc97b08b63971871607113913cd225a80873669cdb19482"
+        },
+        "dockerfile": "Dockerfile",
+        "dockerfileSha256": "sha256:df1b06dafc22e881f59bdbfbde4df1d3fd089f1f9dc3dde9047eb1c53b4bb789",
+        "buildPlatform": "linux/amd64",
+        "buildParameters": {
+          "builder": "docker buildx build",
+          "pull": false,
+          "noCache": true,
+          "provenance": false,
+          "load": true,
+          "sourceDateEpoch": 1785589070,
+          "debianSnapshot": "20260713T000000Z"
+        },
+        "deviationFromPriorFreeze": "captain-authorized one-line protected evaluator constant migration only: fresh scratch tmpfs size 64m -> 512m; zero logic, capsule source, objective, assets, or diagnostic variant changes",
+        "evaluatorMigration": {
+          "decisionKey": "esbuild-512m-implementation",
+          "path": "baseline/eval.py",
+          "beforeSha256": "sha256:d005f24d7aed518e594f536c0b54eec557ca5f87e8718267bd012066727ab4ea",
+          "afterSha256": "sha256:cf9536ffbb8c741394176f53c9b2bbd851dc0917bc47f09cf3dd6148240823fb",
+          "change": "FRESH_TMPFS_OPTIONS size=64m -> size=512m",
+          "logicChanges": "none"
+        }
+      },
+      "baseImage": {
+        "index": "sha256:b305420a68d0f229d91eb3b3ed9e519fcf2cf5461da4bef997bf927e8c0bfd2b",
+        "linux/amd64": "sha256:5a94593d87a066df5abb02969be911524963f53908292aa5a1a6096fc019012a"
+      },
+      "architectures": {
+        "linux/amd64": {
+          "status": "built-and-byte-identical-pair-verified",
+          "reference": "hone-esbuild-capsule@sha256:c84301668b0a6c93044ceb323541f0e70454d7af8ce112e64e5cc939bbdf1d56",
+          "digest": "sha256:c84301668b0a6c93044ceb323541f0e70454d7af8ce112e64e5cc939bbdf1d56",
+          "configDigest": "sha256:0b549b3aac736e2cfc2e7036dfb5dd1a9093b7916904e08c6b49cbc4640edb9b",
+          "dockerOs": "linux",
+          "dockerArchitecture": "amd64",
+          "nativeOrdering": {
+            "status": "blocked-on-frozen-evaluator-linker-scratch-capacity",
+            "path": "diagnostics/native-amd64-ordering-blocker.json",
+            "sha256": "sha256:8be5e15f9c1a665949880f3de92f2d42a099d2011281fc929ed07b24c0f357b4",
+            "reason": "the protected evaluator performs pre-measurement Go links with GOTMPDIR=/dev/shm, which the broker caps at 16 MiB via --shm-size; /tmp itself is 2 GiB",
+            "ticket": "HONE-41/HONE-43/HONE-46"
+          },
+          "host": "deckbox",
+          "acceptedBuildOrdinals": [
+            9,
+            10
+          ],
+          "acceptedBuildTags": [
+            "native-amd64-pair9",
+            "native-amd64-pair10"
+          ],
+          "pairEvidence": {
+            "path": "diagnostics/native-amd64-image-evidence.json",
+            "sha256": "sha256:43c07ac6e2b360a9a51a5e76c74962e9feb0d4d874cd7eca87654a65fdd6a191",
+            "result": "byte-identical",
+            "compared": [
+              "manifest digest",
+              "config digest",
+              "rootfs diff IDs",
+              "history",
+              "platform"
+            ]
+          },
+          "supersedes": "sha256:40b909f3ff4fb99eb4074de27cd913d2a9bae8f63391108822ddbaa899cb34d5"
+        },
+        "linux/arm64": {
+          "status": "pending-ticket-038-046-native-refreeze",
+          "supersededDigest": "sha256:daff4fddaef30fa7fde6705e90fb178141375f6c580d5c6b9073584bd7b9ca4a",
+          "supersededReason": "the historical image is ARM64-only and predates the required paired multi-architecture freeze",
+          "production": "Build the ticket-038-046 ARM64 pair natively from the reconciled ticket-037 definition; verify byte-identical pair output and linux/arm64; run native ordering and rebaseline; record the ARM64 digest; then publish one manifest list joining the accepted AMD64 and ARM64 digests before admission."
+        }
+      },
+      "multiArchitectureManifestStatus": "pending-native-arm64-ticket-038-046"
+    },
+    "measurement": {
+      "platform": "linux/arm64 Docker Desktop on Apple M3 Max (provisional; frozen GCE recalibration required)",
+      "freshProcess": true,
+      "repetitionsPerGraph": 5,
+      "q": "reciprocal geometric mean of per-graph median esbuild CLI wall seconds after all hard gates pass",
+      "qFail": 0,
+      "qBase": 14.073506215235307,
+      "sigma": 0.2870395543545407,
+      "qReference": 15.50870398700801,
+      "qReferenceConstruction": "qBase + max(5*sigma, 0.05*abs(qBase-qFail))",
+      "aaSamples": [
+        14.223957859747843,
+        13.51337699556403,
+        14.022941068003352,
+        14.195080924833881,
+        14.22171164878161,
+        14.263968794481132
+      ],
+      "hardGates": [
+        "upstream internal/js_parser tests",
+        "upstream internal/bundler_tests snapshot suite",
+        "Node-observed output semantic SHA-256",
+        "canonical sourcemap semantic SHA-256",
+        "output JavaScript bytes <= frozen baseline +1%"
+      ]
+    },
+    "tags": [
+      "m2",
+      "oss",
+      "esbuild",
+      "bundling",
+      "performance"
+    ]
+  }
+}

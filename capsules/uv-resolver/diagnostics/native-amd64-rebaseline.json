@@ -1,0 +1,142 @@
+{
+  "baseline": {
+    "aggregateSamples": [
+      24.888878871169815,
+      25.530680691730574,
+      25.00628183114495,
+      25.47121201526401,
+      24.877536201114566
+    ],
+    "allConstraintsPass": true,
+    "allValid": true,
+    "normalizer": {
+      "formula": "qReference = qBase + max(5*sigma, 0.05*abs(qBase-qFail))",
+      "noiseFractionOfScale": 0.19999999999999998,
+      "normalizationScale": 1.4336137828961368,
+      "qBase": 25.15491792208478,
+      "qFail": 0.0,
+      "qReference": 26.58853170498092,
+      "sigma": 0.28672275657922736
+    }
+  },
+  "capsule": "uv-resolver",
+  "diagnosticRebaseline": {
+    "changedSources": [],
+    "decision": "No diagnostic variant sources required rebaselining: the existing broken, naive, baseline, improved, and shortcut controls passed the frozen native ordering contract.",
+    "protectedInputsUnchanged": [
+      "baseline/**",
+      "assets/**",
+      "baseline/eval.py"
+    ]
+  },
+  "host": {
+    "apparmorProfile": "hone-evaluator-cgroup",
+    "apparmorRuleEvidence": "UV exact sealed remount (ro,nosuid,nodev) authorized and proved by this 18-evaluation pass",
+    "architecture": "x86_64",
+    "cgroup": "v2",
+    "cpu": "AMD Ryzen 9 7900 12-Core Processor",
+    "dockerEngine": "29.1.3",
+    "hostname": "deckbox",
+    "kernel": "Linux 6.8.0-31-generic",
+    "logicalCpus": 24
+  },
+  "image": {
+    "acceptedBuildTags": [
+      "native-amd64-pair7",
+      "native-amd64-pair8"
+    ],
+    "architecture": "linux/amd64",
+    "configDigest": "sha256:cdb2ebfcd6288e0bcc958b1f421a2e35e7cc2393c40d2ef3ee51c8429336f8c9",
+    "digest": "sha256:a0ff8c72a2b3ef04c0e851fa1fe8242741e543b0f28ef59e0e985b47c412b88a",
+    "pairProof": {
+      "compared": [
+        "manifest digest",
+        "config digest",
+        "rootfs diff IDs",
+        "history",
+        "platform"
+      ],
+      "historySha256": "sha256:140fbd8f00b72c13b6fe81560cf699f13a12d4a81757fa2da6531f3b8cb0c7b9",
+      "result": "byte-identical",
+      "rootfsDiffIds": [
+        "sha256:63ecca237e30aca8ae79232ae01dddab7d8b42302f654f343f7cc7ddae60d57c",
+        "sha256:e62aadfda549a23e76f5bb43a9a5c652f9e7312aba9edf5c1411f7d0aed54eed",
+        "sha256:3acdb7d9b7ebcd7f62d99a996099a57b8367821f4d9a3f4b52239934425a7b98",
+        "sha256:b33c96ad984974239102a1fe15e6427a3510f13aa320227b371c10bb40063356",
+        "sha256:0bfd9a65e13cc2726159178398201f52cd4e5bd1c187584f6953c839438af7d5",
+        "sha256:04a106cf445c9633a59e0a4d8ee00505ba49e829b7b5d6fd38b81ae9e77b35fd"
+      ]
+    },
+    "reference": "hone-uv-resolver@sha256:a0ff8c72a2b3ef04c0e851fa1fe8242741e543b0f28ef59e0e985b47c412b88a"
+  },
+  "orderingReportSummary": {
+    "failures": [],
+    "stability": {
+      "aggregates": [
+        24.888878871169815,
+        25.530680691730574,
+        25.00628183114495,
+        25.47121201526401,
+        24.877536201114566
+      ],
+      "band": 0.15,
+      "spread": 0.02596488259826834
+    },
+    "variants": {
+      "baseline": {
+        "combined": 24.888878871169815,
+        "train": 25.041764442535825,
+        "trainTestsPass": true,
+        "validation": 24.73599329980381,
+        "validationTestsPass": true
+      },
+      "broken": {
+        "combined": 0,
+        "train": 0,
+        "trainTestsPass": false,
+        "validation": 0,
+        "validationTestsPass": false
+      },
+      "improved": {
+        "combined": 25.012913880444138,
+        "train": 25.039227052186842,
+        "trainTestsPass": true,
+        "validation": 24.986600708701438,
+        "validationTestsPass": true
+      },
+      "naive": {
+        "combined": 18.598435602516204,
+        "train": 18.518826818022212,
+        "trainTestsPass": true,
+        "validation": 18.678044387010193,
+        "validationTestsPass": true
+      },
+      "shortcut": {
+        "combined": 20.661576498776064,
+        "train": 25.826970623470082,
+        "trainTestsPass": true,
+        "validation": 0,
+        "validationTestsPass": false
+      }
+    },
+    "version": 1
+  },
+  "recordedAt": "2026-08-12T00:28:35.440948+00:00",
+  "run": {
+    "command": "HONE_CAPSULE_DIR=capsules/uv-resolver pnpm exec tsx capsules/tools/ordering-check.ts --stability-runs 5 --raw-measurements tmp/rebaseline/uv-resolver.json --report capsules/uv-resolver/diagnostics/ordering-report.amd64.json",
+    "evalInvocations": 18,
+    "network": "none",
+    "orderingReport": "diagnostics/ordering-report.amd64.json",
+    "orderingReportSha256": "sha256:eafbf5f60ec3928b4e1f396155b257db58adc2d1dd948fd5c36eee0a868a078c",
+    "rawMeasurementsSha256": "sha256:4c12f7565e676b84ab597a6121fff8bcc2b3e3653e1d3a4d9245c68cc4be5509"
+  },
+  "schemaVersion": 1,
+  "sources": {
+    "apparmorProfileSha256": "sha256:c085067207993f48de28b318b61e0c36c2f0b3f5a8fe762ca2b04f06325db99c",
+    "capsuleConfigSha256AtRun": "sha256:a95a487ead41d622126e364025745a77ce078240cc22f64b34dd6606f70fa03b",
+    "evaluatorSha256": "sha256:24f66cd44dda5ed961064a36a58e597bdc667db03e916a5a793c2205cc61c32d",
+    "orderingToolSha256": "sha256:6790f0c28987cb32f79aa01c183aad7f074954ed6d3e0ca7c2720bb5d8f1e46a"
+  },
+  "status": "native-amd64-ordering-and-rebaseline-passed",
+  "ticket": "HONE-41/HONE-44"
+}

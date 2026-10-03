@@ -1,0 +1,16 @@
+{
+  "innerReps": 1,
+  "timeoutSec": 8,
+  "publicCases": [
+    {
+      "id": "public-path",
+      "input": { "partition": "public", "text": "alpha/beta gamma?x=1" },
+      "expected": "alpha%2Fbeta%20gamma%3Fx%3D1"
+    },
+    {
+      "id": "public-unreserved",
+      "input": { "partition": "public", "text": "AZaz09-._~" },
+      "expected": "AZaz09-._~"
+    }
+  ]
+}

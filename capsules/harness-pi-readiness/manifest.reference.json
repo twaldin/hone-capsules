@@ -1,0 +1,144 @@
+{
+  "schemaVersion": 2,
+  "id": "cap_9a029a976783",
+  "objective": "Recover correct Pi readiness verdicts and project-instructions backup/restore actions across sealed process traces and filesystem states. Maximize weighted exact recovery; only solution.py is mutable.",
+  "baseline": {
+    "kind": "git",
+    "commit": "08f15a6eb98ad65eaab72a72ebe6c5ea64ef12d9"
+  },
+  "image": "hone-task@sha256:421f033a97c266279c4799f5b6f4e4b81fced0f8a9a4f1d3091a05866f217392",
+  "evalEntrypoint": [
+    "python3",
+    "-I",
+    "-B",
+    "eval.py"
+  ],
+  "protectedPaths": [
+    "eval.py",
+    "worker.py",
+    "challenge.json",
+    ".gitignore"
+  ],
+  "assetGroups": [
+    {
+      "id": "train",
+      "visibility": "holdout",
+      "paths": [
+        "assets/train/cases.json"
+      ]
+    },
+    {
+      "id": "validation",
+      "visibility": "holdout",
+      "paths": [
+        "assets/validation/cases.json"
+      ]
+    }
+  ],
+  "budget": {
+    "maxTokens": 12000000,
+    "maxUsd": 25,
+    "maxWallClockSec": 10800,
+    "maxEvaluatorInvocations": 200
+  },
+  "diagnosticOrdering": {
+    "path": "diagnostics/ordering-report.amd64.json",
+    "hash": "sha256:ed4f8c692d91a5127f62f6db6cba6726b025d15b68a22ab4ca3e40954c9688a3"
+  },
+  "contentHashes": {
+    "assets/train/cases.json": "sha256:3e7cbe43b9df3cba3dc2fe691ae31f70d977cecca5afeca40ae93980559c59cf",
+    "assets/validation/cases.json": "sha256:9c7d02ae28a56b3482bbeb417502e9537c7e0ae12eb856b8b60891190a7e5679"
+  },
+  "meta": {
+    "evaluatorSource": "user",
+    "provenance": "terminal-only bounded readiness and instructions-projection extraction from Harness baseline 1815353f85f8f052fea30812aaca3be485c51d30; reference 39ff71f informed diagnostic direction only",
+    "license": "MIT",
+    "tags": [
+      "m2",
+      "owner",
+      "terminal",
+      "pi",
+      "readiness",
+      "instructions-backup"
+    ],
+    "partition": "m2-terminal-holdout",
+    "sourceDetails": {
+      "repository": "harness",
+      "commit": "1815353f85f8f052fea30812aaca3be485c51d30",
+      "referenceCommit": "39ff71f",
+      "contract": "OWN-H04",
+      "derivation": "bounded exact-output subsystem extracted for isolated deterministic terminal evaluation"
+    },
+    "imageProvenance": {
+      "schemaVersion": 1,
+      "ticket": "HONE-36/45",
+      "definition": {
+        "status": "ticket-036-native-amd64-pair-accepted",
+        "sourceCommit": "f72127add682ef3e951c60bd0994ab5f607732df",
+        "buildPlatform": "linux/amd64",
+        "reference": "hone-task@sha256:421f033a97c266279c4799f5b6f4e4b81fced0f8a9a4f1d3091a05866f217392"
+      },
+      "architectures": {
+        "linux/amd64": {
+          "status": "built-and-byte-identical-pair-verified",
+          "digest": "sha256:421f033a97c266279c4799f5b6f4e4b81fced0f8a9a4f1d3091a05866f217392",
+          "host": "deckbox",
+          "orderingReport": {
+            "path": "diagnostics/ordering-report.amd64.json",
+            "sha256": "sha256:ed4f8c692d91a5127f62f6db6cba6726b025d15b68a22ab4ca3e40954c9688a3",
+            "result": "passed",
+            "evalInvocations": 18,
+            "network": "none",
+            "holdoutDiagnostic": true
+          },
+          "rebaselineEvidence": {
+            "path": "diagnostics/native-amd64-ordering-evidence.json",
+            "sha256": "sha256:51ad571d3d20526ded54274a5f18b5d5fe758e602451ae524615d794396be22c",
+            "ticket": "HONE-41/HONE-42",
+            "status": "completed"
+          }
+        },
+        "linux/arm64": {
+          "status": "pending-native-arm64-refreeze",
+          "supersededDigest": "sha256:a5f37a994ab2c4c44a05b3d679fd743245431f98355db37e106fd86daa1169d0"
+        }
+      },
+      "multiArchitectureManifestStatus": "pending-native-arm64-ticket-038-046"
+    },
+    "measurement": {
+      "platform": "linux",
+      "samples": 3,
+      "freshProcess": true,
+      "q": "weighted exact-recovery fraction over sealed cases (recovered case weight divided by total weight; readiness cases weight 1, projection cases weight 2); trusted per-call timing is diagnostic only and never enters the score",
+      "qFail": 0,
+      "qBase": 0.7142857142857143,
+      "qReference": 1,
+      "scale": 0.2857142857142857,
+      "qBaseSource": "frozen baseline artifact measured by the trusted ordering tool under the admitted evaluator (ordering-report variants.baseline.train)",
+      "qReferenceSource": "improved diagnostic control, full recovery of every sealed case (ordering-report variants.improved.train); direction informed by reference commit 39ff71f",
+      "validationSplit": {
+        "qBase": 0.6666666666666666,
+        "qReference": 1
+      },
+      "normalization": "gain = (q - qBase) / scale, with scale = qReference - qBase"
+    },
+    "terminalSeal": {
+      "holdout": true,
+      "optimizerPilot": false,
+      "mutationOrHeadroomRun": false,
+      "seedOptimizerSession": false,
+      "optimizerCorpusRegistration": false,
+      "panelEvidenceRegistration": false,
+      "searchVisibleState": false,
+      "orderingCheckTool": "capsules/tools/ordering-check.ts",
+      "consecutiveOrderingPasses": 2,
+      "benchLock": "hone-bench.lock",
+      "allowedAdmissionWork": [
+        "trusted-correctness",
+        "A-A",
+        "sensitivity-ordering",
+        "exploit-diagnostics"
+      ]
+    }
+  }
+}

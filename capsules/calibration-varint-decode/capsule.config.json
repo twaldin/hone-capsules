@@ -1,0 +1,41 @@
+{
+  "objective": "Reduce trusted parent-measured latency for decoding frozen unsigned LEB128 byte streams while preserving the exact sequence of 32-bit values. Only solution.py is mutable; the evaluator, worker protocol, public contract, and train/validation fixtures are protected.",
+  "image": "hone-calibration-runtime@sha256:a0f426aaea895a9d86407f1954b30462ed0bc528bbff81c67acf484256a66cb3",
+  "evalEntrypoint": ["python3", "-I", "-B", "eval.py"],
+  "protectedPaths": ["eval.py", "worker.py", "challenge.json"],
+  "assetGroups": [
+    { "id": "train", "visibility": "public", "paths": ["assets/train"] },
+    { "id": "validation", "visibility": "protected", "paths": ["assets/validation"] }
+  ],
+  "budget": { "maxTokens": 12000000, "maxUsd": 25, "maxWallClockSec": 10800, "maxEvaluatorInvocations": 200 },
+  "sandbox": { "memoryBytes": 536870912, "cpus": 1 },
+  "diagnosticOrdering": { "path": "diagnostics/ordering-report.json" },
+  "meta": {
+    "evaluatorSource": "user",
+    "partition": "m2-calibration-only-excluded",
+    "provenance": "Clean-room calibration-only task authored for M2 saturation measurement on 2026-08-12. Algorithm, baseline, public contract, deterministic fixtures (seeds 2203/2207/2309/2311), diagnostics, and evidence were first introduced in calibration-varint-decode and share no source, fixtures, objectives, or evidence with any M2 development or terminal capsule.",
+    "sourceDetails": {
+      "origin": "Hone clean-room calibration task; unsigned LEB128 format knowledge only, no external repository or cohort task source",
+      "generator": "generate-assets.py",
+      "mutableSurface": "solution.py only",
+      "cohortContentReuse": "none"
+    },
+    "imageProvenance": {
+      "schemaVersion": 1,
+      "definition": "capsules/calibration-runtime/Dockerfile",
+      "definitionSha256": "sha256:21bfd0469d47a1b8d7f1a91f1b54dc869ee3f7900e3636153d1961450fc9c18c",
+      "pairProof": "capsules/calibration-runtime/image-build-proof.json",
+      "pairProofSha256": "sha256:5440a9de3a098367d5a113a2a50e4edde7597bd4d3464048ade1a1a0d1d57d3c",
+      "linux/amd64": { "status": "built-pair-and-verified-native", "digest": "sha256:a0f426aaea895a9d86407f1954b30462ed0bc528bbff81c67acf484256a66cb3", "dockerOs": "linux", "dockerArchitecture": "amd64" },
+      "linux/arm64": { "status": "honest-pending", "reason": "no ARM64 build or digest is claimed" },
+      "multiArchitectureManifestStatus": "pending-native-arm64"
+    },
+    "measurement": {
+      "q": "mean 1/(1+trusted-parent elapsed milliseconds) over sealed exact-output cases",
+      "qFail": 0,
+      "freshProcess": true,
+      "boundedBuild": "no candidate build step; one Python module import and invocation under the 512 MiB/1 CPU sandbox ceiling"
+    },
+    "tags": ["m2", "calibration-only", "excluded", "varint", "leb128"]
+  }
+}

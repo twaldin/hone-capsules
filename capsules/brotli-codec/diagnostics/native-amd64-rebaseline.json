@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "ticket": "HONE-41/HONE-42",
+  "capsule": "brotli-codec",
+  "status": "native-amd64-terminal-ordering-and-rebaseline-passed",
+  "recordedAt": "2026-08-12T03:34:00Z",
+  "authorization": {
+    "decisionKey": "terminal-holdout-diagnostic",
+    "scope": "captain-authorized exact terminal verification/rebaseline diagnostic only",
+    "ownerGate": {
+      "environment": "HONE_TERMINAL_HOLDOUT_DIAGNOSTIC=1",
+      "flag": "--holdout-diagnostic"
+    },
+    "purpose": "Verify native AMD64 ordering and record architecture-specific rebaseline evidence without exposing the terminal holdout to any optimizer, campaign phase, model, or exploratory run."
+  },
+  "baseline": {
+    "aggregateSamples": [101.51565134550653, 100.80323970269913, 100.26288962584081, 103.3840666398631, 101.40135221165639],
+    "allConstraintsPass": true,
+    "allValid": true,
+    "normalizer": {
+      "formula": "qReference = qBase + max(5*sigma, 0.05*abs(qBase-qFail))",
+      "qFail": 0,
+      "qBase": 101.4734399051132,
+      "sigma": 1.0556583965233597,
+      "qReference": 106.75173188772999,
+      "normalizationScale": 5.278291982616793,
+      "noiseFractionOfScale": 0.2000000000000002
+    }
+  },
+  "diagnosticRebaseline": {
+    "changedSources": [],
+    "decision": "No diagnostic variant sources required rebaselining: the existing broken, naive, baseline, improved, and shortcut controls passed the frozen native ordering contract.",
+    "protectedInputsUnchanged": ["baseline/**", "assets/**", "baseline/eval.py"]
+  },
+  "host": {
+    "hostname": "deckbox",
+    "architecture": "x86_64",
+    "cpu": "AMD Ryzen 9 7900 12-Core Processor",
+    "logicalCpus": 24,
+    "dockerEngine": "29.1.3",
+    "apparmorProfile": "hone-evaluator-cgroup",
+    "mountAuthority": "hone-brotli-build tmpfs -> /tmp/hone-brotli-build, rw,nosuid,nodev, size=768m, mode=1777",
+    "cgroup": "v2",
+    "kernel": "Linux 6.8.0-31-generic"
+  },
+  "image": {
+    "reference": "hone-brotli-codec@sha256:e4806c1f6854706737daff4ede21862fec668ab026315478db781453db04f72d",
+    "architecture": "linux/amd64",
+    "digest": "sha256:e4806c1f6854706737daff4ede21862fec668ab026315478db781453db04f72d",
+    "configDigest": "sha256:4ffba0f3b8d0398e9a2b3ceaa34e133ad598f8593986f20a8ffa5e19643a573b",
+    "acceptedBuildOrdinals": [1, 2],
+    "pairProof": {
+      "result": "byte-identical",
+      "compared": ["image digest", "config digest", "rootfs diff IDs", "history", "platform"]
+    }
+  },
+  "orderingReportSummary": {
+    "failures": [],
+    "stability": {
+      "aggregates": [101.51565134550653, 100.80323970269913, 100.26288962584081, 103.3840666398631, 101.40135221165639],
+      "band": 0.15,
+      "spread": 0.030758561224896497
+    },
+    "variants": {
+      "baseline": { "combined": 101.51565134550653, "train": 100.8018221738533, "trainTestsPass": true, "validation": 102.22948051715976, "validationTestsPass": true },
+      "broken": { "combined": 0, "train": 0, "trainTestsPass": false, "validation": 0, "validationTestsPass": false },
+      "improved": { "combined": 114.30974586100949, "train": 111.97690692238623, "trainTestsPass": true, "validation": 116.64258479963274, "validationTestsPass": true },
+      "naive": { "combined": 92.90783522464228, "train": 92.63211502898527, "trainTestsPass": true, "validation": 93.1835554202993, "validationTestsPass": true },
+      "shortcut": { "combined": 93.49715103113155, "train": 116.42399396868718, "trainTestsPass": true, "validation": 70.5703080935759, "validationTestsPass": true }
+    },
+    "version": 1
+  },
+  "run": {
+    "command": "HONE_CAPSULE_DIR=capsules/brotli-codec HONE_TERMINAL_HOLDOUT_DIAGNOSTIC=1 pnpm exec tsx capsules/tools/ordering-check.ts --holdout-diagnostic --stability-runs 5 --raw-measurements tmp/rebaseline/brotli-codec.json --report capsules/brotli-codec/diagnostics/ordering-report.amd64.json",
+    "evalInvocations": 18,
+    "network": "none",
+    "orderingReport": "diagnostics/ordering-report.amd64.json",
+    "orderingReportSha256": "sha256:89d7705995e1e3bb3e84d68163a57949f4a68b4e439b8b1f5eb40b246ca3f41c",
+    "rawMeasurementsSha256": "sha256:2e8770c51bbf38d4b2c6edc3b7c8a8d0636fd570883f6269a4d5ca8b5f71ce25"
+  },
+  "sources": {
+    "capsuleConfigSha256AtRun": "sha256:ab83863340da57b683a4d00f7b1799871375de3d397f795e64fe35ea7590fd1e",
+    "evaluatorSha256": "sha256:5a4c95328e6954aa153894289426674892c86fa9f4f7044f5dc74bbb5380f50d",
+    "orderingToolSha256": "sha256:6790f0c28987cb32f79aa01c183aad7f074954ed6d3e0ca7c2720bb5d8f1e46a"
+  }
+}

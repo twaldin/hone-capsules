@@ -1,0 +1,77 @@
+{
+  "acceptedBy": "captain ruling key=orjson-evaluator-exec-scratch",
+  "boundary": {
+    "allowedStateKept": [
+      "generic /tmp stays 2g,nosuid,nodev,noexec",
+      "workspace stays read-only",
+      "orjson remains outside native admission/rebaseline",
+      "native image pair provenance remains recorded but not calibration-eligible"
+    ],
+    "forbiddenChanges": [
+      "remount generic /tmp executable",
+      "make /workspace writable",
+      "execute candidate build artifacts on the host",
+      "modify the protected evaluator or baseline"
+    ]
+  },
+  "capsule": "orjson-serialization",
+  "cohortImpact": {
+    "ticket041": "native ordering blocked",
+    "ticket043": "native rebaseline blocked",
+    "ticket046": "exclude from non-Bun admitted subset and list on atomicity blocker card"
+  },
+  "decision": "Do not weaken the broker-wide noexec /tmp or immutable /workspace contracts.",
+  "discardedExperiments": [
+    {
+      "attempt": "Treat only Cargo lock-like files as mutable while symlinking the rest of an image-backed target overlay.",
+      "result": "Cargo next wrote fingerprint invoked.timestamp and other build state; the source-only exception was insufficient."
+    },
+    {
+      "attempt": "Copy all mutable Cargo build/fingerprint files into /tmp/target.",
+      "result": "Writes succeeded far enough to require executing generated build scripts, which /tmp correctly denied."
+    }
+  ],
+  "image": {
+    "architecture": "linux/amd64",
+    "configDigest": "sha256:78ba373dc1df5ba5cd91c79c9643bfdcd09b5313117dd95f15814c6b8686e21f",
+    "reference": "hone-orjson-serialization@sha256:085fd91e1e5b229bdc2ae34c671f82a14f25c775027ad201199d9c2a532694df"
+  },
+  "protectedSources": {
+    "dockerfile": {
+      "path": "capsules/orjson-serialization/Dockerfile",
+      "sha256": "sha256:c0a37ad1e1c5fd368f57c453baac9d874f683f5b38eb2c2a8b09e816f8f0956c"
+    },
+    "evaluator": {
+      "path": "capsules/orjson-serialization/baseline/eval.py",
+      "sha256": "sha256:f4e4d535e0cc2d0f02101b445b6ccd887c3f0336424ecdc71e5afeca8f01a402"
+    }
+  },
+  "recordedAt": "2026-08-11T18:20:48.859088Z",
+  "reproduction": {
+    "baselineTrain": {
+      "summary": "offline maturin build failed: Cargo could not execute /tmp/target/release/build/orjson/<hash>/build-script-build because the build-script path is on a noexec tmpfs",
+      "testsPass": false,
+      "valid": false
+    },
+    "baselineValidation": {
+      "summary": "same fail-closed offline maturin build failure",
+      "testsPass": false,
+      "valid": false
+    },
+    "command": "HONE_CAPSULE_DIR=capsules/orjson-serialization pnpm exec tsx capsules/tools/ordering-check.ts --report",
+    "debugCommand": "HONE_CAPSULE_DIR=capsules/orjson-serialization pnpm exec tsx capsules/tools/ordering-debug.tmp.ts",
+    "observedEvaluations": 18,
+    "orderingOutcome": "failed before measurement; all variant aggregates were zero",
+    "wallSeconds": 12.5
+  },
+  "rootCause": {
+    "cargo": "Cargo 1.95 must both write fingerprint/build state and execute generated build scripts under its target directory. The frozen evaluator points CARGO_TARGET_DIR at /tmp/target; build-script execution is denied by noexec.",
+    "incompatibility": "No existing target is both candidate-writable and executable under the frozen evaluator/broker contract.",
+    "scratch": "Broker mounts /tmp as writable but noexec, as required.",
+    "workspace": "Broker binds the candidate at /workspace read-only, as required."
+  },
+  "schemaVersion": 1,
+  "sourceCommit": "17c5cd07e",
+  "status": "blocked-on-exec-scratch",
+  "ticket": "HONE-41/HONE-43/HONE-46"
+}

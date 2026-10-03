@@ -1,0 +1,75 @@
+{
+  "objective": "Improve FLT TextInput editing-state correctness in text_input.mjs across the sealed owner and hidden Unicode/escape/state case bank while preserving the exported contract and a hard limit of 32 onChange emissions per operation. Only text_input.mjs may change; every other baseline path and all assets are protected. The sole objective q is passed sealed cases / declared sealed cases.",
+  "image": "hone-mutation@sha256:e43b8871710267d86f3e1118b2f9a3d8ef0ab505b14e671da9728200260dcd10",
+  "evalEntrypoint": [
+    "python3",
+    "-I",
+    "-B",
+    "eval.py"
+  ],
+  "protectedPaths": [
+    ".gitignore",
+    "eval.py",
+    "worker.mjs"
+  ],
+  "assetGroups": [
+    {
+      "id": "train",
+      "visibility": "public",
+      "paths": [
+        "assets/train"
+      ]
+    },
+    {
+      "id": "validation",
+      "visibility": "protected",
+      "paths": [
+        "assets/validation"
+      ]
+    }
+  ],
+  "budget": {
+    "maxTokens": 12000000,
+    "maxUsd": 25,
+    "maxWallClockSec": 10800,
+    "maxEvaluatorInvocations": 200
+  },
+  "diagnosticOrdering": {
+    "path": "diagnostics/ordering-report.amd64.json"
+  },
+  "meta": {
+    "evaluatorSource": "user",
+    "provenance": "FLT fe05463a921b9c4d808a338ea07d33abe45b6487: src/tui/widgets/text-input.ts and tests/unit/tui/text-input.test.ts; historical partial seed derives from parent a5b07aa0 appendCommandText/backspaceCommand behavior; current owner implementation is the improved reference.",
+    "license": "MIT",
+    "tags": [
+      "m1",
+      "public-train",
+      "functional",
+      "typescript",
+      "text-input",
+      "bounded-state-machine"
+    ],
+    "imageProvenance": {
+      "schemaVersion": 1,
+      "ticket": "HONE-36/45",
+      "definition": {
+        "status": "ticket-036-native-amd64-pair-accepted",
+        "sourceCommit": "f72127add682ef3e951c60bd0994ab5f607732df",
+        "buildPlatform": "linux/amd64",
+        "reference": "hone-mutation@sha256:e43b8871710267d86f3e1118b2f9a3d8ef0ab505b14e671da9728200260dcd10"
+      },
+      "architectures": {
+        "linux/amd64": {
+          "status": "built-and-byte-identical-pair-verified",
+          "digest": "sha256:e43b8871710267d86f3e1118b2f9a3d8ef0ab505b14e671da9728200260dcd10",
+          "host": "deckbox"
+        },
+        "linux/arm64": {
+          "status": "pending-native-arm64-refreeze",
+          "supersededDigest": "sha256:f680ddc7c1d5facfec0cce238784ab459bc4d54221e64a262101f20d575252f7"
+        }
+      },
+      "multiArchitectureManifestStatus": "pending-native-arm64-ticket-038-046"
+    }
+  }
+}

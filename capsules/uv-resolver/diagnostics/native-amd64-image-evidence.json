@@ -1,0 +1,47 @@
+{
+  "buildTags": [
+    "hone-uv-resolver:native-amd64-pair7",
+    "hone-uv-resolver:native-amd64-pair8"
+  ],
+  "capsule": "uv-resolver",
+  "comparison": {
+    "architecture": true,
+    "configDigest": true,
+    "history": true,
+    "manifestDigest": true,
+    "rootfsDiffIds": true
+  },
+  "configDigest": "sha256:cdb2ebfcd6288e0bcc958b1f421a2e35e7cc2393c40d2ef3ee51c8429336f8c9",
+  "dockerfileSha256": "sha256:0d12793940a6966bb048edc84bb86de968f47f62f8f2fed41717a74182b5d441",
+  "historySha256": "sha256:140fbd8f00b72c13b6fe81560cf699f13a12d4a81757fa2da6531f3b8cb0c7b9",
+  "manifestDigest": "sha256:a0ff8c72a2b3ef04c0e851fa1fe8242741e543b0f28ef59e0e985b47c412b88a",
+  "platform": "linux/amd64",
+  "recordedAt": "2026-08-11T18:52:54.417651Z",
+  "rootfsDiffIds": [
+    "sha256:63ecca237e30aca8ae79232ae01dddab7d8b42302f654f343f7cc7ddae60d57c",
+    "sha256:e62aadfda549a23e76f5bb43a9a5c652f9e7312aba9edf5c1411f7d0aed54eed",
+    "sha256:3acdb7d9b7ebcd7f62d99a996099a57b8367821f4d9a3f4b52239934425a7b98",
+    "sha256:b33c96ad984974239102a1fe15e6427a3510f13aa320227b371c10bb40063356",
+    "sha256:0bfd9a65e13cc2726159178398201f52cd4e5bd1c187584f6953c839438af7d5",
+    "sha256:04a106cf445c9633a59e0a4d8ee00505ba49e829b7b5d6fd38b81ae9e77b35fd"
+  ],
+  "schemaVersion": 1,
+  "smokeTest": {
+    "command": "docker run --rm --platform linux/amd64 --network none --entrypoint /bin/sh hone-uv-resolver@sha256:a0ff8c72a2b3ef04c0e851fa1fe8242741e543b0f28ef59e0e985b47c412b88a -c 'uname -m && test -x /opt/uv-target-base/profiling/uv'",
+    "result": "pass",
+    "stdout": "x86_64"
+  },
+  "sourceCommit": "5b6fd0784",
+  "sourceDateEpoch": 1785589070,
+  "status": "accepted-native-amd64-byte-identical-pair",
+  "supersedes": {
+    "digest": "sha256:37f906120b879ab6e07b680b784c40d8b84b9ee38a1c98e063bdaeb64a35a2ea",
+    "configDigest": "sha256:f1b95d99f48f9a23af34ab42026b8be36e0932f9944341bbfac01c5cadbdb1a0",
+    "acceptedBuildTags": [
+      "native-amd64-pair5",
+      "native-amd64-pair6"
+    ],
+    "reason": "The previous deterministic pair used Cargo's new build-directory layout, but the protected evaluator requires the legacy target/profiling paths. The accepted replacement pins CARGO_UNSTABLE_BUILD_DIR_NEW_LAYOUT=false and verifies the required legacy paths; historical evidence retains its original label."
+  },
+  "ticket": "HONE-39/HONE-45"
+}

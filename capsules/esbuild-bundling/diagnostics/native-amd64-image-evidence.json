@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "ticket": "HONE-38/HONE-41/HONE-45",
+  "capsule": "esbuild-bundling",
+  "status": "native-amd64-pair-accepted-after-authorized-evaluator-cap-migration",
+  "recordedAt": "2026-08-12T03:48:00Z",
+  "authorization": {
+    "decisionKey": "esbuild-512m-implementation",
+    "scope": "exact protected constant migration only",
+    "change": "capsules/esbuild-bundling/baseline/eval.py:65 FRESH_TMPFS_OPTIONS size=64m -> size=512m",
+    "logicChanges": "none",
+    "commit": "540bdb80b"
+  },
+  "definition": {
+    "sourceCommit": "540bdb80b",
+    "baselineCommit": "1eeef273a89ede13c1a357ea69fc1c6466318762",
+    "dockerfile": "Dockerfile",
+    "dockerfileSha256": "sha256:df1b06dafc22e881f59bdbfbde4df1d3fd089f1f9dc3dde9047eb1c53b4bb789",
+    "evaluatorSha256Before": "sha256:d005f24d7aed518e594f536c0b54eec557ca5f87e8718267bd012066727ab4ea",
+    "evaluatorSha256After": "sha256:cf9536ffbb8c741394176f53c9b2bbd851dc0917bc47f09cf3dd6148240823fb",
+    "buildPlatform": "linux/amd64",
+    "buildParameters": {
+      "builder": "two independent docker-container BuildKit builders",
+      "pull": false,
+      "noCache": true,
+      "provenance": false,
+      "load": true,
+      "sourceDateEpoch": 1785589070,
+      "debianSnapshot": "20260713T000000Z"
+    },
+    "buildCommand": "docker buildx build --platform linux/amd64 --pull=false --no-cache --network=default --provenance=false --build-arg SOURCE_DATE_EPOCH=1785589070 --load ."
+  },
+  "acceptedBuildTags": ["native-amd64-pair9", "native-amd64-pair10"],
+  "builderIsolation": ["hone-esbuild-pair1-builder", "hone-esbuild-pair2-builder"],
+  "image": {
+    "reference": "hone-esbuild-capsule@sha256:c84301668b0a6c93044ceb323541f0e70454d7af8ce112e64e5cc939bbdf1d56",
+    "manifestDigest": "sha256:c84301668b0a6c93044ceb323541f0e70454d7af8ce112e64e5cc939bbdf1d56",
+    "configDigest": "sha256:0b549b3aac736e2cfc2e7036dfb5dd1a9093b7916904e08c6b49cbc4640edb9b",
+    "architecture": "amd64",
+    "os": "linux",
+    "rootfsDiffIds": [
+      "sha256:b157b8c04250865143844ae3c4f435fa57d9567a5c2a02e5660a26c8928bae9e",
+      "sha256:2831ce3b8852ae0d05940ed18bbdd5aebf728fe28164ea00d38ff4c1df4add34",
+      "sha256:247df3554683fe1c1a70accc2ff51f9f862af9055e838bc4221aca497582cdf6",
+      "sha256:df6c97b7f44038c440f9bfc69d34222affd385cf9e7044adfdd2e509031849d3",
+      "sha256:a835db65c265f61d44abdaee4311ea0eddd27cf35f37cf86cf31028077572214",
+      "sha256:faa714884ae0680915f4a1719306f897a299aaf65251bc6b99dd401f67a4a50b",
+      "sha256:5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef",
+      "sha256:a702139776912c95cb885ce7d0a2779ae4529ee29292adb10f7152cafef6105a",
+      "sha256:c860c0350f49c7a2de754d9087646329cd82f5b3d34e47af992da848d21d8621",
+      "sha256:5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef"
+    ],
+    "historySha256": "sha256:daad077eb94cbed7a540e9559005cd3e82848c8b5b1beea6fe79213c973c0688"
+  },
+  "pairEvidence": {
+    "result": "byte-identical",
+    "compared": ["manifest digest", "config digest", "rootfs diff IDs", "history", "platform"],
+    "pair9": {
+      "manifestDigest": "sha256:c84301668b0a6c93044ceb323541f0e70454d7af8ce112e64e5cc939bbdf1d56",
+      "configDigest": "sha256:0b549b3aac736e2cfc2e7036dfb5dd1a9093b7916904e08c6b49cbc4640edb9b"
+    },
+    "pair10": {
+      "manifestDigest": "sha256:c84301668b0a6c93044ceb323541f0e70454d7af8ce112e64e5cc939bbdf1d56",
+      "configDigest": "sha256:0b549b3aac736e2cfc2e7036dfb5dd1a9093b7916904e08c6b49cbc4640edb9b"
+    }
+  },
+  "supersedes": {
+    "manifestDigest": "sha256:40b909f3ff4fb99eb4074de27cd913d2a9bae8f63391108822ddbaa899cb34d5",
+    "configDigest": "sha256:dc1c1ff9da69340f60d96d36162fc54a5a6071eb8a50ab3d49564bc260ec2f4e",
+    "reason": "The previous native pair preserved the frozen 64 MiB GOTMPDIR scratch cap and could not link candidate test binaries on AMD64. Historical pair evidence retains its original label."
+  },
+  "arm64": {
+    "status": "pending-ticket-038-046-native-refreeze",
+    "digest": null
+  }
+}

@@ -1,0 +1,150 @@
+{
+  "schemaVersion": 2,
+  "id": "cap_4f56f03866d9",
+  "objective": "Reduce the fixed Linux latency of query.py for the sealed skin-data workload while preserving the exact registered response+quality hash. The evaluator starts every measurement in a fresh process with empty SQLite connection state and verified page-cache eviction. Only query/indexing/batching/cache strategy may change; eval.py, worker.py, and toolchain.lock.json are protected.",
+  "baseline": {
+    "kind": "git",
+    "commit": "56d52e1f1badc9f2f629127e16347cb66a06ce25"
+  },
+  "image": "hone-mutation@sha256:e43b8871710267d86f3e1118b2f9a3d8ef0ab505b14e671da9728200260dcd10",
+  "evalEntrypoint": [
+    "python3",
+    "-I",
+    "-B",
+    "eval.py"
+  ],
+  "protectedPaths": [
+    "eval.py",
+    "worker.py",
+    "toolchain.lock.json",
+    ".gitignore"
+  ],
+  "assetGroups": [
+    {
+      "id": "train",
+      "visibility": "holdout",
+      "paths": [
+        "assets/train/market.sqlite3",
+        "assets/train/oracle.json",
+        "assets/train/provenance.json",
+        "assets/train/reference.py",
+        "assets/train/workload.json"
+      ]
+    },
+    {
+      "id": "validation",
+      "visibility": "holdout",
+      "paths": [
+        "assets/validation/market.sqlite3",
+        "assets/validation/oracle.json",
+        "assets/validation/provenance.json",
+        "assets/validation/reference.py",
+        "assets/validation/workload.json"
+      ]
+    }
+  ],
+  "budget": {
+    "maxTokens": 12000000,
+    "maxUsd": 25,
+    "maxWallClockSec": 10800,
+    "maxEvaluatorInvocations": 200
+  },
+  "diagnosticOrdering": {
+    "path": "diagnostics/ordering-report.amd64.json",
+    "hash": "sha256:60b7d23dbf0fbc9022c8d6e39ac0f0d7d8a69290fa3180e85cb9dc454ae35390"
+  },
+  "contentHashes": {
+    "assets/train/market.sqlite3": "sha256:a0c2a8b1a20ef74b9e263f6f7cf56054322820b15dddbedfc20c41718d34d2de",
+    "assets/train/oracle.json": "sha256:7ece64fc7d9a984042f0e00ef18048290a40d902c460e62ad7448612587cffc8",
+    "assets/train/provenance.json": "sha256:63426d6f023b5af72f84fe923f47ce3402e1aa3f2b68e9a13d548d0e9b6caa84",
+    "assets/train/reference.py": "sha256:3639dd00ca9d6c913217c2dd5423c2c04efdd75c4ea9c8494bf1f1d299212dbb",
+    "assets/train/workload.json": "sha256:adabc2fba81cea67a629fa2a6af335177f3492ce09a0ccefdea442150cd80543",
+    "assets/validation/market.sqlite3": "sha256:676617a7a1bd6140feb07b08008483114e242129a64d396bc33ae1c4f9eb53bc",
+    "assets/validation/oracle.json": "sha256:1581cb541de4e94b6251a5d3cd46d2cc8a171c472915edad29afeafa341d675f",
+    "assets/validation/provenance.json": "sha256:adfad37d08d9cde3385b05b86ec84a622ba96c417c1d402cc0a9a84718907fad",
+    "assets/validation/reference.py": "sha256:3639dd00ca9d6c913217c2dd5423c2c04efdd75c4ea9c8494bf1f1d299212dbb",
+    "assets/validation/workload.json": "sha256:7a5f06fda4ae6ad87e0cceac2be5e55b0a9e2535e5d37fecd1d1b8ae8d55d39b"
+  },
+  "meta": {
+    "evaluatorSource": "user",
+    "provenance": "read-only owner repository trade-up-bot at 2a37202187912bedfbe5b4d65498feef09797935; synthetic scaling of server/routes/data.ts and server/db.ts shapes; no owner records; native AMD64 terminal ordering and diagnostic rebaseline evidence is recorded at diagnostics/native-amd64-rebaseline.json",
+    "license": "internal-use-only",
+    "tags": [
+      "terminal-holdout",
+      "performance",
+      "sqlite",
+      "query-ranking"
+    ],
+    "partition": "terminal-holdout-1",
+    "sourceDetails": {
+      "ownerRepository": "trade-up-bot",
+      "commit": "2a37202187912bedfbe5b4d65498feef09797935",
+      "paths": {
+        "server/routes/data.ts": "sha256:73dbab6fe8b0e149077828985ec2b54ca29d7559ea40a0e4daa81f96871c9a9e",
+        "server/db.ts": "sha256:74b1199b6b8db2a3176179f1e88218e171f9e8056f9b61f28ae86b3cd09e864c"
+      },
+      "derivation": "scaled deterministic synthetic tables and workload derived from owner schema/query shapes; no owner records"
+    },
+    "measurement": {
+      "platform": "native linux/amd64 on deckbox (AMD Ryzen 9 7900)",
+      "cpuQuota": 2,
+      "samples": 9,
+      "interleaved": true,
+      "freshProcess": true,
+      "cacheContract": "immutable read-only DB; POSIX_FADV_DONTNEED plus mincore resident-fraction <= 0.01 before every process",
+      "stateReset": "before every sample the trusted parent reaps worker-uid processes and removes all worker-uid persistent state (/tmp, /var/tmp, /dev/shm trees and System V IPC objects); each worker is started in fresh IPC+NET namespaces before its privilege drop; the candidate workspace is broker-mounted read-only",
+      "q": "positive reciprocal latency score emitted by the trusted evaluator; invalid, broken, malformed, crashed, or timed-out output maps to qFail",
+      "qFail": 0
+    },
+    "normalization": {
+      "qFail": 0,
+      "qBase": 0.0002670590090361851,
+      "sigma": 0.0000031429644317243924,
+      "qReference": 0.00028277383119480705,
+      "scale": 0.00001571482215862195,
+      "noiseFractionOfScale": 0.20000000000000015
+    },
+    "imageProvenance": {
+      "schemaVersion": 1,
+      "ticket": "HONE-36/45",
+      "definition": {
+        "status": "ticket-036-native-amd64-pair-accepted",
+        "sourceCommit": "f72127add682ef3e951c60bd0994ab5f607732df",
+        "buildPlatform": "linux/amd64",
+        "reference": "hone-mutation@sha256:e43b8871710267d86f3e1118b2f9a3d8ef0ab505b14e671da9728200260dcd10"
+      },
+      "architectures": {
+        "linux/amd64": {
+          "status": "built-and-byte-identical-pair-verified",
+          "digest": "sha256:e43b8871710267d86f3e1118b2f9a3d8ef0ab505b14e671da9728200260dcd10",
+          "host": "deckbox",
+          "nativeOrdering": {
+            "status": "completed",
+            "path": "diagnostics/ordering-report.amd64.json",
+            "sha256": "sha256:60b7d23dbf0fbc9022c8d6e39ac0f0d7d8a69290fa3180e85cb9dc454ae35390",
+            "ticket": "HONE-41/HONE-42"
+          },
+          "nativeRebaseline": {
+            "status": "completed",
+            "path": "diagnostics/native-amd64-rebaseline.json",
+            "sha256": "sha256:de92c569914d117d923f0467634e6c713295681a9cdf890e6eb8953aa054ae5e",
+            "ticket": "HONE-42"
+          }
+        },
+        "linux/arm64": {
+          "status": "pending-native-arm64-refreeze",
+          "supersededDigest": "sha256:f680ddc7c1d5facfec0cce238784ab459bc4d54221e64a262101f20d575252f7"
+        }
+      },
+      "multiArchitectureManifestStatus": "pending-native-arm64-ticket-038-046",
+      "nativeOrderingStatus": "completed"
+    },
+    "diagnosticContentHashes": {
+      "diagnostics/alternate/query.py": "sha256:007f5288dbb4f0a05539f1a27f0e9b70b532ad5e62df9f71441f8b88869befa1",
+      "diagnostics/broken/query.py": "sha256:22f2a249838d4fd9fafeb19657f4f0ad3665eba0a77748e8deb9ef16f9dd6d16",
+      "diagnostics/improved/query.py": "sha256:3639dd00ca9d6c913217c2dd5423c2c04efdd75c4ea9c8494bf1f1d299212dbb",
+      "diagnostics/naive/query.py": "sha256:6a555622781897a0a476db44e95cd105aaff93b80e3767af96d1d53969d8bdfc",
+      "diagnostics/shortcut/query.py": "sha256:a8825696644a58581ef11aa8996a2bd61bd06d6eaab6b0fb6e9b5749bc3d95c0"
+    }
+  }
+}

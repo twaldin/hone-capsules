@@ -1,0 +1,88 @@
+{
+  "objective": "Recover model, token usage, cost, and completion state across sealed Crush, Gemini, Kilo, OpenCode, Qwen, and SWE-agent transcript envelopes. Maximize weighted exact recovery; only solution.py is mutable.",
+  "image": "hone-task@sha256:421f033a97c266279c4799f5b6f4e4b81fced0f8a9a4f1d3091a05866f217392",
+  "evalEntrypoint": [
+    "python3",
+    "-I",
+    "-B",
+    "eval.py"
+  ],
+  "protectedPaths": [
+    "eval.py",
+    "worker.py",
+    "challenge.json",
+    ".gitignore"
+  ],
+  "assetGroups": [
+    {
+      "id": "train",
+      "visibility": "public",
+      "paths": [
+        "assets/train"
+      ]
+    },
+    {
+      "id": "validation",
+      "visibility": "protected",
+      "paths": [
+        "assets/validation"
+      ]
+    }
+  ],
+  "budget": {
+    "maxTokens": 12000000,
+    "maxUsd": 25,
+    "maxWallClockSec": 10800,
+    "maxEvaluatorInvocations": 200
+  },
+  "diagnosticOrdering": {
+    "path": "diagnostics/ordering-report.amd64.json"
+  },
+  "meta": {
+    "evaluatorSource": "user",
+    "partition": "m2-frozen-corpus",
+    "license": "MIT",
+    "provenance": "bounded transcript-normalization extraction from Harness baseline e101371004685014913c7e0085821caf96db244b and reference 5b09ed7",
+    "sourceDetails": {
+      "repository": "harness",
+      "commit": "e101371004685014913c7e0085821caf96db244b",
+      "referenceCommit": "5b09ed7",
+      "derivation": "bounded exact-output subsystem extracted for isolated deterministic evaluation"
+    },
+    "measurement": {
+      "platform": "native linux/amd64 on Deckbox (AMD Ryzen 9 7900, Docker Engine 29.1.3, cgroup v2)",
+      "samples": 3,
+      "freshProcess": true,
+      "q": "weighted exact recovery: per sealed case, registered field weights recovered in all repetitions divided by total declared weight, averaged over cases",
+      "qFail": 0
+    },
+    "tags": [
+      "m2",
+      "owner",
+      "parsing",
+      "adapters"
+    ],
+    "imageProvenance": {
+      "schemaVersion": 1,
+      "ticket": "HONE-36/45",
+      "definition": {
+        "status": "ticket-036-native-amd64-pair-accepted",
+        "sourceCommit": "f72127add682ef3e951c60bd0994ab5f607732df",
+        "buildPlatform": "linux/amd64",
+        "reference": "hone-task@sha256:421f033a97c266279c4799f5b6f4e4b81fced0f8a9a4f1d3091a05866f217392"
+      },
+      "architectures": {
+        "linux/amd64": {
+          "status": "built-and-byte-identical-pair-verified",
+          "digest": "sha256:421f033a97c266279c4799f5b6f4e4b81fced0f8a9a4f1d3091a05866f217392",
+          "host": "deckbox"
+        },
+        "linux/arm64": {
+          "status": "pending-native-arm64-refreeze",
+          "supersededDigest": "sha256:a5f37a994ab2c4c44a05b3d679fd743245431f98355db37e106fd86daa1169d0"
+        }
+      },
+      "multiArchitectureManifestStatus": "pending-native-arm64-ticket-038-046"
+    }
+  }
+}

@@ -1,0 +1,190 @@
+{
+  "objective": "Improve geometric-mean mimalloc operations per second on four frozen deterministic single-thread, four-thread, small-object, and fragmentation workloads. The pinned upstream api/api-fill/stress suite, deterministic checksums, a four-thread maximum, peak allocator page-committed bytes, and live-page fragmentation at or below the split baseline plus 1% are hard gates. Only allocator implementation files under src and internal headers under include/mimalloc are mutable; trusted statistics and all build, test, evaluator, and workload code are protected.",
+  "image": "hone-mimalloc-allocator@sha256:4dd4bda0dc45939f089e19fb0185ea9c53172ea7a25228183e22292c2e716446",
+  "sandbox": {
+    "memoryBytes": 2147483648,
+    "cpus": 4
+  },
+  "evalEntrypoint": [
+    "python3",
+    "-I",
+    "-B",
+    "eval.py"
+  ],
+  "protectedPaths": [
+    ".*",
+    "*.md",
+    "CMakeLists.txt",
+    "LICENSE",
+    "UPSTREAM_REVISION",
+    "azure-pipelines.yml",
+    "mimalloc.pc.in",
+    "eval.py",
+    "worker.py",
+    "toolchain.lock.json",
+    "bin/**",
+    "cmake/**",
+    "contrib/**",
+    "doc/**",
+    "docs/**",
+    "hone/**",
+    "ide/**",
+    "test/**",
+    "include/mimalloc.h",
+    "include/mimalloc-new-delete.h",
+    "include/mimalloc-override.h",
+    "include/mimalloc-stats.h",
+    "include/mimalloc/types.h",
+    "src/alloc-override.c",
+    "src/static.c",
+    "src/stats.c"
+  ],
+  "assetGroups": [
+    {
+      "id": "train",
+      "visibility": "holdout",
+      "paths": [
+        "assets/train"
+      ]
+    },
+    {
+      "id": "validation",
+      "visibility": "holdout",
+      "paths": [
+        "assets/validation"
+      ]
+    }
+  ],
+  "budget": {
+    "maxTokens": 12000000,
+    "maxUsd": 25,
+    "maxWallClockSec": 10800,
+    "maxEvaluatorInvocations": 200
+  },
+  "diagnosticOrdering": {
+    "path": "diagnostics/ordering-report.amd64.json"
+  },
+  "meta": {
+    "evaluatorSource": "user",
+    "partition": "m2-terminal-holdout",
+    "license": "MIT",
+    "provenance": "microsoft/mimalloc at exact revision 76d3f8a934f9761e4ee75fa8b071e58d482f2758; four independently authored protected C workload drivers use sealed deterministic xorshift64-v1 seeds over a fixed per-workload round budget; terminal holdout received no optimizer, mutation, or headroom pilot; native AMD64 terminal ordering and rebaseline evidence is recorded at diagnostics/native-amd64-rebaseline.json.",
+    "sourceDetails": {
+      "repository": "microsoft/mimalloc",
+      "revision": "76d3f8a934f9761e4ee75fa8b071e58d482f2758",
+      "upstreamUrl": "https://github.com/microsoft/mimalloc/commit/76d3f8a934f9761e4ee75fa8b071e58d482f2758",
+      "mutableEnvelope": [
+        "src/** except src/stats.c, src/static.c, and src/alloc-override.c",
+        "include/mimalloc/** except include/mimalloc/types.h"
+      ],
+      "upstreamTests": [
+        "ctest --test-dir build -R ^test-(api|api-fill|stress)$ --output-on-failure"
+      ]
+    },
+    "imageProvenance": {
+      "schemaVersion": 1,
+      "ticket": "HONE-38",
+      "definition": {
+        "status": "native-amd64-pair-accepted",
+        "sourceCommit": "44d3e6442",
+        "dockerfile": "Dockerfile",
+        "dockerfileSha256": "sha256:379df2e7d2e5c86eef21c0e2f6aabc8bc36da5cffe647c013cf2b3071a36c88d",
+        "buildPlatform": "linux/amd64",
+        "buildCommand": "docker buildx build --platform linux/amd64 --pull --no-cache --network=default --provenance=false --build-arg SOURCE_DATE_EPOCH=1785589070 --load .",
+        "deviationFromPriorFreeze": "container-build definition only: immutable native AMD64 base, dependency pins, complete filesystem timestamp normalization, and deterministic bind-mounted license installation; capsule source, evaluator, objective, assets, and baseline were unchanged"
+      },
+      "baseImage": {
+        "index": "sha256:7b140f374b289a7c2befc338f42ebe6441b7ea838a042bbd5acbfca6ec875818",
+        "linux/amd64": "sha256:63a496b5d3b99214b39f5ed70eb71a61e590a77979c79cbee4faf991f8c0783e"
+      },
+      "architectures": {
+        "linux/amd64": {
+          "status": "built-and-byte-identical-pair-verified",
+          "reference": "hone-mimalloc-allocator@sha256:4dd4bda0dc45939f089e19fb0185ea9c53172ea7a25228183e22292c2e716446",
+          "digest": "sha256:4dd4bda0dc45939f089e19fb0185ea9c53172ea7a25228183e22292c2e716446",
+          "configDigest": "sha256:b10f07c26ac0fb79f4a0760a2e894b286487bd5acdf6d50fe8bf9604dae41854",
+          "dockerOs": "linux",
+          "dockerArchitecture": "amd64",
+          "host": "deckbox",
+          "nativeOrdering": {
+            "status": "completed",
+            "path": "diagnostics/ordering-report.amd64.json",
+            "sha256": "sha256:228bcfcb2b0eee033f06528a1c88594465b420842cbccf724f35b62836174712",
+            "ticket": "HONE-41/HONE-42"
+          },
+          "nativeRebaseline": {
+            "status": "completed",
+            "path": "diagnostics/native-amd64-rebaseline.json",
+            "sha256": "sha256:8133cfaef52a52a87d6c5b3cee95749f4d734ae6110b4ac14cdc1455917b97c1",
+            "ticket": "HONE-42"
+          },
+          "acceptedBuildTags": ["native-amd64-pair5", "native-amd64-pair6"],
+          "pairEvidence": {
+            "result": "byte-identical",
+            "compared": ["image digest", "config digest", "rootfs diff IDs", "history", "platform"]
+          }
+        },
+        "linux/arm64": {
+          "status": "pending-native-arm64-refreeze",
+          "supersededDigest": "sha256:7768eb1e62055de5f3ca7df52d00df234fcf98d97313816889595f36ad854465"
+        }
+      },
+      "multiArchitectureManifestStatus": "pending-native-arm64-ticket-038-046",
+      "nativeOrderingStatus": "completed"
+    },
+    "measurement": {
+      "platform": "native linux/amd64 on deckbox (AMD Ryzen 9 7900)",
+      "freshProcess": true,
+      "q": "geometric mean over four drivers of the load-cancelling yardstick score sealed_operations * (min reference elapsed / min candidate elapsed)",
+      "qFail": 0,
+      "qBase": 13871668.933606433,
+      "sigma": 76187.78735063919,
+      "qReference": 14565252.380286755,
+      "qReferenceConstruction": "13871668.933606433 + max(5*76187.78735063919, 0.05*abs(13871668.933606433-0)) = 14565252.380286755",
+      "aaSamples": [
+        13780123.284668658,
+        13874953.948801545,
+        13845004.900391001,
+        13847532.592654971,
+        14010729.94151599
+      ],
+      "normalizationScale": 693583.4466803223,
+      "noiseFractionOfScale": 0.1098466056467964,
+      "benchmarkTargetMsPerSample": 360,
+      "benchmarkSamplesPerWorkload": 7,
+      "benchmarkSampleSelection": "per workload the candidate and the pristine reference are timed interleaved (7 samples each) and scored q = sealed operations * (min reference elapsed / min candidate elapsed); the trusted evaluator times each measured region with its own monotonic clock across a per-sample fresh-nonce handshake, so candidate code can neither observe nor fabricate the measurement, the per-binary minimum rejects scheduler-noise outliers, and the reference ratio cancels sustained per-eval host load",
+      "threadCount": 4,
+      "peakCommittedGate": "for each workload, mi_stats_get page_committed.peak after a fresh mi_stats_reset and fixed one-round memory pass must be <= split baseline * 1.01",
+      "fragmentationGate": "at each driver's fixed live allocation checkpoint, max(0,page_committed.current-(malloc_normal.current+malloc_huge.current))/page_committed.current from merged mi_stats must be <= split baseline * 1.01",
+      "workBudget": "each workload runs a fixed sealed round budget; expectedOperations is the deterministic (allocator-independent) operation count for that budget and is validated against every reported sample",
+      "treePeakGate": "kernel cgroup whole-tree memory.peak per workload must be <= split baseline * 1.20 (regression ceiling) AND >= split baseline * 0.25 (workload floor: a completion stream produced without running the allocator is rejected)",
+      "referenceYardstick": "each workload builds a pristine reference (the sealed baseline allocator from TRUSTED_DIR with no candidate overlay) and times reference and candidate interleaved under the same host load; the score is q = sealed operations * (min reference elapsed / min candidate elapsed), so sustained per-eval contention elevates both legs together and cancels in the ratio"
+    },
+    "holdoutSeal": {
+      "taskId": "OSS-H07",
+      "cohort": "terminal",
+      "optimizerPilots": 0,
+      "mutationRuns": 0,
+      "headroomRuns": 0,
+      "trustedDiagnosticsOnly": true,
+      "assetVisibility": "holdout"
+    },
+    "exploitReview": {
+      "protectedPathEscape": "broker diff-protects build files, public/statistics headers, statistics implementation, evaluator, worker, tests, and four workload drivers; evaluator rejects symlinks and new files outside src or include/mimalloc",
+      "benchmarkSpecialCasing": "distinct sealed train and validation seeds; a trusted first-size fingerprint diagnostic is expected to win train and lose validation",
+      "fixtureFingerprinting": "both split configurations are holdout-only and mounted under root-owned /capsule; compilation runs as uid 2000 before the protected evaluator invokes drivers",
+      "outputFabrication": "the trusted evaluator owns fd 1 and never scores anything the candidate-linked executable prints; the benchmark streams only work-completion tokens over a parent-supplied report fd, authenticated per sample by a fresh unpredictable nonce, and the parent measures elapsed with its own monotonic clock, derives throughput from the sealed operation count, and validates the deterministic checksum. A constructor that skips the workload cannot write the scoring channel, cannot fabricate the parent clock, and (via the whole-tree cgroup memory floor) cannot reproduce the sealed memory profile without allocating; the evaluator additionally audits every linked binary with nm and rejects candidate-defined timing or output symbols",
+      "buildScriptMutation": "CMake files, fixed O2/MI_STAT flags, worker, test sources, and toolchain lock are protected; every evaluation performs a clean source rebuild",
+      "timerTampering": "the candidate-linked benchmark performs no scored timing of its own: the trusted evaluator process brackets each measured region with its own CLOCK_MONOTONIC across a per-sample authenticated handshake the child cannot pre-answer, runs under uid 2000 with network disabled, and the nm symbol audit still rejects any candidate-defined timing or output symbols before a benchmark binary is executed",
+      "deadCodeBenchmarkBypass": "the benchmark uses public allocation entry points linked to the same static library exercised by upstream api and stress tests"
+    },
+    "tags": [
+      "m2",
+      "terminal",
+      "oss",
+      "mimalloc",
+      "allocator",
+      "performance"
+    ]
+  }
+}

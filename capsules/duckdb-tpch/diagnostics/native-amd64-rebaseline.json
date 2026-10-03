@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "ticket": "HONE-41/HONE-42/HONE-45",
+  "capsule": "duckdb-tpch",
+  "status": "native-amd64-terminal-ordering-and-rebaseline-passed",
+  "recordedAt": "2026-08-12T05:52:00Z",
+  "authorization": {
+    "decisionKey": "terminal-holdout-diagnostic",
+    "scope": "captain-authorized exact terminal verification/rebaseline diagnostic only",
+    "ownerGate": {
+      "environment": "HONE_TERMINAL_HOLDOUT_DIAGNOSTIC=1",
+      "flag": "--holdout-diagnostic"
+    },
+    "purpose": "Verify native AMD64 ordering and record architecture-specific rebaseline evidence without exposing the terminal holdout to any optimizer, campaign phase, model, or exploratory run."
+  },
+  "baseline": {
+    "aggregateSamples": [0.9924026210964448, 1.0090439595895175, 0.991470429831923, 0.9954316589851664, 0.9982510820009699],
+    "allConstraintsPass": true,
+    "allValid": true,
+    "normalizer": {
+      "formula": "qReference = qBase + max(5*sigma, 0.05*abs(qBase-qFail))",
+      "qFail": 0,
+      "qBase": 0.9973199503008043,
+      "sigma": 0.006329013514877475,
+      "qReference": 1.0471859478158445,
+      "normalizationScale": 0.04986599751504017,
+      "noiseFractionOfScale": 0.12692042333994363
+    }
+  },
+  "diagnosticRebaseline": {
+    "changedSources": [],
+    "decision": "No diagnostic variant sources required rebaselining: broken, naive, shortcut, improved, and baseline controls pass the frozen native ordering contract.",
+    "protectedInputsUnchanged": ["baseline/**", "assets/**", "baseline/eval.py"]
+  },
+  "host": {
+    "hostname": "deckbox",
+    "architecture": "x86_64",
+    "cpu": "AMD Ryzen 9 7900 12-Core Processor",
+    "dockerArchitecture": "amd64",
+    "apparmorProfile": "hone-evaluator-cgroup"
+  },
+  "image": {
+    "reference": "hone-duckdb-tpch@sha256:dd2e787549671c99c1cccc0f1db057e20f3ba224162b56997b8b9887a34315b4",
+    "manifestDigest": "sha256:dd2e787549671c99c1cccc0f1db057e20f3ba224162b56997b8b9887a34315b4",
+    "configDigest": "sha256:2b74135bfee674523f7daebd5e95e9b5b5dabfea6d79993041ffa855be51014f",
+    "architecture": "linux/amd64",
+    "pairStatus": "built-and-byte-identical-pair-verified"
+  },
+  "run": {
+    "command": "HONE_CAPSULE_DIR=capsules/duckdb-tpch HONE_TERMINAL_HOLDOUT_DIAGNOSTIC=1 pnpm exec tsx capsules/tools/ordering-check.ts --holdout-diagnostic --stability-runs 5 --raw-measurements tmp/rebaseline/duckdb-tpch.json --report capsules/duckdb-tpch/diagnostics/ordering-report.amd64.json",
+    "evalInvocations": 18,
+    "network": "none",
+    "wallSeconds": 7505.9,
+    "orderingReport": "diagnostics/ordering-report.amd64.json",
+    "orderingReportSha256": "sha256:4b13bf75b23c59d467aae6690ede8a2a964a4d526d7d902b3cc2577a7ac35379",
+    "rawMeasurementsSha256": "sha256:34f2db74e2d7bba2a39b38652db959532a21ac74cc7245bc13aadf1111cb6bfe"
+  },
+  "sources": {
+    "capsuleConfigSha256AtRun": "sha256:590447bb45236be0b27d89184da800662e89d7e83f34baad4627ed0a1cef49f6",
+    "evaluatorSha256": "sha256:793497ed48b2de287285417904ff730dc3a10a983d244bed9632002168bdb916",
+    "orderingToolSha256": "sha256:6790f0c28987cb32f79aa01c183aad7f074954ed6d3e0ca7c2720bb5d8f1e46a",
+    "apparmorProfileSha256": "sha256:d5a3a8d452b02780e2be40f5bd7e35771e987720974d86f01971493a6c2d5a3a"
+  }
+}

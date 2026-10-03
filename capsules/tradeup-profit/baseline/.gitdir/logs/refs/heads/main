@@ -1,0 +1,6 @@
+0000000000000000000000000000000000000000 25c326968464881cace4a70a567664689bc32cd3 twaldin <timothy@waldin.net> 1784274860 -0700	commit (initial): Freeze tradeup profit baseline
+25c326968464881cace4a70a567664689bc32cd3 6852a888dace567f1e47b4026e4735acada31ef8 twaldin <timothy@waldin.net> 1784274911 -0700	commit (amend): Freeze tradeup profit baseline
+6852a888dace567f1e47b4026e4735acada31ef8 6c6b1f690553650d9288b67f4facdd63d3a90065 twaldin <timothy@waldin.net> 1784275302 -0700	commit (amend): Freeze tradeup profit baseline
+6c6b1f690553650d9288b67f4facdd63d3a90065 156de2c8eab18ae2b97a074c3744be62077325a5 twaldin <timothy@waldin.net> 1784283267 -0700	commit: Remove local source path from provenance
+156de2c8eab18ae2b97a074c3744be62077325a5 fd5cb554233fb07ed3f5b8747c2b99e6eb076e7b twaldin <timothy@waldin.net> 1784563823 -0700	commit: Harden worker exchange: in-flight byte cap, deadline, process-group reap
+fd5cb554233fb07ed3f5b8747c2b99e6eb076e7b 2e3e10246c35c3d18a7457e1bfadc928dbec6860 twaldin <timothy@waldin.net> 1784737782 -0700	commit: Reap detached candidate descendants: subreaper, uid sweep, fresh per-launch state

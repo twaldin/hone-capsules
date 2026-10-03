@@ -1,0 +1,210 @@
+{
+  "capsule": "biome-parser-formatter",
+  "completedAt": "2026-08-11T20:06:40.962824+00:00",
+  "definition": {
+    "cargoCacheNormalizer": "toolchain/normalize_cargo_cache.py",
+    "cargoCacheNormalizerSha256": "sha256:ae35319c3ff242855ed306c633a38495fca74337a664ff0cdc792c3a814f71a2",
+    "debianSnapshot": "20260713T000000Z",
+    "dockerfile": "toolchain/Dockerfile",
+    "dockerfileSha256": "sha256:21a0f7c0b1ecd3ff8044df2eada9bad20b421b25778baaa4153b9ae50af10b5c",
+    "rustFlags": "-Zthreads=1",
+    "sourceContext": "ticket-037 frozen biome checkout reconstructed from the embedded baseline authority",
+    "sourceDateEpoch": 1785589070
+  },
+  "host": {
+    "apparmorEvidence": "trusted/broker/host/apparmor/native-mount-authority-evidence.json",
+    "apparmorProfile": "hone-evaluator-cgroup",
+    "architecture": "x86_64",
+    "cgroup": "v2",
+    "cpu": "AMD Ryzen 9 7900 12-Core Processor",
+    "dockerEngine": "29.1.3",
+    "dockerServerArchitecture": "amd64",
+    "hostname": "deckbox",
+    "kernel": "Linux 6.8.0-31-generic #31-Ubuntu SMP PREEMPT_DYNAMIC Sat Apr 20 00:40:06 UTC 2024",
+    "logicalCpus": 24
+  },
+  "pair": {
+    "compared": {
+      "config": true,
+      "history": true,
+      "imageDigest": true,
+      "platform": true,
+      "rootfsDiffIds": true
+    },
+    "configDigest": "sha256:e0af7e2bb5da480212b2ab6d372d7db9cf86946b58b122d0cb788520e87f1df8",
+    "digest": "sha256:85d6d409030ad85056d81c36da81b96a74eb1eb03dd7de62a2e5cbe98369d8bd",
+    "dockerArchitecture": "amd64",
+    "dockerOs": "linux",
+    "history": [
+      {
+        "Comment": "buildkit.dockerfile.v0",
+        "CreatedAt": "2026-08-01T12:57:50Z",
+        "CreatedBy": "CMD [\"bash\"]",
+        "CreatedSince": "10 days ago",
+        "ID": "sha256:85d6d409030ad85056d81c36da81b96a74eb1eb03dd7de62a2e5cbe98369d8bd",
+        "Size": "0B"
+      },
+      {
+        "Comment": "buildkit.dockerfile.v0",
+        "CreatedAt": "2026-08-01T12:57:50Z",
+        "CreatedBy": "WORKDIR /work",
+        "CreatedSince": "10 days ago",
+        "ID": "<missing>",
+        "Size": "8.19kB"
+      },
+      {
+        "Comment": "buildkit.dockerfile.v0",
+        "CreatedAt": "2026-08-01T12:57:50Z",
+        "CreatedBy": "RUN |2 DEBIAN_SNAPSHOT=20260713T000000Z SOURCE_DATE_EPOCH=1785589070 /bin/sh -c cargo generate-lockfile --offline     && CARGO_TARGET_DIR=/opt/target-seed cargo build --locked --offline --release -p hone_biome_bench     && printf 'html{color:red}\\n.smoke-100 .part-200 { margin: 1px }\\nhtml { color:\\n' > /tmp/hone-smoke.css     && /opt/target-seed/release/hone_biome_bench verify /tmp/hone-smoke.css /tmp/hs-o /tmp/hs-s /tmp/hs-d     && cmp /tmp/hs-o /tmp/hs-s     && /opt/target-seed/release/hone_biome_bench parse /tmp/hone-smoke.css 3 7     && /opt/target-seed/release/hone_biome_bench format /tmp/hone-smoke.css 3 7     && rm -f /tmp/hone-smoke.css /tmp/hs-o /tmp/hs-s /tmp/hs-d     && python3 /usr/local/bin/normalize_cargo_cache.py /opt/target-seed     && rm -f /usr/local/bin/normalize_cargo_cache.py     && rm -rf /usr/local/cargo/.global-cache /usr/local/cargo/.package-cache* /usr/local/cargo/registry     && test ! -e /opt/biome/.git     && chmod -R a+rX /opt/biome /opt/vendor /opt/target-seed     && find / -xdev -depth       ! -path /etc/hosts ! -path /etc/hostname ! -path /etc/resolv.conf       ! -path /dev ! -path /proc ! -path /sys       -exec touch --no-dereference --date=\"@${SOURCE_DATE_EPOCH}\" {} + # buildkit",
+        "CreatedSince": "10 days ago",
+        "ID": "<missing>",
+        "Size": "521MB"
+      },
+      {
+        "Comment": "buildkit.dockerfile.v0",
+        "CreatedAt": "2026-08-01T12:57:50Z",
+        "CreatedBy": "WORKDIR /opt/biome",
+        "CreatedSince": "10 days ago",
+        "ID": "<missing>",
+        "Size": "4.1kB"
+      },
+      {
+        "Comment": "buildkit.dockerfile.v0",
+        "CreatedAt": "2026-08-01T12:57:50Z",
+        "CreatedBy": "ENV CARGO_NET_OFFLINE=true CARGO_INCREMENTAL=0 CARGO_PROFILE_RELEASE_LTO=false RUSTC_BOOTSTRAP=1 RUSTFLAGS=-Zthreads=1 RUST_BACKTRACE=0",
+        "CreatedSince": "10 days ago",
+        "ID": "<missing>",
+        "Size": "0B"
+      },
+      {
+        "Comment": "buildkit.dockerfile.v0",
+        "CreatedAt": "2026-08-01T12:57:50Z",
+        "CreatedBy": "RUN |2 DEBIAN_SNAPSHOT=20260713T000000Z SOURCE_DATE_EPOCH=1785589070 /bin/sh -c install -m 0755 /mnt/mutation/bun /usr/local/bin/bun     && install -m 0644 /mnt/mutation/pi_natives.linux-x64-baseline.node /usr/local/bin/     && install -m 0644 /mnt/mutation/pi_natives.linux-x64-modern.node /usr/local/bin/     && node --version && bun --version     && mkdir -p /opt/vendor /opt/biome/crates/hone_biome_bench     && cp -a /mnt/vendor/. /opt/vendor/     && cp -a /mnt/config/cargo-config.toml /usr/local/cargo/config.toml     && install -m 0755 /mnt/config/normalize_cargo_cache.py /usr/local/bin/normalize_cargo_cache.py     && cp -a /mnt/biome/. /opt/biome/     && rm -rf /opt/biome/.git /opt/biome/.hone-pin-ok /opt/biome/target     && cp -a /mnt/harness/. /opt/biome/crates/hone_biome_bench/     && find / -xdev -depth       ! -path /etc/hosts ! -path /etc/hostname ! -path /etc/resolv.conf       ! -path /dev ! -path /proc ! -path /sys ! -path '/mnt*'       -exec touch --no-dereference --date=\"@${SOURCE_DATE_EPOCH}\" {} + # buildkit",
+        "CreatedSince": "10 days ago",
+        "ID": "<missing>",
+        "Size": "1.61GB"
+      },
+      {
+        "Comment": "buildkit.dockerfile.v0",
+        "CreatedAt": "2026-08-01T12:57:50Z",
+        "CreatedBy": "ENV PATH=/usr/local/rustup/toolchains/1.96.1-x86_64-unknown-linux-gnu/bin:/usr/local/cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "CreatedSince": "10 days ago",
+        "ID": "<missing>",
+        "Size": "0B"
+      },
+      {
+        "Comment": "buildkit.dockerfile.v0",
+        "CreatedAt": "2026-08-01T12:57:50Z",
+        "CreatedBy": "RUN |2 DEBIAN_SNAPSHOT=20260713T000000Z SOURCE_DATE_EPOCH=1785589070 /bin/sh -c python3 -c 'import hashlib,urllib.request; u=\"https://static.rust-lang.org/dist/2026-06-30/rust-std-1.96.1-wasm32-unknown-unknown.tar.xz\"; b=urllib.request.urlopen(u,timeout=120).read(); h=hashlib.sha256(b).hexdigest(); assert h==\"0504b6fd6ec756ab5c32d35d8c9baf16138d9a7ed748c60db6c298c298c8bf01\"; print(\"rust-std-wasm.tar.xz sha256:\"+h); open(\"/tmp/rust-std-wasm.tar.xz\",\"wb\").write(b)'     && mkdir /tmp/rust-std-wasm     && tar -xJf /tmp/rust-std-wasm.tar.xz -C /tmp/rust-std-wasm     && cp -a /tmp/rust-std-wasm/rust-std-1.96.1-wasm32-unknown-unknown/rust-std-wasm32-unknown-unknown/lib/. /usr/local/rustup/toolchains/1.96.1-x86_64-unknown-linux-gnu/lib/     && rm -rf /tmp/rust-std-wasm /tmp/rust-std-wasm.tar.xz     && /usr/local/rustup/toolchains/1.96.1-x86_64-unknown-linux-gnu/bin/rustc --print target-libdir --target wasm32-unknown-unknown     && find / -xdev -depth       ! -path /etc/hosts ! -path /etc/hostname ! -path /etc/resolv.conf       ! -path /dev ! -path /proc ! -path /sys       -exec touch --no-dereference --date=\"@${SOURCE_DATE_EPOCH}\" {} + # buildkit",
+        "CreatedSince": "10 days ago",
+        "ID": "<missing>",
+        "Size": "97.4MB"
+      },
+      {
+        "Comment": "buildkit.dockerfile.v0",
+        "CreatedAt": "2026-08-01T12:57:50Z",
+        "CreatedBy": "RUN |2 DEBIAN_SNAPSHOT=20260713T000000Z SOURCE_DATE_EPOCH=1785589070 /bin/sh -c printf '%s\\n'       \"deb [check-valid-until=no] http://snapshot.debian.org/archive/debian/${DEBIAN_SNAPSHOT}/ bookworm main\"       > /etc/apt/sources.list     && rm -f /etc/apt/sources.list.d/*     && apt-get -o Acquire::Check-Valid-Until=false update     && find /var/lib/apt/lists -type f -exec sha256sum {} + | sort -k2     && apt-get --download-only install -y --no-install-recommends       python3=3.11.2-1+b1 time=1.9-0.2 nodejs=18.20.4+dfsg-1~deb12u2     && find /var/cache/apt/archives -type f -name '*.deb' -exec sha256sum {} + | sort -k2     && apt-get --no-download install -y --no-install-recommends       python3=3.11.2-1+b1 time=1.9-0.2 nodejs=18.20.4+dfsg-1~deb12u2     && rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/*.deb       /var/cache/ldconfig/aux-cache /var/log/alternatives.log /var/log/apt/* /var/log/dpkg.log     && find / -xdev -depth       ! -path /etc/hosts ! -path /etc/hostname ! -path /etc/resolv.conf       ! -path /dev ! -path /proc ! -path /sys       -exec touch --no-dereference --date=\"@${SOURCE_DATE_EPOCH}\" {} + # buildkit",
+        "CreatedSince": "10 days ago",
+        "ID": "<missing>",
+        "Size": "1.68GB"
+      },
+      {
+        "Comment": "buildkit.dockerfile.v0",
+        "CreatedAt": "2026-08-01T12:57:50Z",
+        "CreatedBy": "ARG SOURCE_DATE_EPOCH=1785589070",
+        "CreatedSince": "10 days ago",
+        "ID": "<missing>",
+        "Size": "0B"
+      },
+      {
+        "Comment": "buildkit.dockerfile.v0",
+        "CreatedAt": "2026-08-01T12:57:50Z",
+        "CreatedBy": "ARG DEBIAN_SNAPSHOT=20260713T000000Z",
+        "CreatedSince": "10 days ago",
+        "ID": "<missing>",
+        "Size": "0B"
+      },
+      {
+        "Comment": "buildkit.dockerfile.v0",
+        "CreatedAt": "2026-06-30T23:41:48Z",
+        "CreatedBy": "RUN /bin/sh -c set -eux;         arch=\"$(dpkg --print-architecture)\";     case \"$arch\" in         'amd64')             rustArch='x86_64-unknown-linux-gnu';             rustupSha256='4acc9acc76d5079515b46346a485974457b5a79893cfb01112423c89aeb5aa10';             ;;         'armhf')             rustArch='armv7-unknown-linux-gnueabihf';             rustupSha256='124e02253af9128f9e27ea1ac929cbb73cf44cf35469d0f594a1b62f7b71fea1';             ;;         'arm64')             rustArch='aarch64-unknown-linux-gnu';             rustupSha256='9732d6c5e2a098d3521fca8145d826ae0aaa067ef2385ead08e6feac88fa5792';             ;;         'i386')             rustArch='i686-unknown-linux-gnu';             rustupSha256='5140e82096f96d1d8077f00eb312648e0e5106d101c9918d086f72cbc69bb3a1';             ;;         'ppc64el')             rustArch='powerpc64le-unknown-linux-gnu';             rustupSha256='4bfff85bd3967d988e14567aa9cc6ab0ea386f0ffeff0f9f14d23f0103bf1f97';             ;;         's390x')             rustArch='s390x-unknown-linux-gnu';             rustupSha256='66c2c132428b6b77803facb02cbdf33b89d20c00bd20da142be8cb651f2e7cd8';             ;;         *)             echo >&2 \"unsupported architecture: $arch\";             exit 1;             ;;     esac;         url=\"https://static.rust-lang.org/rustup/archive/1.29.0/${rustArch}/rustup-init\";     wget --progress=dot:giga \"$url\";     echo \"${rustupSha256} *rustup-init\" | sha256sum -c -;         chmod +x rustup-init;     ./rustup-init -y --no-modify-path --profile minimal --default-toolchain $RUST_VERSION --default-host ${rustArch};     rm rustup-init;     chmod -R a+w $RUSTUP_HOME $CARGO_HOME;         rustup --version;     cargo --version;     rustc --version; # buildkit",
+        "CreatedSince": "5 weeks ago",
+        "ID": "<missing>",
+        "Size": "634MB"
+      },
+      {
+        "Comment": "buildkit.dockerfile.v0",
+        "CreatedAt": "2026-06-30T23:41:48Z",
+        "CreatedBy": "ENV RUSTUP_HOME=/usr/local/rustup CARGO_HOME=/usr/local/cargo PATH=/usr/local/cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin RUST_VERSION=1.96.1",
+        "CreatedSince": "5 weeks ago",
+        "ID": "<missing>",
+        "Size": "0B"
+      },
+      {
+        "Comment": "buildkit.dockerfile.v0",
+        "CreatedAt": "2026-06-30T23:41:48Z",
+        "CreatedBy": "LABEL org.opencontainers.image.source=https://github.com/rust-lang/docker-rust",
+        "CreatedSince": "5 weeks ago",
+        "ID": "<missing>",
+        "Size": "0B"
+      },
+      {
+        "Comment": "buildkit.dockerfile.v0",
+        "CreatedAt": "2026-06-24T03:17:35Z",
+        "CreatedBy": "RUN /bin/sh -c set -ex;  apt-get update;  apt-get install -y --no-install-recommends   autoconf   automake   bzip2   default-libmysqlclient-dev   dpkg-dev   file   g++   gcc   imagemagick   libbz2-dev   libc6-dev   libcurl4-openssl-dev   libdb-dev   libevent-dev   libffi-dev   libgdbm-dev   libglib2.0-dev   libgmp-dev   libjpeg-dev   libkrb5-dev   liblzma-dev   libmagickcore-dev   libmagickwand-dev   libmaxminddb-dev   libncurses5-dev   libncursesw5-dev   libpng-dev   libpq-dev   libreadline-dev   libsqlite3-dev   libssl-dev   libtool   libwebp-dev   libxml2-dev   libxslt-dev   libyaml-dev   make   patch   unzip   xz-utils   zlib1g-dev  ;  rm -rf /var/lib/apt/lists/* # buildkit",
+        "CreatedSince": "6 weeks ago",
+        "ID": "<missing>",
+        "Size": "619MB"
+      },
+      {
+        "Comment": "buildkit.dockerfile.v0",
+        "CreatedAt": "2026-06-24T02:28:14Z",
+        "CreatedBy": "RUN /bin/sh -c set -eux;  apt-get update;  apt-get install -y --no-install-recommends   git   mercurial   openssh-client   subversion     procps  ;  rm -rf /var/lib/apt/lists/* # buildkit",
+        "CreatedSince": "6 weeks ago",
+        "ID": "<missing>",
+        "Size": "194MB"
+      },
+      {
+        "Comment": "buildkit.dockerfile.v0",
+        "CreatedAt": "2026-06-24T01:41:22Z",
+        "CreatedBy": "RUN /bin/sh -c set -eux;  apt-get update;  apt-get install -y --no-install-recommends   ca-certificates   curl   gnupg   netbase   sq   wget  ;  rm -rf /var/lib/apt/lists/* # buildkit",
+        "CreatedSince": "6 weeks ago",
+        "ID": "<missing>",
+        "Size": "52.2MB"
+      },
+      {
+        "Comment": "debuerreotype 0.17",
+        "CreatedAt": "2026-06-23T00:00:00Z",
+        "CreatedBy": "# debian.sh --arch 'amd64' out/ 'bookworm' '@1782172800'",
+        "CreatedSince": "7 weeks ago",
+        "ID": "<missing>",
+        "Size": "133MB"
+      }
+    ],
+    "result": "byte-identical",
+    "rootfsDiffIds": [
+      "sha256:b157b8c04250865143844ae3c4f435fa57d9567a5c2a02e5660a26c8928bae9e",
+      "sha256:2831ce3b8852ae0d05940ed18bbdd5aebf728fe28164ea00d38ff4c1df4add34",
+      "sha256:247df3554683fe1c1a70accc2ff51f9f862af9055e838bc4221aca497582cdf6",
+      "sha256:fc31e74f53a3593d424d65e55e557231b5da58e238210269baa7a8e88b298547",
+      "sha256:fdefc9ebe5c4ecdffa001e26d9a6322b98815aabc20e21fbf81a7d297409c87c",
+      "sha256:4ed8510d1d962d797afc71c3a6a124a840e1dc574725219d69727c719dc865e1",
+      "sha256:fd7afc362b2a71f949a5897a8c3d8a2b776604d4f63eb1f5ccc4ddba886c7cb4",
+      "sha256:ed838ad3f0331455aca039946785a41cdfb7d939651e6a2cc992b027bb5c1905",
+      "sha256:5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef",
+      "sha256:b9512ee2d6aa05ed7a2ec58a6b2e7d26bbfee79a698a061b3527a19ae99a827b",
+      "sha256:b1b25f292dd19db065f152c5b5aeefed7d3e8fdd5b72fb44cebbbbf341cd66da"
+    ],
+    "tags": [
+      "hone-biome-task:native-amd64-pair9",
+      "hone-biome-task:native-amd64-pair10"
+    ]
+  },
+  "schemaVersion": 1,
+  "sourceCommit": "307cd25a7",
+  "supersedes": {
+    "digest": "sha256:fc2d9737bf8c2fadb2492379e652359432dd0956017a7745c187634381416991",
+    "reason": "native ordering proved the accepted ticket-037 image pruned Cargo fingerprint and rustc cache metadata required by every candidate rebuild"
+  },
+  "ticket": "HONE-38/HONE-40"
+}

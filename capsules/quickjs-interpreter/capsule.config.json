@@ -1,0 +1,185 @@
+{
+  "objective": "Improve geometric-mean throughput across the frozen prop_read, array_read, int_arith, regexp_ascii, prop_update, typed_array_read, float_arith, and regexp_utf16 cases selected from upstream tests/microbench.js plus fresh-process ES-module startup. The split-specific pinned Test262 subset, byte-exact observable and module outputs, and stripped qjs binary size no greater than baseline plus 1% are hard gates. Only the interpreter, numeric conversion, regexp, Unicode, utility, and their public/internal header files enumerated by sourceDetails.mutableEnvelope are mutable; the CLI, clock provider, build, evaluator, tests, and workloads are protected.",
+  "image": "hone-quickjs-interpreter@sha256:ab73563ba62010e41397266556d593551b71a66e80dc8275cf9a25674f307b5e",
+  "evalEntrypoint": ["python3", "-I", "-B", "eval.py"],
+  "protectedPaths": [
+    ".*",
+    ".github/**",
+    "Changelog",
+    "LICENSE",
+    "Makefile",
+    "TODO",
+    "VERSION",
+    "compat/**",
+    "doc/**",
+    "eval.py",
+    "examples/**",
+    "fuzz/**",
+    "qjs.c",
+    "qjsc.c",
+    "quickjs-libc.c",
+    "quickjs-libc.h",
+    "readme-cosmo.txt",
+    "readme.txt",
+    "release.sh",
+    "repl.c",
+    "repl.js",
+    "run-test262.c",
+    "source-files.json",
+    "test262.conf",
+    "test262_errors.txt",
+    "test262o.conf",
+    "test262o_errors.txt",
+    "tests/**",
+    "toolchain.lock.json",
+    "unicode_download.sh",
+    "unicode_gen.c",
+    "unicode_gen_def.h",
+    "worker.py"
+  ],
+  "assetGroups": [
+    {
+      "id": "train",
+      "visibility": "holdout",
+      "paths": ["assets/train"]
+    },
+    {
+      "id": "validation",
+      "visibility": "holdout",
+      "paths": ["assets/validation"]
+    }
+  ],
+  "budget": {
+    "maxTokens": 12000000,
+    "maxUsd": 25,
+    "maxWallClockSec": 10800,
+    "maxEvaluatorInvocations": 200
+  },
+  "sandbox": {
+    "memoryBytes": 2147483648,
+    "cpus": 2
+  },
+  "diagnosticOrdering": {
+    "path": "diagnostics/ordering-report.amd64.json"
+  },
+  "meta": {
+    "evaluatorSource": "user",
+    "partition": "m2-terminal-holdout",
+    "license": "MIT (bellard/quickjs LICENSE preserved); BSD-3-Clause (tc39/test262 LICENSE preserved with every frozen split)",
+    "provenance": "bellard/quickjs at exact revision 04be246001599f5995fa2f2d8c91a0f198d3f34c; tc39/test262 subset at exact revision 5c8206929d81b2d3d727ca6aac56c18358c8d790; train and validation remain terminal-holdout assets; no reference patch exists; native AMD64 ordering and rebaseline evidence is recorded at diagnostics/native-amd64-rebaseline.json; final frozen-GCE recalibration remains required",
+    "sourceDetails": {
+      "taskId": "OSS-H04",
+      "repository": "bellard/quickjs",
+      "revision": "04be246001599f5995fa2f2d8c91a0f198d3f34c",
+      "upstreamUrl": "https://github.com/bellard/quickjs/commit/04be246001599f5995fa2f2d8c91a0f198d3f34c",
+      "test262Repository": "tc39/test262",
+      "test262Revision": "5c8206929d81b2d3d727ca6aac56c18358c8d790",
+      "mutableEnvelope": [
+        "cutils.c",
+        "cutils.h",
+        "dtoa.c",
+        "dtoa.h",
+        "libregexp-opcode.h",
+        "libregexp.c",
+        "libregexp.h",
+        "libunicode-table.h",
+        "libunicode.c",
+        "libunicode.h",
+        "list.h",
+        "quickjs-atom.h",
+        "quickjs-opcode.h",
+        "quickjs.c",
+        "quickjs.h"
+      ],
+      "upstreamTests": ["./run-test262 -T 1 -c test262.conf -r none over the exact six-case split subset"]
+    },
+    "imageProvenance": {
+      "schemaVersion": 1,
+      "ticket": "HONE-38",
+      "definition": {
+        "status": "native-amd64-pair-accepted",
+        "sourceCommit": "44d3e6442",
+        "dockerfile": "Dockerfile",
+        "dockerfileSha256": "sha256:e97e6cd47abeabb42f45d6b366435a78c40a846f24bc94b2b1001f4b45928bc7",
+        "buildPlatform": "linux/amd64",
+        "buildCommand": "docker buildx build --platform linux/amd64 --pull --no-cache --network=default --provenance=false --build-arg SOURCE_DATE_EPOCH=1785589070 --load .",
+        "deviationFromPriorFreeze": "container-build definition only: immutable native AMD64 base, dependency pins, and complete filesystem timestamp normalization; capsule source, evaluator, objective, assets, and baseline were unchanged"
+      },
+      "baseImage": {
+        "index": "sha256:7b140f374b289a7c2befc338f42ebe6441b7ea838a042bbd5acbfca6ec875818",
+        "linux/amd64": "sha256:63a496b5d3b99214b39f5ed70eb71a61e590a77979c79cbee4faf991f8c0783e"
+      },
+      "architectures": {
+        "linux/amd64": {
+          "status": "built-and-byte-identical-pair-verified",
+          "reference": "hone-quickjs-interpreter@sha256:ab73563ba62010e41397266556d593551b71a66e80dc8275cf9a25674f307b5e",
+          "digest": "sha256:ab73563ba62010e41397266556d593551b71a66e80dc8275cf9a25674f307b5e",
+          "configDigest": "sha256:10fbc60ccb3849b61c1ad12eeef7903172cf9804ec3f33a0060ec9c3472d86ef",
+          "dockerOs": "linux",
+          "dockerArchitecture": "amd64",
+          "host": "deckbox",
+          "orderingReport": {
+            "path": "diagnostics/ordering-report.amd64.json",
+            "sha256": "sha256:7f5c541aff01b53c4b14816ac0e0f82bd4fd7d221997f2f2acf7646f44f696fa",
+            "result": "passed",
+            "evalInvocations": 18,
+            "network": "none",
+            "holdoutDiagnostic": true,
+            "stabilitySpread": 0.02658111703771379
+          },
+          "rebaselineEvidence": {
+            "path": "diagnostics/native-amd64-rebaseline.json",
+            "sha256": "sha256:6b5da175fd4b7178d5d80bc871f516585aa2e93b0be95fca500f16cc82a19592",
+            "ticket": "HONE-41/HONE-42",
+            "status": "completed"
+          },
+          "acceptedBuildTags": ["native-amd64-pair1", "native-amd64-pair2"],
+          "pairEvidence": {
+            "result": "byte-identical",
+            "compared": ["image digest", "config digest", "rootfs diff IDs", "history", "platform"]
+          }
+        },
+        "linux/arm64": {
+          "status": "pending-native-arm64-refreeze",
+          "supersededDigest": "sha256:a6d66620ed213b953131398eb5ada2c6494f296a7dcd99024d0cca4362c48b6b"
+        }
+      },
+      "multiArchitectureManifestStatus": "pending-native-arm64-ticket-038-046"
+    },
+    "measurement": {
+      "platform": "native linux/amd64 on Deckbox (AMD Ryzen 9 7900; Docker Engine 29.1.3); final recalibration on frozen GCE Linux host required",
+      "freshProcess": true,
+      "q": "reference-normalized geometric mean operations per trusted external wall-second over four split-specific streamed derivatives of upstream microbench.js plus median-of-3-rounds ES-module startup throughput (fastest 16 of each round's 31 trusted-timed fresh-process launches); for each microbenchmark sample the trusted parent composes a fresh randomized benchmark program and streams it on stdin at clock-start with a fresh nonce and randomized input data",
+      "qFail": 0,
+      "qBase": 7424864.603906751,
+      "sigma": 65237.99981334415,
+      "qReference": 7796107.834102089,
+      "qReferenceConstruction": "7424864.603906751 + max(5*65237.99981334415, 0.05*abs(7424864.603906751-0)) = 7796107.834102089",
+      "aaSamples": [7450661.046042991, 7445421.366024578, 7508037.805828544, 7310676.610802921, 7409526.190834718],
+      "normalizationScale": 371243.2301953379,
+      "noiseFractionOfScale": 0.17572845645971166,
+      "binarySizeTolerance": 0.01,
+      "moduleLaunchesPerRound": 31,
+      "moduleRounds": 3
+    },
+    "terminalSeal": {
+      "cohort": "terminal",
+      "holdoutDiagnosticRequired": true,
+      "optimizerPilot": false,
+      "mutationOrHeadroomRuns": false,
+      "seedOptimizerSessions": false,
+      "corpusPublication": false,
+      "attestation": "Only trusted correctness, deterministic workload construction, feasibility, A-A/noise, sensitivity diagnostics, and exploit-resistance work was performed. No optimizer, mutation search, headroom pilot, or seed-optimizer session received this task identity, repository, fixtures, source tree, scores, or feedback."
+    },
+    "exploitReview": {
+      "protectedPathEscape": "broker diff-protects CLI, clock provider, build, evaluator, worker, test, fixture, and metadata paths; evaluator rejects symlinks, non-regular entries, and files absent from the frozen inventory",
+      "benchmarkSpecialCasing": "train and validation use distinct holdout benchmark selections, Test262 cases, observable programs, and module graphs; the shortcut diagnostic carries the valid inline OP_mod remainder fast path (helping both splits) while a validation-only UTF-16 regexp delay drags its held-out score below baseline, inverting its train ordering",
+      "fixtureFingerprinting": "terminal assets remain holdout-only and content-hashed; candidate processes run unprivileged after the built source and copied fixtures become root-owned read-only files",
+      "outputFabrication": "the timed microbenchmark path accepts no sealed closed-form output and no fixed public loop: the trusted parent COMPOSES each sample's whole benchmark program (identifiers, object shapes, decoy properties, read/update schedules, dependency graphs, loop directions, index strides, fold expression shapes, constants) and streams it on stdin at clock-start together with a fresh nonce and randomized input data (never argv/env, so no constructor/.init_array can read anything structural before the interpreter runs, and candidate-writable state is swept between launches so no launch can record a program for a later one); the printed nonce-salted running fold must reproduce byte for byte a pristine in-eval trusted-baseline build run on the identical streamed bytes, so producing it requires evaluating an arbitrary member of the trusted program family rather than replaying a precompiled recurrence. Residual throttled-native-evaluation classes are bounded by the out-of-process work-proportional cross-check: the trusted parent reads each leg's CPU time from the kernel's reaped-child wait4/getrusage accounting (hardware perf counters probed unavailable in the eval container: PERF_TYPE_HARDWARE -> ENOENT on the pinned VM kernel; the CPU-time channel is the strongest available work-proportional signal there), rejects any candidate sample whose CPU exceeds the single-threaded envelope (cpu <= wall*1.15+0.02s, closing thread-parallel wall compression and forked-helper inflation), and rejects any benchmark whose kept-fastest candidate CPU is below 0.4x the pristine reference's on identical work -- a single-threaded process accrues at most one CPU-second per wall-second, so idle- or spin-throttling into the wall band is bounded to 2.5x unearned throughput (the 10x wall floor is kept as an outer bound); module startup carries the same per-launch discipline and a 0.4x median kept-CPU floor against fixed-output fast-exit fabrication. The trusted evaluator also byte-compares independent observable and module outputs on both splits and the pinned Test262 runner exercises the candidate interpreter directly",
+      "timerTampering": "every streamed microbenchmark job and module-startup round is timed by trusted Python time.monotonic_ns in the parent process from stdin-stream at clock-start to child exit, and every leg's CPU time comes from the parent's own getrusage(RUSAGE_CHILDREN) delta around the single reaped launch; no candidate-provided clock, counter, or in-process report contributes to q or to the plausibility gates, and the microbenchmark result is validated against the pristine reference rather than any candidate-emitted bookkeeping",
+      "buildScriptMutation": "Makefile, qjs/qjsc/run-test262 CLI sources, generated repl.c, worker, evaluator, toolchain lock, and source inventory are protected; QJSC is pinned to /usr/bin/false so candidate code never executes during build, and every evaluation builds from source on tmpfs",
+      "deadCodeBenchmarkBypass": "the measured qjs executes the same interpreter core used for byte-exact programs, ES modules, and the frozen Test262 subset before any score is emitted"
+    },
+    "tags": ["m2", "terminal", "oss", "quickjs", "interpreter", "performance"]
+  }
+}

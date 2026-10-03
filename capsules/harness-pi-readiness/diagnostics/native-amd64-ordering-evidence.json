@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "ticket": "HONE-41/HONE-42/HONE-45",
+  "capsule": "harness-pi-readiness",
+  "status": "native-amd64-terminal-ordering-and-rebaseline-passed",
+  "recordedAt": "2026-08-12T03:03:59.886476+00:00",
+  "authorization": {
+    "decisionKey": "terminal-holdout-diagnostic",
+    "scope": "captain-authorized exact terminal verification/rebaseline diagnostic only",
+    "ownerGate": {
+      "environment": "HONE_TERMINAL_HOLDOUT_DIAGNOSTIC=1",
+      "flag": "--holdout-diagnostic"
+    },
+    "purpose": "Verify native AMD64 ordering and record architecture-specific rebaseline evidence without exposing the terminal holdout to any optimizer, campaign phase, model, or exploratory run."
+  },
+  "run": {
+    "command": "HONE_CAPSULE_DIR=capsules/harness-pi-readiness HONE_TERMINAL_HOLDOUT_DIAGNOSTIC=1 pnpm exec tsx capsules/tools/ordering-check.ts --holdout-diagnostic --stability-runs 5 --raw-measurements tmp/rebaseline/harness-pi-readiness.json --report capsules/harness-pi-readiness/diagnostics/ordering-report.amd64.json",
+    "evalInvocations": 18,
+    "network": "none",
+    "orderingReport": "diagnostics/ordering-report.amd64.json",
+    "orderingReportSha256": "sha256:ed4f8c692d91a5127f62f6db6cba6726b025d15b68a22ab4ca3e40954c9688a3",
+    "rawMeasurementsSha256": "sha256:191ce6e25a35f832f507a95db9c712b82a29df52f0148beeb861d49df2156f4d"
+  },
+  "image": {
+    "reference": "hone-task@sha256:421f033a97c266279c4799f5b6f4e4b81fced0f8a9a4f1d3091a05866f217392",
+    "architecture": "linux/amd64",
+    "digest": "sha256:421f033a97c266279c4799f5b6f4e4b81fced0f8a9a4f1d3091a05866f217392"
+  },
+  "orderingReportSummary": {
+    "failures": [],
+    "stability": {
+      "aggregates": [0.6904761904761906, 0.6904761904761906, 0.6904761904761906, 0.6904761904761906, 0.6904761904761906],
+      "band": 0.15,
+      "spread": 0
+    },
+    "variants": {
+      "baseline": { "combined": 0.6904761904761906, "train": 0.7142857142857143, "trainTestsPass": true, "validation": 0.6666666666666666, "validationTestsPass": true },
+      "broken": { "combined": 0, "train": 0, "trainTestsPass": false, "validation": 0, "validationTestsPass": false },
+      "improved": { "combined": 0.9999999999999998, "train": 1, "trainTestsPass": true, "validation": 1, "validationTestsPass": true },
+      "naive": { "combined": 0.45, "train": 0.5, "trainTestsPass": true, "validation": 0.4, "validationTestsPass": true },
+      "shortcut": { "combined": 0.3928571428571429, "train": 0.7857142857142858, "trainTestsPass": false, "validation": 0, "validationTestsPass": false }
+    },
+    "version": 1
+  },
+  "diagnosticRebaseline": {
+    "changedSources": [],
+    "decision": "No diagnostic variant source required rebaselining: every frozen control passed native AMD64 terminal ordering.",
+    "protectedInputsUnchanged": ["baseline/**", "assets/**", "baseline/eval.py"]
+  },
+  "sources": {
+    "capsuleConfigSha256AtRun": "sha256:4e8d82e50cfe8cfec4ed7966721e568bfb63dd7d90f8b08b5b9b6faaa97f7cb6",
+    "evaluatorSha256": "sha256:6f654944d4bd6b5cef7675a5dcfbd5f6c552377c4c6a05e850b3d83084566831",
+    "orderingToolSha256": "sha256:6790f0c28987cb32f79aa01c183aad7f074954ed6d3e0ca7c2720bb5d8f1e46a",
+    "apparmorProfileSha256": "sha256:528036b97282e8305cee8f800c483f1775142ae9b643b21cc03993c9e4c0c4dd"
+  }
+}

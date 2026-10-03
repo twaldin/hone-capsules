@@ -1,0 +1,251 @@
+{
+  "schemaVersion": 2,
+  "id": "cap_8ec52f0e2f1f",
+  "objective": "Improve geometric-mean quality-4/9 compression and decompression throughput over deterministic web, text, and binary corpora. Exact round trip, all 28 pinned upstream CTest cases, and compressed size no worse than baseline by more than 0.25% are hard gates. Only c/common, c/enc, and c/dec are mutable.",
+  "baseline": {
+    "kind": "git",
+    "commit": "52e46ad5683f751c9c985d281e462f1cf4158d83"
+  },
+  "image": "hone-brotli-codec@sha256:e4806c1f6854706737daff4ede21862fec668ab026315478db781453db04f72d",
+  "evalEntrypoint": [
+    "python3",
+    "-I",
+    "-B",
+    "eval.py"
+  ],
+  "protectedPaths": [
+    ".*",
+    "*.md",
+    "BUILD.bazel",
+    "CMakeLists.txt",
+    "LICENSE",
+    "MANIFEST.in",
+    "MODULE.bazel",
+    "MODULE.bazel.lock",
+    "README",
+    "bench.c",
+    "eval.py",
+    "pyproject.toml",
+    "refdecode.c",
+    "sbom.cdx.json",
+    "setup.cfg",
+    "setup.py",
+    "toolchain.lock.json",
+    "worker.py",
+    "build/**",
+    "c/fuzz/**",
+    "c/include/**",
+    "c/tools/**",
+    "csharp/**",
+    "docs/**",
+    "fetch-spec/**",
+    "go/**",
+    "java/**",
+    "js/**",
+    "python/**",
+    "research/**",
+    "scripts/**",
+    "tests/**"
+  ],
+  "assetGroups": [
+    {
+      "id": "train",
+      "visibility": "holdout",
+      "paths": [
+        "assets/train/binary.bin",
+        "assets/train/text.bin",
+        "assets/train/web.bin",
+        "assets/train/workloads.json"
+      ]
+    },
+    {
+      "id": "validation",
+      "visibility": "holdout",
+      "paths": [
+        "assets/validation/binary.bin",
+        "assets/validation/text.bin",
+        "assets/validation/web.bin",
+        "assets/validation/workloads.json"
+      ]
+    }
+  ],
+  "budget": {
+    "maxTokens": 12000000,
+    "maxUsd": 25,
+    "maxWallClockSec": 10800,
+    "maxEvaluatorInvocations": 200
+  },
+  "sandbox": {
+    "memoryBytes": 1073741824,
+    "cpus": 2
+  },
+  "diagnosticOrdering": {
+    "path": "diagnostics/ordering-report.amd64.json",
+    "hash": "sha256:89d7705995e1e3bb3e84d68163a57949f4a68b4e439b8b1f5eb40b246ca3f41c"
+  },
+  "contentHashes": {
+    "assets/train/binary.bin": "sha256:b164650baa0211c670e00c31c6c25757edf8bc00a96e3d74b652318a86ae88da",
+    "assets/train/text.bin": "sha256:01280f193af1f8be6d1a3c19b8e11447dcbf3332d65b6da26585b2c844ce95bc",
+    "assets/train/web.bin": "sha256:7747adadb67713fabe692d417df7b02de7d487e1b5d24779ceffe857049cc41f",
+    "assets/train/workloads.json": "sha256:8dbe4db148f10b016d9303aa7e40ee8e41d9988b955214978006659d604a879b",
+    "assets/validation/binary.bin": "sha256:02228b3e0d74b89c2745b8e3e24b73737ec5a0954b8f0dd84edbb3e3fca67c45",
+    "assets/validation/text.bin": "sha256:7e19716c2c9d285281d18e242b970d761b0a271f30b39ff44419e5529ce61f05",
+    "assets/validation/web.bin": "sha256:09ef4b902592ab1b025920bb4f015d700f66b4b30aa15dada3366c8e14a18b54",
+    "assets/validation/workloads.json": "sha256:5bcf5496aa8e9ad355a6d037d9a37a2f5938941e77baabdde47cbfea561c4d6d"
+  },
+  "meta": {
+    "evaluatorSource": "user",
+    "provenance": "google/brotli upstream revision 037b70e2ad03b20480e6407ed5851e0f114b67a7; the declared baseline is a synthetic commit layering trusted evaluator glue over that upstream tree and materializing the sole upstream research/dictionary.bin symlink byte-for-byte because broker artifacts forbid symlinks; deterministic xorshift64-v1 corpora contain no third-party text or binary data; native AMD64 ordering and rebaseline evidence is recorded at diagnostics/native-amd64-rebaseline.json; final frozen-GCE recalibration remains required",
+    "license": "MIT (upstream LICENSE preserved)",
+    "tags": [
+      "m2",
+      "oss",
+      "terminal",
+      "brotli",
+      "compression",
+      "performance"
+    ],
+    "partition": "m2-frozen-corpus",
+    "sourceDetails": {
+      "repository": "google/brotli",
+      "revision": "037b70e2ad03b20480e6407ed5851e0f114b67a7",
+      "baselineCommit": "synthetic commit on top of upstream 037b70e2ad03b20480e6407ed5851e0f114b67a7 that adds the trusted evaluator/worker/benchmark glue and the materialized research/dictionary.bin so the exact git-baseline verifier reconstructs the complete evaluated worktree; the upstream parent commit is retained in git history and in this provenance record",
+      "upstreamUrl": "https://github.com/google/brotli/commit/037b70e2ad03b20480e6407ed5851e0f114b67a7",
+      "mutableEnvelope": [
+        "c/common/**",
+        "c/enc/**",
+        "c/dec/**"
+      ],
+      "artifactNormalization": "research/dictionary.bin is the sole upstream symlink; its target c/common/dictionary.bin is materialized with identical bytes because trusted broker artifacts forbid symlinks",
+      "upstreamTests": [
+        "cmake -S . -B build -DBUILD_SHARED_LIBS=OFF -DCMAKE_BUILD_TYPE=Release",
+        "cmake --build build --parallel 2",
+        "ctest --test-dir build --output-on-failure -j2 (28 tests)"
+      ],
+      "syntheticBaselineDerivation": "trusted evaluator glue committed on top of the pinned upstream tree; upstream commit preserved as the git parent and in provenance"
+    },
+    "imageProvenance": {
+      "schemaVersion": 1,
+      "ticket": "HONE-37",
+      "definition": {
+        "status": "ticket-037-native-amd64-pair-accepted",
+        "sourceCommit": "f72127add682ef3e951c60bd0994ab5f607732df",
+        "sourcePatch": {
+          "path": "hone-ticket-037-build/source.patch",
+          "sha256": "sha256:1e52d2faf72400867bc97b08b63971871607113913cd225a80873669cdb19482"
+        },
+        "dockerfile": "Dockerfile",
+        "dockerfileSha256": "sha256:42b6ff5cba8c4af766d40c1b1b05b2f28d06150f4fd602381138bf0654ddb6a4",
+        "buildPlatform": "linux/amd64",
+        "buildParameters": {
+          "builder": "docker buildx build",
+          "pull": false,
+          "noCache": true,
+          "provenance": false,
+          "load": true,
+          "sourceDateEpoch": 1785589070,
+          "debianSnapshot": "20260713T000000Z"
+        },
+        "deviationFromPriorFreeze": "container-build definition only: deterministic native AMD64 bases, dependency pins, and normalization; capsule config, workload, evaluator, objective, and baseline were unchanged"
+      },
+      "baseImage": {
+        "index": "sha256:7b140f374b289a7c2befc338f42ebe6441b7ea838a042bbd5acbfca6ec875818",
+        "linux/amd64": "sha256:63a496b5d3b99214b39f5ed70eb71a61e590a77979c79cbee4faf991f8c0783e"
+      },
+      "architectures": {
+        "linux/amd64": {
+          "status": "built-and-byte-identical-pair-verified",
+          "reference": "hone-brotli-codec@sha256:e4806c1f6854706737daff4ede21862fec668ab026315478db781453db04f72d",
+          "digest": "sha256:e4806c1f6854706737daff4ede21862fec668ab026315478db781453db04f72d",
+          "configDigest": "sha256:4ffba0f3b8d0398e9a2b3ceaa34e133ad598f8593986f20a8ffa5e19643a573b",
+          "dockerOs": "linux",
+          "dockerArchitecture": "amd64",
+          "host": "deckbox",
+          "orderingReport": {
+            "path": "diagnostics/ordering-report.amd64.json",
+            "sha256": "sha256:89d7705995e1e3bb3e84d68163a57949f4a68b4e439b8b1f5eb40b246ca3f41c",
+            "result": "passed",
+            "evalInvocations": 18,
+            "network": "none",
+            "holdoutDiagnostic": true,
+            "stabilitySpread": 0.030758561224896497
+          },
+          "rebaselineEvidence": {
+            "path": "diagnostics/native-amd64-rebaseline.json",
+            "sha256": "sha256:0170b1237331b59195f2d791a9f191aad5abb943fe5b64bfdf74f9f48b928ef4",
+            "ticket": "HONE-41/HONE-42",
+            "status": "completed"
+          },
+          "acceptedBuildOrdinals": [
+            1,
+            2
+          ],
+          "pairEvidence": {
+            "path": "hone-ticket-037-build/mismatch/continuation-pair-comparison.txt",
+            "sha256": "sha256:1abafec5b5368fdd15f55853af1f16fec07b76ff170bb66ad4956906b6427f1b",
+            "result": "byte-identical",
+            "compared": [
+              "config",
+              "rootfs diff IDs",
+              "history",
+              "platform"
+            ]
+          }
+        },
+        "linux/arm64": {
+          "status": "pending-ticket-038-046-native-refreeze",
+          "supersededDigest": "sha256:432ce8dbe85174d10ea0de3562874e7996dfbd2537d8d6148bc5f5a29fff5adc",
+          "supersededReason": "the historical image is ARM64-only and predates the required paired multi-architecture freeze",
+          "production": "Build the ticket-038-046 ARM64 pair natively from the reconciled ticket-037 definition; verify byte-identical pair output and linux/arm64; run native ordering and rebaseline; record the ARM64 digest; then publish one manifest list joining the accepted AMD64 and ARM64 digests before admission."
+        }
+      },
+      "multiArchitectureManifestStatus": "pending-native-arm64-ticket-038-046"
+    },
+    "measurement": {
+      "platform": "native linux/amd64 on Deckbox (AMD Ryzen 9 7900; Docker Engine 29.1.3); final recalibration on frozen GCE Linux host required",
+      "freshProcess": true,
+      "q": "geometric mean MiB/s across quality 4 and 9 compression and decompression for three sealed corpus categories, measured as trusted-parent wall-clock process lifetime over identity-distinct rotated+perturbed inputs",
+      "qFail": 0,
+      "qBase": 101.4734399051132,
+      "sigma": 1.0556583965233597,
+      "qReference": 106.75173188772999,
+      "qReferenceConstruction": "101.4734399051132 + max(5*1.0556583965233597, 0.05*abs(101.4734399051132-0)) = 106.75173188772999",
+      "aaSamples": [
+        101.51565134550653,
+        100.80323970269913,
+        100.26288962584081,
+        103.3840666398631,
+        101.40135221165639
+      ],
+      "normalizationScale": 5.278291982616793,
+      "noiseFractionOfScale": 0.2000000000000002,
+      "benchmarkTargetMsPerSample": 125,
+      "benchmarkSamplesPerCell": 3,
+      "compressedSizeTolerance": 0.0025
+    },
+    "terminalSeal": {
+      "taskId": "OSS-H08",
+      "contract": "capsules/contracts/OSS-H08.json",
+      "cohort": "terminal",
+      "optimizerPilots": 0,
+      "optimizerCorpusExposure": false,
+      "allowedAuthoringWork": [
+        "correctness",
+        "determinism",
+        "A-A/noise",
+        "sensitivity",
+        "exploit-resistance"
+      ],
+      "attestation": "No optimizer pilot, mutation/headroom run, seed-optimizer session, queryable optimizer corpus write, panel evidence write, or search-visible state was used. All terminal fixtures, identities, scores, and feedback remain confined to this capsule and its trusted admission evidence."
+    },
+    "exploitReview": {
+      "protectedPathEscape": "the broker diff-protects all build, evaluator, harness, test, fixture, and metadata paths; the evaluator byte-compares every protected baseline file that is present (a sanitized terminal artifact may omit protected files, which are reconstructed from the trusted seed), requires the full mutable-file inventory, rejects non-regular paths, and rejects new files outside c/common, c/enc, and c/dec; every build seeds the full tree from the trusted baseline and overlays only the mutable candidate files",
+      "benchmarkSpecialCasing": "separate root-only holdout train and validation corpora, and every timed iteration processes a fresh rotation+sparse-perturbation of the corpus so repeated timed work is identity-distinct; the shortcut control specializes to the frozen 2 MiB training binary corpus via a rotation-invariant byte-histogram fingerprint plus a size-triggered validation delay, so it wins train yet is rejected by validation",
+      "fixtureFingerprinting": "both deterministic corpora are visibility=holdout; compilation runs as uid 2000 before corpus bytes are piped by the trusted evaluator to the sealed root-owned harness",
+      "outputFabrication": "encode and decode run as separate processes under distinct uids; the trusted parent alone holds the source, byte-compares every decoded output out of process, decodes every candidate-encoder stream with a protected reference decoder compiled from the pristine baseline c/common+c/dec sources, derives all compressed sizes from the validated byte stream, and cross-checks the candidate decoder against sealed upstream brotli test vectors, so a colluding or dummy-emitting codec cannot pass",
+      "timerTampering": "throughput is the wall-clock lifetime of each sealed codec process measured in the trusted root evaluator; candidate-linked code holds no report channel and contributes no timestamp, the evaluator is a child subreaper that fails the run if any candidate-uid process or persistent candidate-owned tmp state survives a codec process, codec processes run in fresh IPC namespaces, and the build tree is destroyed with the build tmpfs made root-only before the first measurement",
+      "buildScriptMutation": "CMake files, worker, compiler flags, test code, toolchain lock, and benchmark are protected; every evaluation copies into a fresh tmpfs and performs a clean build",
+      "deadCodeBenchmarkBypass": "benchmarked public one-shot encoder and decoder entry points are also exercised by the complete pinned upstream CTest round-trip suite"
+    }
+  }
+}

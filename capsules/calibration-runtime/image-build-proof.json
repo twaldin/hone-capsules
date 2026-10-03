@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "supersedes": {
+    "runtimeDigest": "sha256:2d9695c0d985847a0e9745ad9d2d07c328ae2aff9a0ce056d5cfe21a7fe80b42",
+    "reason": "The prior FROM-only Python runtime passed capsule evaluation but could not host the trusted sealed optimizer topology (node, bun, and Pi native addons), so it was not calibration-runnable. Its capsule identities and admission receipts are superseded, not reused."
+  },
+  "definition": {
+    "dockerfile": "capsules/calibration-runtime/Dockerfile",
+    "dockerfileSha256": "sha256:21bfd0469d47a1b8d7f1a91f1b54dc869ee3f7900e3636153d1961450fc9c18c",
+    "buildPlatform": "linux/amd64",
+    "buildCommand": "sudo -n docker buildx build --platform linux/amd64 --provenance=false --no-cache --build-arg SOURCE_DATE_EPOCH=0 --output type=oci,dest=<pair-archive>,rewrite-timestamp=true,name=<pair-tag> --file capsules/calibration-runtime/Dockerfile .",
+    "sourceDateEpoch": 0
+  },
+  "baseImages": {
+    "python": "python:3.12.11-bookworm@sha256:1b48a1b13ec678be8d84974541cc007d4367aaf01f985231daad1a940106efc0",
+    "node": "node:20.19.4-bookworm@sha256:572a90df10a58ebb7d3f223d661d964a6c2383a9c2b5763162b4f631c53dc56a",
+    "mutationRuntime": "hone-mutation@sha256:e43b8871710267d86f3e1118b2f9a3d8ef0ab505b14e671da9728200260dcd10"
+  },
+  "copiedBinarySha256": {
+    "/usr/local/bin/node": "sha256:43d6cf63f2a460b463eba6b19df5e9a259771c56f11b5130e04178a15bb99490",
+    "/usr/local/bin/bun": "sha256:9fd36f87e4b90b07632b987a2e4ec81ca15a62c81bf983190cea6d715be2ad74",
+    "/usr/local/bin/pi_natives.linux-x64-baseline.node": "sha256:c6fccbbfb79fd27c50a6eb73ae6ab3d973cee268a9b7e39fb1745efd24779526",
+    "/usr/local/bin/pi_natives.linux-x64-modern.node": "sha256:abed9aa371b088d7c223ff73bb741e620d514ad3a6ef90dbfbf8a5944f88bb7c"
+  },
+  "pairProof": {
+    "firstTag": "hone-calibration-runtime:pair-g",
+    "firstDigest": "sha256:a0f426aaea895a9d86407f1954b30462ed0bc528bbff81c67acf484256a66cb3",
+    "secondTag": "hone-calibration-runtime:pair-h",
+    "secondDigest": "sha256:a0f426aaea895a9d86407f1954b30462ed0bc528bbff81c67acf484256a66cb3",
+    "byteIdentical": true,
+    "proofUnit": "normalized OCI manifest and referenced config/layers"
+  },
+  "architectures": {
+    "linux/amd64": {
+      "status": "built-pair-and-verified-native",
+      "reference": "hone-calibration-runtime@sha256:a0f426aaea895a9d86407f1954b30462ed0bc528bbff81c67acf484256a66cb3",
+      "dockerOs": "linux",
+      "dockerArchitecture": "amd64",
+      "runtimeVersions": { "python": "3.12.11", "node": "20.19.4", "bun": "1.3.14" },
+      "host": "deckbox"
+    },
+    "linux/arm64": {
+      "status": "honest-pending",
+      "reason": "No native ARM64 build or digest is claimed.",
+      "production": "Resolve native ARM64 manifests for all three pinned stages, rebuild twice on native Linux ARM64 with normalized OCI export, record the matching digest, and publish a reviewed multi-architecture manifest list."
+    }
+  },
+  "multiArchitectureManifestStatus": "pending-native-arm64"
+}

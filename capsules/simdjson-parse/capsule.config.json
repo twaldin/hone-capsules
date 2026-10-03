@@ -1,0 +1,174 @@
+{
+  "objective": "Improve geometric-mean DOM and On-Demand JSON parsing throughput across frozen mixed corpora at simdjson 8e6bac94 while preserving exact event hashes, malformed-input errors, the full relevant upstream test set, and peak RSS.",
+  "image": "hone-simdjson-parse@sha256:3a3d7c2285edd17f5f6f7b4bbd8b5ac426b88b895d38b9399ac84048943ef446",
+  "evalEntrypoint": [
+    "python3",
+    "-I",
+    "-B",
+    "eval.py"
+  ],
+  "protectedPaths": [
+    "eval.py",
+    "worker.py",
+    "challenge.json",
+    "hone/**",
+    "include/**",
+    "benchmark/**",
+    "tests/**",
+    "cmake/**",
+    "dependencies/**",
+    "examples/**",
+    "fuzz/**",
+    "jsonexamples/**",
+    "scripts/**",
+    "singleheader/**",
+    "style/**",
+    "tools/**",
+    "windows/**",
+    "CMakeLists.txt",
+    "src/simdjson.cpp",
+    "src/implementation.cpp",
+    "src/to_chars.cpp",
+    "src/from_chars.cpp",
+    "src/internal/**",
+    "LICENSE",
+    "LICENSE-MIT",
+    "AUTHORS",
+    "CONTRIBUTORS"
+  ],
+  "assetGroups": [
+    {
+      "id": "train",
+      "visibility": "public",
+      "paths": [
+        "assets/train"
+      ]
+    },
+    {
+      "id": "validation",
+      "visibility": "protected",
+      "paths": [
+        "assets/validation"
+      ]
+    }
+  ],
+  "budget": {
+    "maxTokens": 12000000,
+    "maxUsd": 25,
+    "maxWallClockSec": 10800,
+    "maxEvaluatorInvocations": 200
+  },
+  "diagnosticOrdering": {
+    "path": "diagnostics/ordering-report.amd64.json"
+  },
+  "meta": {
+    "evaluatorSource": "user",
+    "partition": "m2-oss-train-panel-a",
+    "license": "Apache-2.0 OR MIT (upstream LICENSE and LICENSE-MIT preserved)",
+    "provenance": "Pinned public source simdjson/simdjson@8e6bac94877f2d3d026000d36ce81e0aaf38d26f; upstream jsonexamples plus deterministic generated JSON; current-head A-A qReference construction is frozen after local calibration.",
+    "sourceDetails": {
+      "repository": "simdjson/simdjson",
+      "commit": "8e6bac94877f2d3d026000d36ce81e0aaf38d26f",
+      "sourceTree": ".hone-sources/train/simdjson_simdjson@8e6bac94877f2d3d026000d36ce81e0aaf38d26f",
+      "mutableSurface": "src/generic parsing kernels and architecture implementation translation units; public headers, evaluator, build files, benchmark harness, tests, fixtures, and expected hashes are protected",
+      "upstreamHarness": "hone/verify.cpp trusted event harness (parent-timed; no self-reported throughput consumed)",
+      "relevantTests": 44
+    },
+    "toolchain": {
+      "base": "debian@sha256:7b140f374b289a7c2befc338f42ebe6441b7ea838a042bbd5acbfca6ec875818",
+      "compiler": "GCC 12.2.0",
+      "cmake": "3.25.1-1",
+      "googleBenchmark": "Debian libbenchmark-dev 1.7.1-1",
+      "dockerfile": "Dockerfile",
+      "dockerfileSha256": "sha256:c0750efb496e42bb91892d4c567c806361238941dad36973c6321fc41ec0a318"
+    },
+    "measurement": {
+      "platform": "native linux/amd64 on Deckbox (AMD Ryzen 9 7900, Docker Engine 29.1.3, cgroup v2)",
+      "activeImplementation": "icelake",
+      "q": "geometric mean over the three frozen corpora of the per-workload candidate/reference speed ratio for full-document DOM and On-Demand parses; each workload ratio is the geometric mean of back-to-back reference/candidate wall-time PAIRS (paired-geomean, lead alternated so sustained host contention cancels within each pair), wall measured in the trusted evaluator parent around the non-self-reporting harness, the reference parser rebuilt from frozen trusted sources in the same eval and timed adjacently; never a self-reported number from candidate-linked code. Timed iterations are BOTH byte- and structure-distinct: the trusted parser-independent harness rotates value bytes AND relocates insignificant whitespace across a sampled subset of structural tokens before every iteration after the first, so no two timed iterations share their bytes OR their stage-1 structural index (a resident-index replay is caught), and every perturbed iteration's full event stream is folded into a chain the parent validates against the trusted reference's chain at the same iteration count.",
+      "qFail": 0,
+      "peakRssGate": "candidate whole-tree peak RSS <= per-split frozen baseline (protected asset) * 1.05, measured as the kernel-owned cgroup2 memory.peak of a fresh per-launch leaf the candidate subtree joins before the privilege drop (not VmHWM of a single pid, which a detached child or clear_refs can dodge)",
+      "freshProcess": true,
+      "validationOracle": "expected event hashes and RSS baselines live only in the protected asset mount (assets/<split>/expected.json), outside the candidate-readable workspace and corpus; perturbed-iteration chains are pinned per iteration count by the trusted reference binary within each eval; each candidate launch runs in a fresh SysV-IPC namespace and candidate-writable residue (/tmp, /var/tmp, /dev/shm, SysV IPC) is purged between launches so no parse result or resident index can bridge launches",
+      "normalization": {
+        "formula": "qReference = qBase + max(5*sigma, 0.05*abs(qBase-qFail))",
+        "qBase": 1.0004889294909645,
+        "sigma": 0.0010675791114363327,
+        "qReference": 1.0505133759655128,
+        "status": "final native linux/amd64 rebaseline from five A-A samples under the accepted frozen evaluator contract",
+        "qFail": 0.0,
+        "normalizationScale": 0.05002444647454823,
+        "noiseFractionOfScale": 0.021341147912141374
+      }
+    },
+    "tags": [
+      "m2",
+      "oss",
+      "simdjson",
+      "dom",
+      "ondemand",
+      "performance"
+    ],
+    "imageProvenance": {
+      "schemaVersion": 1,
+      "ticket": "HONE-38",
+      "definition": {
+        "status": "native-amd64-pair-accepted",
+        "sourceCommit": "30e4e1979",
+        "dockerfile": "Dockerfile",
+        "dockerfileSha256": "sha256:fe0554add3e6339bde8ee22b0a78ba61b61fb9c46a3c6bc9ca9bfe5cd18fcaa5",
+        "buildPlatform": "linux/amd64",
+        "buildCommand": "docker buildx build --platform linux/amd64 --pull --no-cache --provenance=false --build-arg SOURCE_DATE_EPOCH=1785589070 --build-arg DEBIAN_SNAPSHOT=20260713T000000Z --load ."
+      },
+      "architectures": {
+        "linux/amd64": {
+          "status": "built-and-byte-identical-pair-verified",
+          "digest": "sha256:3a3d7c2285edd17f5f6f7b4bbd8b5ac426b88b895d38b9399ac84048943ef446",
+          "configDigest": "sha256:fcec18a50095d38e10c22e713a6d80b91a0c9e046e1372494628ca40ee4a8f8b",
+          "acceptedBuildTags": [
+            "native-amd64-pair5",
+            "native-amd64-pair6"
+          ],
+          "pairEvidence": {
+            "result": "byte-identical",
+            "compared": [
+              "image digest",
+              "config digest",
+              "rootfs diff IDs",
+              "history",
+              "platform"
+            ]
+          },
+          "host": "deckbox",
+          "orderingReport": {
+            "path": "diagnostics/ordering-report.amd64.json",
+            "sha256": "sha256:e11b0dd71f8019b0566e901490d145812c8be07e86f541b6560e1b6e97fe03d4",
+            "result": "passed",
+            "evalInvocations": 18,
+            "network": "none",
+            "apparmorProfile": "hone-evaluator-cgroup",
+            "stabilitySpread": 0.003347829949936371
+          },
+          "rebaselineEvidence": {
+            "path": "diagnostics/native-amd64-rebaseline.json",
+            "sha256": "sha256:8ffe94e105b14173dd0b5e08fe8065b71287c73e32578065238e82c85ed0b671",
+            "ticket": "HONE-41/HONE-44",
+            "status": "completed"
+          }
+        },
+        "linux/arm64": {
+          "status": "pending-native-arm64-refreeze",
+          "supersededDigest": "sha256:63083edb85b611e342254616b8d2515cb7263b7828602da817cec1cd143fcb4c",
+          "orderingReport": {
+            "path": "diagnostics/ordering-report.arm64.json",
+            "sha256": "sha256:08eee2960fc5f4c5ffc2ea97759b75915db36122ccaa3495826275c08d16c448",
+            "result": "historical-passed-superseded",
+            "host": "Apple M3 Max",
+            "stabilitySpread": 0.001150554963508412
+          }
+        }
+      },
+      "multiArchitectureManifestStatus": "pending-native-arm64-ticket-038-046"
+    }
+  }
+}

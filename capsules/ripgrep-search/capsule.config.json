@@ -1,0 +1,213 @@
+{
+  "objective": "Improve reciprocal geometric-mean latency across 28 frozen cases spanning six mixed literal, regex, Unicode, ignore-file, no-match, and many-small-file ripgrep search categories. Exact stdout, stderr, and exit-result hashes, relevant cargo tests, and whole-process-tree peak memory (cgroup2 memory.peak) within a sealed ceiling are hard gates. Only crates/searcher/src, crates/regex/src, and crates/ignore/src are mutable.",
+  "image": "hone-ripgrep-search@sha256:98df5db4de7aadb8aaebda2015773148db8e82092255b5347590695eed877d90",
+  "evalEntrypoint": [
+    "python3",
+    "-I",
+    "-B",
+    "eval.py"
+  ],
+  "protectedPaths": [
+    ".cargo",
+    ".github",
+    ".gitignore",
+    ".ignore",
+    "AI_POLICY.md",
+    "benchsuite",
+    "build.rs",
+    "Cargo.lock",
+    "Cargo.toml",
+    "CHANGELOG.md",
+    "ci",
+    "CONTRIBUTING.md",
+    "COPYING",
+    "eval.py",
+    "FAQ.md",
+    "fuzz",
+    "GUIDE.md",
+    "HomebrewFormula",
+    "LICENSE-MIT",
+    "pkg",
+    "README.md",
+    "RELEASE-CHECKLIST.md",
+    "rustfmt.toml",
+    "scripts",
+    "tests",
+    "UNLICENSE",
+    "vendor",
+    "worker.py",
+    "crates/cli",
+    "crates/core",
+    "crates/globset",
+    "crates/grep",
+    "crates/matcher",
+    "crates/pcre2",
+    "crates/printer",
+    "crates/ignore/Cargo.toml",
+    "crates/ignore/COPYING",
+    "crates/ignore/examples",
+    "crates/ignore/LICENSE-MIT",
+    "crates/ignore/README.md",
+    "crates/ignore/tests",
+    "crates/ignore/UNLICENSE",
+    "crates/regex/Cargo.toml",
+    "crates/regex/LICENSE-MIT",
+    "crates/regex/README.md",
+    "crates/regex/UNLICENSE",
+    "crates/searcher/Cargo.toml",
+    "crates/searcher/examples",
+    "crates/searcher/LICENSE-MIT",
+    "crates/searcher/README.md",
+    "crates/searcher/UNLICENSE"
+  ],
+  "assetGroups": [
+    {
+      "id": "train",
+      "visibility": "public",
+      "paths": [
+        "assets/train"
+      ]
+    },
+    {
+      "id": "validation",
+      "visibility": "protected",
+      "paths": [
+        "assets/validation"
+      ]
+    }
+  ],
+  "budget": {
+    "maxTokens": 12000000,
+    "maxUsd": 25,
+    "maxWallClockSec": 10800,
+    "maxEvaluatorInvocations": 200
+  },
+  "diagnosticOrdering": {
+    "path": "diagnostics/ordering-report.amd64.json"
+  },
+  "meta": {
+    "evaluatorSource": "user",
+    "partition": "m2-frozen-corpus",
+    "license": "Unlicense OR MIT",
+    "provenance": "Current-head OSS-T02 capsule from BurntSushi/ripgrep 227381db0ee83dfa4341f1e27ff9617c0f5ad992. Deterministic frozen corpora sha256:9bbe113734c15b3ba19852297be7fab25e05cc84202b6ab7fc52d8fa81f472ff (train) and sha256:72105b465a54f255132c7835b1091418bf86bcd4b30bdb98c814b3655903b868 (validation) are measured through the pinned upstream benchsuite API with no privileged winning patch. Round-4 hardening: fresh /tmp+/var/tmp+/dev/shm tmpfs + CLONE_NEWIPC per invocation, and whole-process-tree memory via a per-invocation cgroup2 memory.peak leaf (replaces wait4 ru_maxrss). Interleaved A-A qBase=0.017953333, sigma=0.000359648; qReference=qBase+max(5*sigma,0.05*abs(qBase-qFail))=0.019751573. Local Docker Desktop numbers are provisional pending frozen GCE recalibration.",
+    "sourceDetails": {
+      "repository": "BurntSushi/ripgrep",
+      "commit": "227381db0ee83dfa4341f1e27ff9617c0f5ad992",
+      "licenseFiles": [
+        "COPYING",
+        "LICENSE-MIT",
+        "UNLICENSE"
+      ],
+      "mutableSurface": [
+        "crates/searcher/src",
+        "crates/regex/src",
+        "crates/ignore/src"
+      ],
+      "vendoredDependencies": "Cargo.lock resolved crates frozen under vendor/ for --locked --offline builds",
+      "artifactNormalization": "Upstream HomebrewFormula directory symlink was materialized because broker artifacts reject symlinks; build and mutable search subsystem bytes remain pinned to the upstream revision."
+    },
+    "toolchain": {
+      "rust": "1.96.0 (ac68faa20 2026-05-25)",
+      "baseImage": "rust@sha256:5e2214abe154fe26e39f64488952e5c991eeed1d6d6da7cc8381ae83927f0cfc",
+      "capsuleImage": "hone-ripgrep-search@sha256:a8054f1c8594b544245ae18e41b838f1ccc6b955938d58254239c76716e5f457"
+    },
+    "tags": [
+      "m2",
+      "oss",
+      "ripgrep",
+      "search",
+      "performance"
+    ],
+    "measurement": {
+      "platform": "native linux/amd64 on Deckbox (AMD Ryzen 9 7900, Docker Engine 29.1.3, cgroup v2)",
+      "samples": 6,
+      "freshProcess": true,
+      "q": "reciprocal geometric mean of median batched latency in milliseconds across frozen search cases",
+      "qFail": 0.0,
+      "qBase": 0.01561745522176714,
+      "sigma": 0.00036057523240192184,
+      "normalizationScale": 0.0018028761620096092,
+      "qReference": 0.01742033138377675,
+      "qReferenceConstruction": "qBase + max(5*sigma, 0.05*abs(qBase-qFail))",
+      "noiseFractionOfScale": 0.2,
+      "processesPerSample": 5,
+      "measurementRepetitions": 5,
+      "peakRssSource": "cgroup2.memory.peak (whole process tree, per-invocation leaf)",
+      "peakRssBaselineKb": {
+        "train": 1860,
+        "validation": 2124
+      },
+      "peakRssLimitKb": {
+        "train": 16384,
+        "validation": 16384
+      },
+      "relevantTests": "cargo test --release --locked --offline --quiet --tests -p grep-searcher -p grep-regex -p ignore -p ripgrep",
+      "feasibility": {
+        "cleanBuildSec": 22.834,
+        "incrementalRebuildSec": 6.977,
+        "evalSec": 74.0
+      }
+    },
+    "imageProvenance": {
+      "schemaVersion": 1,
+      "ticket": "HONE-38",
+      "definition": {
+        "status": "native-amd64-pair-accepted",
+        "sourceCommit": "30e4e1979",
+        "dockerfile": "image/Dockerfile",
+        "dockerfileSha256": "sha256:39061271046f6152d2173626ff53fa8c128927e39d5dea57eb45867d377c73db",
+        "buildPlatform": "linux/amd64",
+        "buildCommand": "docker buildx build --platform linux/amd64 --pull --no-cache --provenance=false --build-arg SOURCE_DATE_EPOCH=1785589070 --file image/Dockerfile --load ."
+      },
+      "architectures": {
+        "linux/amd64": {
+          "status": "built-and-byte-identical-pair-verified",
+          "digest": "sha256:98df5db4de7aadb8aaebda2015773148db8e82092255b5347590695eed877d90",
+          "configDigest": "sha256:6e4e8491dee3fb9448e7f79257d6b8160309d3a75d505357df31c6c34c2754aa",
+          "acceptedBuildTags": [
+            "native-amd64-pair5",
+            "native-amd64-pair6"
+          ],
+          "pairEvidence": {
+            "result": "byte-identical",
+            "compared": [
+              "image digest",
+              "config digest",
+              "rootfs diff IDs",
+              "history",
+              "platform"
+            ]
+          },
+          "host": "deckbox",
+          "orderingReport": {
+            "path": "diagnostics/ordering-report.amd64.json",
+            "sha256": "sha256:17bfc6fd095a9d2102a948f19c23df6dd7387885424ad0bc384a413dd1230bbf",
+            "result": "passed",
+            "evalInvocations": 18,
+            "network": "none",
+            "apparmorProfile": "hone-evaluator-cgroup",
+            "stabilitySpread": 0.06840126667094001
+          },
+          "rebaselineEvidence": {
+            "path": "diagnostics/native-amd64-rebaseline.json",
+            "sha256": "sha256:ad6b3a012965561fe00127a101cd300f46208896fbb2e24ebe2fd1557a99ae6f",
+            "ticket": "HONE-41/HONE-43",
+            "status": "completed"
+          }
+        },
+        "linux/arm64": {
+          "status": "pending-native-arm64-refreeze",
+          "supersededDigest": "sha256:a8054f1c8594b544245ae18e41b838f1ccc6b955938d58254239c76716e5f457",
+          "orderingReport": {
+            "path": "diagnostics/ordering-report.arm64.json",
+            "sha256": "sha256:f4553e1ce5db77e30f0bb7008f6f812e7b6fa6429d95c675848297e139565e2c",
+            "result": "historical-passed-superseded",
+            "host": "Apple M3 Max",
+            "stabilitySpread": 0.003781445902810785
+          }
+        }
+      },
+      "multiArchitectureManifestStatus": "pending-native-arm64-ticket-038-046"
+    }
+  }
+}

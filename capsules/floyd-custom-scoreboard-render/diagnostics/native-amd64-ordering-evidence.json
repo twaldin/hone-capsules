@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "ticket": "HONE-41/HONE-42/HONE-45",
+  "capsule": "floyd-custom-scoreboard-render",
+  "status": "native-amd64-terminal-ordering-and-rebaseline-passed",
+  "recordedAt": "2026-08-12T03:11:00Z",
+  "authorization": {
+    "decisionKey": "terminal-holdout-diagnostic",
+    "scope": "captain-authorized exact terminal verification/rebaseline diagnostic only",
+    "ownerGate": {
+      "environment": "HONE_TERMINAL_HOLDOUT_DIAGNOSTIC=1",
+      "flag": "--holdout-diagnostic"
+    },
+    "purpose": "Verify native AMD64 ordering and record architecture-specific rebaseline evidence without exposing the terminal holdout to any optimizer, campaign phase, model, or exploratory run."
+  },
+  "run": {
+    "command": "HONE_CAPSULE_DIR=capsules/floyd-custom-scoreboard-render HONE_TERMINAL_HOLDOUT_DIAGNOSTIC=1 pnpm exec tsx capsules/tools/ordering-check.ts --holdout-diagnostic --stability-runs 5 --raw-measurements tmp/rebaseline/floyd-custom-scoreboard-render.json --report capsules/floyd-custom-scoreboard-render/diagnostics/ordering-report.amd64.json",
+    "evalInvocations": 18,
+    "network": "none",
+    "orderingReport": "diagnostics/ordering-report.amd64.json",
+    "orderingReportSha256": "sha256:bca2023bec1d0e2ada742a7a5921316d7b8d6a562b564ad06cec4a066973fd76",
+    "rawMeasurementsSha256": "sha256:778ab3fc54104fc96632b6ec9cb21383e335eade928137436e1959be9624564e"
+  },
+  "hostAuthority": {
+    "apparmorProfile": "hone-evaluator-cgroup",
+    "operation": "frozen evaluator cgroup2 MS_REMOUNT rw on /sys/fs/cgroup",
+    "hostCgroupNamespace": "cgroup:[4026531835]",
+    "containerCgroupNamespace": "cgroup:[4026533363]",
+    "privateNamespaceProof": true
+  },
+  "image": {
+    "reference": "hone-task@sha256:421f033a97c266279c4799f5b6f4e4b81fced0f8a9a4f1d3091a05866f217392",
+    "architecture": "linux/amd64",
+    "digest": "sha256:421f033a97c266279c4799f5b6f4e4b81fced0f8a9a4f1d3091a05866f217392"
+  },
+  "orderingReportSummary": {
+    "failures": [],
+    "stability": {
+      "aggregates": [0.4792959561915252, 0.4772807052056634, 0.4806031902747919, 0.4809683937561382, 0.47854041308697726],
+      "band": 0.15,
+      "spread": 0.007693299122046919
+    },
+    "variants": {
+      "baseline": { "combined": 0.4792959561915252, "train": 0.4450475889686403, "trainTestsPass": true, "validation": 0.5021282010067819, "validationTestsPass": true },
+      "broken": { "combined": 0, "train": 0, "trainTestsPass": false, "validation": 0, "validationTestsPass": false },
+      "improved": { "combined": 0.5261884389600802, "train": 0.49036285630799314, "trainTestsPass": true, "validation": 0.5500721607281381, "validationTestsPass": true },
+      "naive": { "combined": 0.12732214238188605, "train": 0, "trainTestsPass": true, "validation": 0.21220357063647674, "validationTestsPass": true },
+      "shortcut": { "combined": 0.2125277128700755, "train": 0.5313192821751888, "trainTestsPass": false, "validation": 0, "validationTestsPass": false }
+    },
+    "version": 1
+  },
+  "diagnosticRebaseline": {
+    "changedSources": [],
+    "decision": "No diagnostic variant source required rebaselining: every frozen control passed native AMD64 terminal ordering.",
+    "protectedInputsUnchanged": ["baseline/**", "assets/**", "baseline/eval.py"]
+  },
+  "sources": {
+    "capsuleConfigSha256AtRun": "sha256:fe615fcaea407d46e2cb28e2e2b9a16c1a00d0d954d33c64abf71886b7257a69",
+    "evaluatorSha256": "sha256:e5020cd40051d89cb76576e8fcfeedfc26247ecf398f4ba2be549bdb0838b0f2",
+    "orderingToolSha256": "sha256:6790f0c28987cb32f79aa01c183aad7f074954ed6d3e0ca7c2720bb5d8f1e46a"
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "ticket": "HONE-41/HONE-42/HONE-46",
+  "capsule": "sqlite-speedtest1",
+  "status": "blocked-on-frozen-evaluator-native-migration",
+  "recordedAt": "2026-08-12T03:10:00Z",
+  "authorization": {
+    "decisionKey": "terminal-holdout-diagnostic",
+    "scope": "captain-authorized exact terminal verification/rebaseline diagnostic only",
+    "ownerGate": {
+      "environment": "HONE_TERMINAL_HOLDOUT_DIAGNOSTIC=1",
+      "flag": "--holdout-diagnostic"
+    },
+    "purpose": "Verify native AMD64 ordering and record architecture-specific rebaseline evidence without exposing the terminal holdout to any optimizer, campaign phase, model, or exploratory run."
+  },
+  "run": {
+    "command": "HONE_CAPSULE_DIR=capsules/sqlite-speedtest1 HONE_TERMINAL_HOLDOUT_DIAGNOSTIC=1 pnpm exec tsx capsules/tools/ordering-check.ts --holdout-diagnostic --stability-runs 5 --raw-measurements tmp/rebaseline/sqlite-speedtest1.json --report capsules/sqlite-speedtest1/diagnostics/ordering-report.amd64.json",
+    "evalInvocations": 18,
+    "network": "none",
+    "rawMeasurementsSha256": "sha256:745567b485db667a087d9d50f4f43d0d4669a6a4121ff058d6f173b35c9bead1"
+  },
+  "image": {
+    "reference": "hone-sqlite-speedtest1@sha256:a9b6f45b6d037dd74634544a5800ac89e6c3646c0eaaf4bc31b22a90f582b9ff",
+    "architecture": "linux/amd64",
+    "digest": "sha256:a9b6f45b6d037dd74634544a5800ac89e6c3646c0eaaf4bc31b22a90f582b9ff",
+    "pairEvidenceStatus": "accepted-before-ordering"
+  },
+  "blocker": {
+    "class": "protected-evaluator-arm64-assumption",
+    "exactFailure": "build gate failed: exit 1: FATAL: [ sqlite-check-tcl ]: No tclConfig.sh found under /usr/lib/aarch64-linux-gnu",
+    "source": "baseline/eval.py",
+    "sourceSha256": "sha256:2b79951e8a64f1eede2956dcec90be613865627046c9e0f1130c2700df8c3dd0",
+    "requiredDecision": "Future captain authorization must migrate the protected evaluator's architecture-specific Tcl discovery. This lane must not edit protected evaluator, baseline, or asset bytes.",
+    "historicalArm64Evidence": "retained with its original architecture label; not relabelled as AMD64",
+    "cohort046Disposition": "blocked-capsule-set"
+  },
+  "sources": {
+    "capsuleConfigSha256AtRun": "sha256:ae8c873e4b8bc92916a75d67c5f74d9d9f6b399db727296fdd8becee4dd39565",
+    "orderingToolSha256": "sha256:6790f0c28987cb32f79aa01c183aad7f074954ed6d3e0ca7c2720bb5d8f1e46a"
+  }
+}

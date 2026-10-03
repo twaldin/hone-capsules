@@ -1,0 +1,16 @@
+{
+  "innerReps": 1,
+  "timeoutSec": 8,
+  "publicCases": [
+    {
+      "id": "public-boundaries",
+      "input": { "partition": "public", "hex": "00017f8001ac02ffff03" },
+      "expected": [0, 1, 127, 128, 300, 65535]
+    },
+    {
+      "id": "public-large",
+      "input": { "partition": "public", "hex": "ffffffff0f" },
+      "expected": [4294967295]
+    }
+  ]
+}

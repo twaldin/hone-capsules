@@ -1,0 +1,328 @@
+{
+  "baseline": {
+    "aggregateQ": [
+      1.002064167991263,
+      1.0014559188110281,
+      0.9999835157298178,
+      0.999333381974174,
+      1.003080518397212
+    ],
+    "correctnessProjection": {
+      "allIdentical": true,
+      "canonicalJsonFields": [
+        "activeImplementation",
+        "constraints",
+        "quality",
+        "valid"
+      ],
+      "hashAlgorithm": "sha256",
+      "trainHashes": [
+        "sha256:3be9a710280cc80988206b2f4eb7fa1b0b6903762299e881444d81a837f9885a",
+        "sha256:3be9a710280cc80988206b2f4eb7fa1b0b6903762299e881444d81a837f9885a",
+        "sha256:3be9a710280cc80988206b2f4eb7fa1b0b6903762299e881444d81a837f9885a",
+        "sha256:3be9a710280cc80988206b2f4eb7fa1b0b6903762299e881444d81a837f9885a",
+        "sha256:3be9a710280cc80988206b2f4eb7fa1b0b6903762299e881444d81a837f9885a"
+      ],
+      "validationHashes": [
+        "sha256:3be9a710280cc80988206b2f4eb7fa1b0b6903762299e881444d81a837f9885a",
+        "sha256:3be9a710280cc80988206b2f4eb7fa1b0b6903762299e881444d81a837f9885a",
+        "sha256:3be9a710280cc80988206b2f4eb7fa1b0b6903762299e881444d81a837f9885a",
+        "sha256:3be9a710280cc80988206b2f4eb7fa1b0b6903762299e881444d81a837f9885a",
+        "sha256:3be9a710280cc80988206b2f4eb7fa1b0b6903762299e881444d81a837f9885a"
+      ]
+    },
+    "noiseFractionOfScale": 0.03047845948867103,
+    "normalizationScale": 0.05005917502903495,
+    "qBase": 1.001183500580699,
+    "qFail": 0.0,
+    "rawSamples": [
+      {
+        "seed": 0,
+        "train": {
+          "peakRssKb": 5452,
+          "peakRssLimitKb": 8198.4,
+          "q": 1.0039124492994778,
+          "resultHash": "sha256:3be9a710280cc80988206b2f4eb7fa1b0b6903762299e881444d81a837f9885a",
+          "wallSec": 35.32435463787988,
+          "workloads": {
+            "transcode/a.txt": 1.0072473622288542,
+            "transcode/b.txt": 1.0045432453268435,
+            "transcode/c.txt": 0.9999602652705257
+          }
+        },
+        "validation": {
+          "peakRssKb": 5488,
+          "peakRssLimitKb": 8198.4,
+          "q": 1.000215886683048,
+          "resultHash": "sha256:3be9a710280cc80988206b2f4eb7fa1b0b6903762299e881444d81a837f9885a",
+          "wallSec": 36.74807122000493,
+          "workloads": {
+            "transcode/a.txt": 1.0018260686385314,
+            "transcode/b.txt": 0.9982732866193603,
+            "transcode/c.txt": 1.000551544659858
+          }
+        }
+      },
+      {
+        "seed": 1,
+        "train": {
+          "peakRssKb": 5484,
+          "peakRssLimitKb": 8198.4,
+          "q": 1.0016381419308422,
+          "resultHash": "sha256:3be9a710280cc80988206b2f4eb7fa1b0b6903762299e881444d81a837f9885a",
+          "wallSec": 32.27865925198421,
+          "workloads": {
+            "transcode/a.txt": 1.0020866101331871,
+            "transcode/b.txt": 0.9995759752127441,
+            "transcode/c.txt": 1.0032553706925982
+          }
+        },
+        "validation": {
+          "peakRssKb": 5488,
+          "peakRssLimitKb": 8198.4,
+          "q": 1.001273695691214,
+          "resultHash": "sha256:3be9a710280cc80988206b2f4eb7fa1b0b6903762299e881444d81a837f9885a",
+          "wallSec": 35.57617178792134,
+          "workloads": {
+            "transcode/a.txt": 0.9972699432349581,
+            "transcode/b.txt": 1.0025180040557384,
+            "transcode/c.txt": 1.004045768773445
+          }
+        }
+      },
+      {
+        "seed": 2,
+        "train": {
+          "peakRssKb": 5484,
+          "peakRssLimitKb": 8198.4,
+          "q": 0.998702356297468,
+          "resultHash": "sha256:3be9a710280cc80988206b2f4eb7fa1b0b6903762299e881444d81a837f9885a",
+          "wallSec": 35.693837309023365,
+          "workloads": {
+            "transcode/a.txt": 1.002702942837553,
+            "transcode/b.txt": 0.9958029372313715,
+            "transcode/c.txt": 0.9976139906446619
+          }
+        },
+        "validation": {
+          "peakRssKb": 5488,
+          "peakRssLimitKb": 8198.4,
+          "q": 1.0012646751621677,
+          "resultHash": "sha256:3be9a710280cc80988206b2f4eb7fa1b0b6903762299e881444d81a837f9885a",
+          "wallSec": 37.97529797698371,
+          "workloads": {
+            "transcode/a.txt": 0.998848157907558,
+            "transcode/b.txt": 0.9957039635645684,
+            "transcode/c.txt": 1.0092923334132085
+          }
+        }
+      },
+      {
+        "seed": 3,
+        "train": {
+          "peakRssKb": 5484,
+          "peakRssLimitKb": 8198.4,
+          "q": 1.0007876416786918,
+          "resultHash": "sha256:3be9a710280cc80988206b2f4eb7fa1b0b6903762299e881444d81a837f9885a",
+          "wallSec": 37.60925768897869,
+          "workloads": {
+            "transcode/a.txt": 1.0017315429744023,
+            "transcode/b.txt": 0.9982548360565707,
+            "transcode/c.txt": 1.0023814690926494
+          }
+        },
+        "validation": {
+          "peakRssKb": 5488,
+          "peakRssLimitKb": 8198.4,
+          "q": 0.9978791222696561,
+          "resultHash": "sha256:3be9a710280cc80988206b2f4eb7fa1b0b6903762299e881444d81a837f9885a",
+          "wallSec": 37.46103148791008,
+          "workloads": {
+            "transcode/a.txt": 0.9971452184858812,
+            "transcode/b.txt": 0.9995237725699329,
+            "transcode/c.txt": 0.996970413594349
+          }
+        }
+      },
+      {
+        "seed": 4,
+        "train": {
+          "peakRssKb": 5476,
+          "peakRssLimitKb": 8198.4,
+          "q": 1.0028274876022936,
+          "resultHash": "sha256:3be9a710280cc80988206b2f4eb7fa1b0b6903762299e881444d81a837f9885a",
+          "wallSec": 37.72792691295035,
+          "workloads": {
+            "transcode/a.txt": 1.0051377120166667,
+            "transcode/b.txt": 1.002997131399187,
+            "transcode/c.txt": 1.0003533477864175
+          }
+        },
+        "validation": {
+          "peakRssKb": 5488,
+          "peakRssLimitKb": 8198.4,
+          "q": 1.0033335491921302,
+          "resultHash": "sha256:3be9a710280cc80988206b2f4eb7fa1b0b6903762299e881444d81a837f9885a",
+          "wallSec": 35.630562727106735,
+          "workloads": {
+            "transcode/a.txt": 0.9989344210692565,
+            "transcode/b.txt": 1.0094023464610085,
+            "transcode/c.txt": 1.001693175040419
+          }
+        }
+      }
+    ],
+    "sigma": 0.0015257265381587342,
+    "stabilitySpread": 0.0037427069272162865
+  },
+  "capsule": "simdutf-validate",
+  "completedAt": "2026-08-11T08:29:34.430470Z",
+  "host": {
+    "cgroup": "v2",
+    "cpu": "AMD Ryzen 9 7900",
+    "dockerEngine": "29.1.3",
+    "hostname": "deckbox",
+    "kernel": "Linux 6.8.0-31-generic x86_64",
+    "logicalProcessors": 24
+  },
+  "image": {
+    "architecture": "linux/amd64",
+    "configDigest": "sha256:d2e9b7f4697133dd86e2981569e1d8c618824b3af4a7fdbbd86c6b3ad3d0b52c",
+    "reference": "hone-simdutf-validate@sha256:3597c97ac57b3f2bcf71723902b693097103ae1a856c2b3234127d7461c2fb47"
+  },
+  "nativeOrdering": {
+    "controls": {
+      "broken": {
+        "seed": 0,
+        "trainQ": 0,
+        "trainTestsPass": false,
+        "validationQ": 0,
+        "validationTestsPass": false
+      },
+      "improved": {
+        "seed": 0,
+        "trainQ": 1.0288309836038265,
+        "trainTestsPass": true,
+        "validationQ": 1.027892401532483,
+        "validationTestsPass": true
+      },
+      "naive": {
+        "seed": 0,
+        "trainQ": 0.265426893794712,
+        "trainTestsPass": true,
+        "validationQ": 0.2673706543548641,
+        "validationTestsPass": true
+      },
+      "shortcut": {
+        "seed": 0,
+        "trainQ": 1.0254352607212571,
+        "trainTestsPass": true,
+        "validationQ": 0,
+        "validationTestsPass": false
+      }
+    },
+    "reportPath": "diagnostics/ordering-report.amd64.json",
+    "reportSha256": "sha256:c4841c51c7bf52fcb56d5c1ec1ec42752ecd735e9a7780e346ab6c8258cdc669",
+    "status": "passed"
+  },
+  "outcome": {
+    "calibrationRebaseline": "accepted",
+    "reason": "Five fresh native-AMD64 baseline samples are stable; correctness projections are identical; protected control ordering passes; observed sigma is below 20% of the published normalization scale.",
+    "status": "passed"
+  },
+  "protocol": {
+    "baselineSchedule": [
+      {
+        "seed": 0,
+        "split": "train"
+      },
+      {
+        "seed": 0,
+        "split": "validation"
+      },
+      {
+        "seed": 1,
+        "split": "train"
+      },
+      {
+        "seed": 1,
+        "split": "validation"
+      },
+      {
+        "seed": 2,
+        "split": "train"
+      },
+      {
+        "seed": 2,
+        "split": "validation"
+      },
+      {
+        "seed": 3,
+        "split": "train"
+      },
+      {
+        "seed": 3,
+        "split": "validation"
+      },
+      {
+        "seed": 4,
+        "split": "train"
+      },
+      {
+        "seed": 4,
+        "split": "validation"
+      }
+    ],
+    "canonicalTool": "capsules/tools/ordering-check.ts",
+    "canonicalToolSha256": "sha256:b14faef0fa5000195edb787dbb568402b751fcc60188ff343f55b138b57445e6",
+    "command": "HONE_CAPSULE_DIR=capsules/simdutf-validate HONE_ORDERING_DEBUG_OUTPUT=tmp/simdutf-native-rebaseline-raw.json pnpm exec tsx capsules/tools/ordering-debug.tmp.ts",
+    "configurationDelta": "Canonical ordering protocol with repeated-baseline stability runs raised from 3 to 5 and a raw-output observer; variant order, split order, fresh broker containers, network-none, host-exec-free enforcement, seeds, and ordering gates are unchanged.",
+    "controlSchedule": [
+      {
+        "seed": 0,
+        "split": "train",
+        "variant": "broken"
+      },
+      {
+        "seed": 0,
+        "split": "validation",
+        "variant": "broken"
+      },
+      {
+        "seed": 0,
+        "split": "train",
+        "variant": "naive"
+      },
+      {
+        "seed": 0,
+        "split": "validation",
+        "variant": "naive"
+      },
+      {
+        "seed": 0,
+        "split": "train",
+        "variant": "shortcut"
+      },
+      {
+        "seed": 0,
+        "split": "validation",
+        "variant": "shortcut"
+      },
+      {
+        "seed": 0,
+        "split": "train",
+        "variant": "improved"
+      },
+      {
+        "seed": 0,
+        "split": "validation",
+        "variant": "improved"
+      }
+    ],
+    "evalInvocations": 18,
+    "measurementToolSha256": "sha256:6f4a542201068d575185a37b7f7eb42c60ef57aa42c3d53002c56d45bd3c4640"
+  },
+  "schemaVersion": 1,
+  "sourceCommit": "17c5cd07e",
+  "ticket": "HONE-42"
+}

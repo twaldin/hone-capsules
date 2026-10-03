@@ -1,0 +1,173 @@
+{
+  "objective": "Improve cold and warm uv dependency-resolution time on a frozen hash-pinned offline PEP 503 index. Exact locks, selected wheel hashes, uv-resolver tests, and peak RSS at or below baseline plus 2% are hard gates; only crates/uv-resolver/src is mutable.",
+  "image": "hone-uv-resolver@sha256:a0ff8c72a2b3ef04c0e851fa1fe8242741e543b0f28ef59e0e985b47c412b88a",
+  "sandbox": {
+    "memoryBytes": 4831838208,
+    "cpus": 2
+  },
+  "evalEntrypoint": [
+    "python3",
+    "-I",
+    "-B",
+    "eval.py"
+  ],
+  "protectedPaths": [
+    "eval.py",
+    "worker.py",
+    "challenge.json",
+    "UPSTREAM_REVISION",
+    "LICENSE-MIT",
+    "LICENSE-APACHE",
+    "toolchain.lock.json",
+    ".gitignore"
+  ],
+  "assetGroups": [
+    {
+      "id": "train",
+      "visibility": "public",
+      "paths": [
+        "assets/train"
+      ]
+    },
+    {
+      "id": "validation",
+      "visibility": "protected",
+      "paths": [
+        "assets/validation"
+      ]
+    }
+  ],
+  "budget": {
+    "maxTokens": 12000000,
+    "maxUsd": 25,
+    "maxWallClockSec": 10800,
+    "maxEvaluatorInvocations": 200
+  },
+  "diagnosticOrdering": {
+    "path": "diagnostics/ordering-report.amd64.json"
+  },
+  "meta": {
+    "evaluatorSource": "user",
+    "partition": "m2-frozen-corpus",
+    "license": "MIT OR Apache-2.0",
+    "provenance": "astral-sh/uv current head 336535f83fd933ea54685e24e3c08468339937ce; frozen universal wheels acquired from PyPI and served only from a local file:// PEP 503 index; the workload exercises the Manifest/Resolver engine benchmarked by crates/uv-bench/benches/uv.rs and follows the resolve-cold/resolve-warm cache preparation in scripts/benchmark/src/benchmark/resolver.py",
+    "sourceDetails": {
+      "repository": "astral-sh/uv",
+      "commit": "336535f83fd933ea54685e24e3c08468339937ce",
+      "licenses": [
+        "LICENSE-MIT",
+        "LICENSE-APACHE"
+      ],
+      "mutableSurface": "crates/uv-resolver/src/**",
+      "protectedSurface": "toolchain image, Cargo manifests and lock, benchmark/evaluator code, resolver tests, package index, requirements, expected locks, distribution hashes"
+    },
+    "toolchain": {
+      "rust": "1.97.0",
+      "baseImage": "rust:1.97-bookworm@sha256:77fac8b98f9f46062bb680b6d25d5bcaabfc400143952ebc572e924bcbedc3fa",
+      "cargoVendor": "toolchain/vendor generated from Cargo.lock",
+      "buildProfile": "profiling with debug=0, lto=false, no uv default features, and rust-lld",
+      "network": "none at mutation, build, test, and evaluation time"
+    },
+    "measurement": {
+      "platform": "native linux/amd64 on Deckbox (AMD Ryzen 9 7900, Docker Engine 29.1.3, cgroup v2)",
+      "freshProcess": true,
+      "coldRepetitionsPerWorkload": 41,
+      "warmRepetitionsPerWorkload": 41,
+      "pairTrim": 8,
+      "freshWritableStatePerColdRepetition": true,
+      "freshWritableStatePerWarmRepetition": true,
+      "referenceNormalization": 25.0,
+      "q": "reference-normalized per-cell speed ratio: within each eval the pristine trusted-baseline reference binary and the candidate are run in interleaved repetition pairs (41 cold pairs each from a freshly mounted candidate-writable tmpfs with private /tmp and /dev/shm; 41 warm pairs each on its own freshly mounted tmpfs seeded from a root-held snapshot of the caches each binary primed once, so no candidate-writable byte survives from one repetition to the next in either mode). Each pair is interleaved rep-by-rep so both binaries share the same instant of the host's permanent repo-watcher load; the per-pair reference/candidate wall-time ratio cancels that shared ambient contention, the 8 most extreme ratios at each end are trimmed, and score = referenceNormalization * geometric-mean(kept ratios). Paired cancellation over 41 pairs drives residual jitter down as 1/sqrt(pairs) far tighter than a min-of-N-per-binary estimator would on these sub-100ms resolutions. Cold and warm latency reflect real resolution, never replay of earlier-repetition state; the readiness-gated timer excludes namespace/mount setup from the measured interval",
+      "qFail": 0,
+      "rssGate": "per-workload peak RSS <= 24000 KiB frozen baseline whole-tree cgroup memory.peak maximum across the A-A suite * 1.02",
+      "sandboxPeakMemoryBytes": 3226365952,
+      "sandboxMemoryCapBytes": 4831838208,
+      "sandboxHeadroomOverPeakFraction": 0.4976,
+      "sandboxUnusedCapacityFraction": 0.3323,
+      "qBase": 25.15491792208478,
+      "sigma": 0.28672275657922736,
+      "qReference": 26.58853170498092,
+      "normalizationScale": 1.4336137828961368,
+      "noiseFractionOfScale": 0.19999999999999998,
+      "qReferenceConstruction": "Final native linux/amd64 score anchor from five A-A samples under the accepted frozen evaluator contract. qBase is the sample mean (25.15491792208478) and sigma is the population standard deviation (0.28672275657922736). qReference = qBase + max(5*sigma, 5%*|qBase-qFail|) = 26.58853170498092; the five-sigma floor dominates."
+    },
+    "tags": [
+      "m2",
+      "oss",
+      "rust",
+      "dependency-resolution",
+      "offline-index",
+      "performance"
+    ],
+    "imageProvenance": {
+      "schemaVersion": 1,
+      "ticket": "HONE-39",
+      "definition": {
+        "status": "native-amd64-pair-accepted",
+        "sourceCommit": "5b6fd0784",
+        "dockerfile": "Dockerfile",
+        "dockerfileSha256": "sha256:0d12793940a6966bb048edc84bb86de968f47f62f8f2fed41717a74182b5d441",
+        "buildPlatform": "linux/amd64",
+        "buildCommand": "docker buildx build --platform linux/amd64 --pull --no-cache --network=default --provenance=false --build-arg SOURCE_DATE_EPOCH=1785589070 --load ."
+      },
+      "architectures": {
+        "linux/amd64": {
+          "status": "built-and-byte-identical-pair-verified",
+          "digest": "sha256:a0ff8c72a2b3ef04c0e851fa1fe8242741e543b0f28ef59e0e985b47c412b88a",
+          "configDigest": "sha256:cdb2ebfcd6288e0bcc958b1f421a2e35e7cc2393c40d2ef3ee51c8429336f8c9",
+          "acceptedBuildTags": [
+            "native-amd64-pair7",
+            "native-amd64-pair8"
+          ],
+          "pairEvidence": {
+            "result": "byte-identical",
+            "compared": [
+              "manifest digest",
+              "config digest",
+              "rootfs diff IDs",
+              "history",
+              "platform"
+            ],
+            "rootfsDiffIds": [
+              "sha256:63ecca237e30aca8ae79232ae01dddab7d8b42302f654f343f7cc7ddae60d57c",
+              "sha256:e62aadfda549a23e76f5bb43a9a5c652f9e7312aba9edf5c1411f7d0aed54eed",
+              "sha256:3acdb7d9b7ebcd7f62d99a996099a57b8367821f4d9a3f4b52239934425a7b98",
+              "sha256:b33c96ad984974239102a1fe15e6427a3510f13aa320227b371c10bb40063356",
+              "sha256:0bfd9a65e13cc2726159178398201f52cd4e5bd1c187584f6953c839438af7d5",
+              "sha256:04a106cf445c9633a59e0a4d8ee00505ba49e829b7b5d6fd38b81ae9e77b35fd"
+            ],
+            "historySha256": "sha256:140fbd8f00b72c13b6fe81560cf699f13a12d4a81757fa2da6531f3b8cb0c7b9"
+          },
+          "host": "deckbox",
+          "orderingReport": {
+            "path": "diagnostics/ordering-report.amd64.json",
+            "sha256": "sha256:eafbf5f60ec3928b4e1f396155b257db58adc2d1dd948fd5c36eee0a868a078c",
+            "result": "passed",
+            "evalInvocations": 18,
+            "network": "none",
+            "apparmorProfile": "hone-evaluator-cgroup",
+            "stabilitySpread": 0.02596488259826834
+          },
+          "rebaselineEvidence": {
+            "path": "diagnostics/native-amd64-rebaseline.json",
+            "sha256": "sha256:367c3ff4c040979bc3b83fc753b81ce34999de221bb2b3fbdd17556901bcced0",
+            "ticket": "HONE-41/HONE-44",
+            "status": "completed"
+          }
+        },
+        "linux/arm64": {
+          "status": "pending-native-arm64-refreeze",
+          "supersededDigest": "sha256:4ecfce6915c97234480adf92909b9c2d98c9df42a705da8b69671c257f528e0c",
+          "orderingReport": {
+            "path": "diagnostics/ordering-report.arm64.json",
+            "sha256": "sha256:1b7909bfe7b3e897e514bf4718f34b33c948d5bc7e0f56e7469812a7d61a92b1",
+            "result": "historical-passed-superseded",
+            "host": "Apple M3 Max",
+            "stabilitySpread": 0.005153110001824466
+          }
+        }
+      },
+      "multiArchitectureManifestStatus": "pending-native-arm64-ticket-038-046"
+    }
+  }
+}

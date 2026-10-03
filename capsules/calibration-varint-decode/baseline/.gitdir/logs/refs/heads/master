@@ -1,0 +1,4 @@
+0000000000000000000000000000000000000000 37f1ce622366f05db576048301faf7f86f8c81d4 Hone Calibration <calibration@hone.local> 1786492800 +0000	commit (initial): Add clean-room varint decode baseline
+37f1ce622366f05db576048301faf7f86f8c81d4 cc31bdde9284151d867801f7d0f2d7715aafb802 Hone Calibration <calibration@hone.local> 1786492860 +0000	commit: Add trusted evaluator boundary
+cc31bdde9284151d867801f7d0f2d7715aafb802 cdcfca5b794e4313e1fdd3812315a364f658b866 Hone Calibration <calibration@hone.local> 1786492920 +0000	commit: Stabilize varint optimization seam
+cdcfca5b794e4313e1fdd3812315a364f658b866 a04636b41d8a29a5ed813ac13b57a68a4fe5a026 Hone Calibration <calibration@hone.local> 1786492980 +0000	commit: Increase varint timing signal

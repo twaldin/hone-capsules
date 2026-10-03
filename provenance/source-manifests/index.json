@@ -1,0 +1,102 @@
+[
+  {
+    "taskId": "OWN-H01",
+    "capsule": "tradeup-query-latency",
+    "capsuleId": "cap_4f56f03866d9",
+    "capsuleDigest": "sha256:4e53fff5703dbc99a94ee67e759f409c113f0fe60cf975dbf5c5d9a9895aa9bd",
+    "file": "OWN-H01.tradeup-query-latency.manifest.json",
+    "sourceRepository": "twaldin/hone (history before the October 2026 split)",
+    "sourceCommit": "6ea8a909731aa14027ba50c6e51832d2b1c6fdd0",
+    "sourcePath": "capsules/tradeup-query-latency/manifest.reference.json"
+  },
+  {
+    "taskId": "OWN-H02",
+    "capsule": "flt-workflow-parser",
+    "capsuleId": "cap_ad1361023a83",
+    "capsuleDigest": "sha256:ee0ded5aadb733a4ccb4bae382e97acfe7106a4fb4ec8cfb2fbbd0c00984fe93",
+    "file": "OWN-H02.flt-workflow-parser.manifest.json",
+    "sourceRepository": "twaldin/hone (history before the October 2026 split)",
+    "sourceCommit": "76e22a1971167abcfcb81b7fc142afebe66c5669",
+    "sourcePath": "capsules/flt-workflow-parser/manifest.reference.json"
+  },
+  {
+    "taskId": "OWN-T01",
+    "capsule": "tradeup-profit",
+    "capsuleId": "cap_c50f80b4b6f1",
+    "capsuleDigest": "sha256:02bfd3b55ea717eb9c42f18a203804c5f4e3276da01cb1822f96227ed500368b",
+    "file": "OWN-T01.tradeup-profit.manifest.json",
+    "sourceRepository": "twaldin/hone (history before the October 2026 split)",
+    "sourceCommit": "ef79d90e8a903b77bb1d56e3316891dc2a5a25a4",
+    "sourcePath": "capsules/tradeup-profit/manifest.json"
+  },
+  {
+    "taskId": "OWN-T02",
+    "capsule": "monoagent-context-retention",
+    "capsuleId": "cap_95dd3c179509",
+    "capsuleDigest": "sha256:4c3fe5508209b04eb79f3aab77f490daa1a51670242f9a3dbc12c4756aa46154",
+    "file": "OWN-T02.monoagent-context-retention.manifest.json",
+    "sourceRepository": "twaldin/hone (history before the October 2026 split)",
+    "sourceCommit": "ef79d90e8a903b77bb1d56e3316891dc2a5a25a4",
+    "sourcePath": "capsules/monoagent-context-retention/manifest.json"
+  },
+  {
+    "taskId": "OWN-T03",
+    "capsule": "flt-text-input",
+    "capsuleId": "cap_21e8600c6f5a",
+    "capsuleDigest": "sha256:a6b9a972b45b80a95290f11863146c025241916d226965e67eac971e40e93fb6",
+    "file": "OWN-T03.flt-text-input.manifest.json",
+    "sourceRepository": "twaldin/hone (history before the October 2026 split)",
+    "sourceCommit": "ef79d90e8a903b77bb1d56e3316891dc2a5a25a4",
+    "sourcePath": "capsules/flt-text-input/manifest.json"
+  },
+  {
+    "taskId": "OWN-T04",
+    "capsule": "agentelo-scoring",
+    "capsuleId": "cap_8f9e7e1e1f22",
+    "capsuleDigest": "sha256:9c0055d75b23aa6d85d77a2a43acbb5f5fbb4605f52bf1d30bd0745dad2c6733",
+    "file": "OWN-T04.agentelo-scoring.manifest.json",
+    "sourceRepository": "twaldin/hone (history before the October 2026 split)",
+    "sourceCommit": "ef79d90e8a903b77bb1d56e3316891dc2a5a25a4",
+    "sourcePath": "capsules/agentelo-scoring/manifest.json"
+  },
+  {
+    "taskId": "OWN-T05",
+    "capsule": "flt-dag-orphan-recovery",
+    "capsuleId": "cap_56c626b4aa52",
+    "capsuleDigest": "sha256:bbe96246bbfc3691cd614371554f1b3e0e35be84d494f4b9c89a8031bfc548f9",
+    "file": "OWN-T05.flt-dag-orphan-recovery.manifest.json",
+    "sourceRepository": "twaldin/hone (history before the October 2026 split)",
+    "sourceCommit": "ef79d90e8a903b77bb1d56e3316891dc2a5a25a4",
+    "sourcePath": "capsules/flt-dag-orphan-recovery/manifest.json"
+  },
+  {
+    "taskId": "OWN-T06",
+    "capsule": "harness-session-log-normalization",
+    "capsuleId": "cap_63630c40b876",
+    "capsuleDigest": "sha256:37d10ea93836a704adcb3cde4ec4c23daaa7161598e3601bb0a632722cd5789a",
+    "file": "OWN-T06.harness-session-log-normalization.manifest.json",
+    "sourceRepository": "twaldin/hone (history before the October 2026 split)",
+    "sourceCommit": "ef79d90e8a903b77bb1d56e3316891dc2a5a25a4",
+    "sourcePath": "capsules/harness-session-log-normalization/manifest.json"
+  },
+  {
+    "taskId": "OWN-T07",
+    "capsule": "hone-optimizer-mode-canonicalization",
+    "capsuleId": "cap_11077c26eb25",
+    "capsuleDigest": "sha256:190ce3931f0448f2d0300c22452aed3572bce0bde1971515579d25f85a428173",
+    "file": "OWN-T07.hone-optimizer-mode-canonicalization.manifest.json",
+    "sourceRepository": "twaldin/hone (history before the October 2026 split)",
+    "sourceCommit": "ef79d90e8a903b77bb1d56e3316891dc2a5a25a4",
+    "sourcePath": "capsules/hone-optimizer-mode-canonicalization/manifest.json"
+  },
+  {
+    "taskId": "OWN-T08",
+    "capsule": "floyd-block-search-render",
+    "capsuleId": "cap_f11c10c3fc15",
+    "capsuleDigest": "sha256:c4f8ce59fb6668027ff9ebc6378243173999038fe468d93f70e88c8776894531",
+    "file": "OWN-T08.floyd-block-search-render.manifest.json",
+    "sourceRepository": "twaldin/hone (history before the October 2026 split)",
+    "sourceCommit": "ef79d90e8a903b77bb1d56e3316891dc2a5a25a4",
+    "sourcePath": "capsules/floyd-block-search-render/manifest.json"
+  }
+]

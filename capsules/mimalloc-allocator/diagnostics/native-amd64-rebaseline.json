@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "ticket": "HONE-41/HONE-42/HONE-45",
+  "capsule": "mimalloc-allocator",
+  "status": "native-amd64-terminal-ordering-and-rebaseline-passed",
+  "recordedAt": "2026-08-12T06:13:00Z",
+  "authorization": {
+    "decisionKey": "terminal-holdout-diagnostic",
+    "scope": "captain-authorized exact terminal verification/rebaseline diagnostic only",
+    "ownerGate": {
+      "environment": "HONE_TERMINAL_HOLDOUT_DIAGNOSTIC=1",
+      "flag": "--holdout-diagnostic"
+    },
+    "purpose": "Verify native AMD64 ordering and record architecture-specific rebaseline evidence without exposing the terminal holdout to any optimizer, campaign phase, model, or exploratory run."
+  },
+  "baseline": {
+    "aggregateSamples": [13780123.284668658, 13874953.948801545, 13845004.900391001, 13847532.592654971, 14010729.94151599],
+    "allConstraintsPass": true,
+    "allValid": true,
+    "normalizer": {
+      "formula": "qReference = qBase + max(5*sigma, 0.05*abs(qBase-qFail))",
+      "qFail": 0,
+      "qBase": 13871668.933606433,
+      "sigma": 76187.78735063919,
+      "qReference": 14565252.380286755,
+      "normalizationScale": 693583.4466803223,
+      "noiseFractionOfScale": 0.1098466056467964
+    }
+  },
+  "diagnosticRebaseline": {
+    "changedSources": [],
+    "decision": "No diagnostic variant sources required rebaselining: broken, naive, shortcut, improved, and baseline controls pass the frozen native ordering contract.",
+    "protectedInputsUnchanged": ["baseline/**", "assets/**", "baseline/eval.py"]
+  },
+  "host": {
+    "hostname": "deckbox",
+    "architecture": "x86_64",
+    "cpu": "AMD Ryzen 9 7900 12-Core Processor",
+    "dockerArchitecture": "amd64",
+    "apparmorProfile": "hone-evaluator-cgroup"
+  },
+  "image": {
+    "reference": "hone-mimalloc-allocator@sha256:4dd4bda0dc45939f089e19fb0185ea9c53172ea7a25228183e22292c2e716446",
+    "manifestDigest": "sha256:4dd4bda0dc45939f089e19fb0185ea9c53172ea7a25228183e22292c2e716446",
+    "configDigest": "sha256:b10f07c26ac0fb79f4a0760a2e894b286487bd5acdf6d50fe8bf9604dae41854",
+    "architecture": "linux/amd64",
+    "pairStatus": "built-and-byte-identical-pair-verified"
+  },
+  "run": {
+    "command": "HONE_CAPSULE_DIR=capsules/mimalloc-allocator HONE_TERMINAL_HOLDOUT_DIAGNOSTIC=1 pnpm exec tsx capsules/tools/ordering-check.ts --holdout-diagnostic --stability-runs 5 --raw-measurements tmp/rebaseline/mimalloc-allocator3.json --report capsules/mimalloc-allocator/diagnostics/ordering-report.amd64.json",
+    "evalInvocations": 18,
+    "network": "none",
+    "wallSeconds": 612.3,
+    "orderingReport": "diagnostics/ordering-report.amd64.json",
+    "orderingReportSha256": "sha256:228bcfcb2b0eee033f06528a1c88594465b420842cbccf724f35b62836174712",
+    "rawMeasurementsSha256": "sha256:e095a80296fd07feaf87f2c7d5f1c40aca6b913ce6b71d1c799c5d6da372c32e"
+  },
+  "sources": {
+    "capsuleConfigSha256AtRun": "sha256:387a48e211db1f221f924580022f1470eb37a45a622ff7508b5fc9cd2de4a3ef",
+    "evaluatorSha256": "sha256:4495d567bac56b6763072a0913997e5f5e87bbf208bf2df0e6197acf82e85932",
+    "orderingToolSha256": "sha256:6790f0c28987cb32f79aa01c183aad7f074954ed6d3e0ca7c2720bb5d8f1e46a",
+    "apparmorProfileSha256": "sha256:d5a3a8d452b02780e2be40f5bd7e35771e987720974d86f01971493a6c2d5a3a"
+  }
+}

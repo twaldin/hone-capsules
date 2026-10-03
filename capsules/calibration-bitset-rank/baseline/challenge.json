@@ -1,0 +1,16 @@
+{
+  "innerReps": 1,
+  "timeoutSec": 8,
+  "publicCases": [
+    {
+      "id": "public-empty-prefix",
+      "input": { "partition": "public", "bits": "10110100", "queries": [0, 1, 4, 8] },
+      "expected": [0, 1, 3, 4]
+    },
+    {
+      "id": "public-all-ones",
+      "input": { "partition": "public", "bits": "11111", "queries": [2, 5] },
+      "expected": [2, 5]
+    }
+  ]
+}

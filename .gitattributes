@@ -1,0 +1,31 @@
+# Embedded capsule Git stores and candidate snapshots are binary. Upstream
+# .gitattributes files inside baselines must never normalize them.
+# Nested attribute files take precedence over this one, so a fresh clone must
+# also copy these two lines into .git/info/attributes BEFORE checkout
+# (see README.md, "Cloning").
+capsules/**/.gitdir/** -text -diff
+capsules/**/.candidate-*/** -text -diff
+
+# Vendored upstream source, toolchains, wheels and image sources. They are the
+# subjects of the tasks, not code written here, so keep them out of GitHub's
+# language statistics.
+capsules/biome-parser-formatter/baseline/** linguist-vendored
+capsules/brotli-codec/baseline/** linguist-vendored
+capsules/bun-module-loader/baseline/** linguist-vendored
+capsules/duckdb-tpch/baseline/** linguist-vendored
+capsules/esbuild-bundling/baseline/** linguist-vendored
+capsules/mimalloc-allocator/baseline/** linguist-vendored
+capsules/node-url/baseline/** linguist-vendored
+capsules/orjson-serialization/baseline/** linguist-vendored
+capsules/quickjs-interpreter/baseline/** linguist-vendored
+capsules/ripgrep-search/baseline/** linguist-vendored
+capsules/simdjson-parse/baseline/** linguist-vendored
+capsules/simdutf-validate/baseline/** linguist-vendored
+capsules/sqlite-speedtest1/baseline/** linguist-vendored
+capsules/tree-sitter-parse/baseline/** linguist-vendored
+capsules/uv-resolver/baseline/** linguist-vendored
+capsules/uv-resolver/source/** linguist-vendored
+capsules/**/toolchain/** linguist-vendored
+capsules/**/image/** linguist-vendored
+capsules/**/image-source/** linguist-vendored
+capsules/**/.candidate-*/** linguist-vendored

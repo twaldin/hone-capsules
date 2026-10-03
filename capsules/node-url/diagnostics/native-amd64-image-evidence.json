@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "ticket": "HONE-39",
+  "capsule": "node-url",
+  "status": "native-amd64-pair-accepted-after-source-permission-correction",
+  "recordedAt": "2026-08-12T05:55:00Z",
+  "sourceCommit": "6c4ac4be6",
+  "acceptedBuildTags": ["native-amd64-pair7", "native-amd64-pair8"],
+  "architecture": "linux/amd64",
+  "build": {
+    "builderIsolation": "two independently-created Docker BuildKit container builders with empty caches",
+    "command": "docker buildx build --platform linux/amd64 --pull=false --no-cache --network=default --provenance=false --build-arg SOURCE_DATE_EPOCH=1785589070 --load .",
+    "dockerfileSha256": "sha256:737e2c497f5698364cb62a3290995b66e59d709905a5853042decaad03fef1bc",
+    "normalizerSha256": "sha256:b2b2914bea656ad66f146b89c3b138b960bcb18f7b61f9feed9b50ccd2205fe8",
+    "sourceDateEpoch": 1785589070
+  },
+  "digest": "sha256:7f68831b3d1405aaa68ae192a191d7a4568ecc9865bd95facdd1be889318fdef",
+  "configDigest": "sha256:ee7114463f835e47dc5f0e81e2a50a0a09e3096a5d01a3dc18b841a867cd8846",
+  "host": {
+    "architecture": "x86_64",
+    "dockerEngine": "29.1.3",
+    "dockerServerArchitecture": "amd64",
+    "hostname": "deckbox"
+  },
+  "pairEvidence": {
+    "result": "byte-identical",
+    "compared": ["manifest digest", "config digest", "rootfs diff IDs", "history", "OS", "architecture"],
+    "rootfsDiffIds": [
+      "sha256:f2ec4de84f559f5c7be4233b589cdbdbb5507807e05621b77320edd55a1f2a0f",
+      "sha256:dbe2e2836bbedded7c3e1a9ede07951321c1b066ef75997661456950bd8e8afb",
+      "sha256:02c03db0720eae2fbbe7098d8b7edb806ddeac1d508f8bdd89511ea047938dd2",
+      "sha256:5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef",
+      "sha256:4956c7ce290ecc783fcb4e7bbff821a72e0e24f1373bac641f67a45a47768d1b",
+      "sha256:048235028ee79deef618089ca23ec0e6a5355fe009159db5cb15afc66563a307"
+    ],
+    "historySha256": "sha256:9d0de0bacdda34df3d2985b2ed41dae469aac51f8a34bcba1aad13ccbf08e41e"
+  },
+  "startupProbe": {
+    "command": "docker run --rm --platform linux/amd64 --network none --user 0:0 --entrypoint /bin/sh <image> -c 'uname -m; node -p process.versions.node; test -r /opt/node/src/node_url.cc; test -r /opt/node/deps/ada/ada.cpp'",
+    "node": "27.0.0-pre",
+    "unameMachine": "x86_64",
+    "protectedSourceReadable": true
+  },
+  "supersedes": {
+    "digest": "sha256:15520c2f2860d241e3e8cd9cb82b2dd8f6aed915dfd63878a8dcadfd6d2a2bd7",
+    "configDigest": "sha256:bddbc3bd8d1c3810f91719c0140f7667fa7c385d99dfb068cd9939a470e69b24",
+    "acceptedBuildTags": ["native-amd64-pair5", "native-amd64-pair6"],
+    "reason": "The previous pair was deterministic but normalized protected Node source to owner-only modes, so the demoted evaluator worker could not read the protected source tree. Historical evidence retains its original label."
+  },
+  "arm64": {
+    "status": "pending-native-arm64-refreeze",
+    "digest": null
+  }
+}

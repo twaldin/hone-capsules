@@ -1,0 +1,245 @@
+{
+  "schemaVersion": 2,
+  "id": "cap_6562f788bdd5",
+  "objective": "Improve reciprocal host-normalized min-of-N reference/target latency for a single-threaded DuckDB physical-filter microbenchmark over fixed SF1 input. Exact typed output, a frozen upstream physical-filter test subset, and whole-tree peak memory no greater than baseline plus 10% are hard gates. Only src/execution/operator/filter/physical_filter.cpp is mutable.",
+  "baseline": {
+    "kind": "git",
+    "commit": "57274e33a3c4681cf15bf0378614cca346177d75"
+  },
+  "image": "hone-duckdb-tpch@sha256:dd2e787549671c99c1cccc0f1db057e20f3ba224162b56997b8b9887a34315b4",
+  "evalEntrypoint": [
+    "python3",
+    "-I",
+    "-B",
+    "eval.py"
+  ],
+  "protectedPaths": [
+    ".*",
+    "*.md",
+    "CITATION.cff",
+    "CMakeLists.txt",
+    "LICENSE",
+    "Makefile",
+    "benchmark/**",
+    "extension/**",
+    "scripts/**",
+    "test/**",
+    "third_party/**",
+    "tools/**",
+    "eval.py",
+    "result_hash.cpp",
+    "toolchain.lock.json",
+    "worker.py",
+    "src/CMakeLists.txt",
+    "src/catalog/**",
+    "src/common/**",
+    "src/function/**",
+    "src/include/**",
+    "src/logging/**",
+    "src/main/**",
+    "src/optimizer/**",
+    "src/parallel/**",
+    "src/parser/**",
+    "src/planner/**",
+    "src/storage/**",
+    "src/transaction/**",
+    "src/execution/CMakeLists.txt",
+    "src/execution/expression_executor/**",
+    "src/execution/index/**",
+    "src/execution/nested_loop_join/**",
+    "src/execution/physical_plan/**",
+    "src/execution/sample/**",
+    "src/execution/operator/CMakeLists.txt",
+    "src/execution/operator/aggregate/**",
+    "src/execution/operator/csv_scanner/**",
+    "src/execution/operator/filter/CMakeLists.txt",
+    "src/execution/operator/helper/**",
+    "src/execution/operator/join/**",
+    "src/execution/operator/order/**",
+    "src/execution/operator/persistent/**",
+    "src/execution/operator/projection/**",
+    "src/execution/operator/scan/**",
+    "src/execution/operator/schema/**",
+    "src/execution/operator/set/**"
+  ],
+  "assetGroups": [
+    {
+      "id": "train",
+      "visibility": "holdout",
+      "paths": [
+        "assets/sf1.duckdb",
+        "assets/train/workload.json",
+        "assets/train/query.sql",
+        "assets/train/oracle.sha256"
+      ]
+    },
+    {
+      "id": "validation",
+      "visibility": "holdout",
+      "paths": [
+        "assets/sf1.duckdb",
+        "assets/validation/workload.json",
+        "assets/validation/query.sql",
+        "assets/validation/oracle.sha256"
+      ]
+    }
+  ],
+  "budget": {
+    "maxTokens": 12000000,
+    "maxUsd": 25,
+    "maxWallClockSec": 10800,
+    "maxEvaluatorInvocations": 200
+  },
+  "sandbox": {
+    "memoryBytes": 8589934592,
+    "cpus": 8
+  },
+  "diagnosticOrdering": {
+    "path": "diagnostics/ordering-report.amd64.json",
+    "hash": "sha256:4b13bf75b23c59d467aae6690ede8a2a964a4d526d7d902b3cc2577a7ac35379"
+  },
+  "contentHashes": {
+    "assets/sf1.duckdb": "sha256:1e2a17dedac4da19efb6c8c154b82042cd78f1faa862a8a1b7d95f717ea0bb94",
+    "assets/train/workload.json": "sha256:7f47212c986694bd995abb8f57e3bb7ac7f2665afdf4025a943144671d2065d9",
+    "assets/train/query.sql": "sha256:d68fe633cfdd0ec34c3eaadd0bcc8db14b8890ef2c14ed1ef35b4d158300ec77",
+    "assets/train/oracle.sha256": "sha256:67eb47d3a005e76b5fe97af2f1357445f7b1d999b36e35216f2ae648e28d6279",
+    "assets/validation/workload.json": "sha256:bbd35c72db3dbf1f79827eb0b8d845aedf7102ca4764d8ef4f29430c1c1e84ed",
+    "assets/validation/query.sql": "sha256:4bbe1d077fa7118291d7ff8b3b2e38b0650554ef0849e3284677d5532b074309",
+    "assets/validation/oracle.sha256": "sha256:6a4ce9416e68de032a3200fb9bac595dbff3f93e74e5ff84447e151817904fc0"
+  },
+  "meta": {
+    "evaluatorSource": "user",
+    "provenance": "duckdb/duckdb at exact revision 117e1a46be1c903c5a36ee3c881c125597f93c60, layered with trusted evaluator glue in synthetic baseline commit lineage; fixed SF1 database SHA-256 1e2a17dedac4da19efb6c8c154b82042cd78f1faa862a8a1b7d95f717ea0bb94; q is the host-normalized reference-yardstick score NORM_CONST(1.0)*min(reference)/min(target) over 7 timed fresh-process pairs (2 warmups), where the filter-free reference query is run by a separate pristine runner built and sealed from the trusted baseline with no candidate overlay; native AMD64 terminal ordering and rebaseline evidence is recorded at diagnostics/native-amd64-rebaseline.json.",
+    "license": "MIT (upstream LICENSE preserved)",
+    "tags": [
+      "m2",
+      "terminal",
+      "oss",
+      "duckdb",
+      "physical-filter",
+      "microbenchmark",
+      "performance"
+    ],
+    "partition": "m2-terminal-holdout",
+    "sourceDetails": {
+      "repository": "duckdb/duckdb",
+      "revision": "117e1a46be1c903c5a36ee3c881c125597f93c60",
+      "upstreamUrl": "https://github.com/duckdb/duckdb/commit/117e1a46be1c903c5a36ee3c881c125597f93c60",
+      "mutableEnvelope": [
+        "src/execution/operator/filter/physical_filter.cpp"
+      ],
+      "upstreamTests": [
+        "test/sql/filter/test_expression_executor_select.test",
+        "test/sql/filter/filter_cache.test",
+        "test/sql/filter/length_case_filter.test"
+      ]
+    },
+    "imageProvenance": {
+      "schemaVersion": 1,
+      "ticket": "HONE-37",
+      "definition": {
+        "status": "ticket-037-native-amd64-pair-accepted",
+        "sourceCommit": "f72127add682ef3e951c60bd0994ab5f607732df",
+        "sourcePatch": {
+          "path": "hone-ticket-037-build/source.patch",
+          "sha256": "sha256:1e52d2faf72400867bc97b08b63971871607113913cd225a80873669cdb19482"
+        },
+        "dockerfile": "Dockerfile",
+        "dockerfileSha256": "sha256:8101682bc2876b283d75d5b53c4f0c53cd7655c92c8fbbc8c37a01b919247419",
+        "buildPlatform": "linux/amd64",
+        "buildParameters": {
+          "builder": "docker buildx build",
+          "pull": false,
+          "noCache": true,
+          "provenance": false,
+          "load": true,
+          "sourceDateEpoch": 1785589070,
+          "debianSnapshot": "20260713T000000Z"
+        },
+        "deviationFromPriorFreeze": "container-build definition only: deterministic native AMD64 bases, dependency pins, and normalization; capsule config, workload, evaluator, objective, and baseline were unchanged"
+      },
+      "baseImage": {
+        "index": "sha256:7b140f374b289a7c2befc338f42ebe6441b7ea838a042bbd5acbfca6ec875818",
+        "linux/amd64": "sha256:63a496b5d3b99214b39f5ed70eb71a61e590a77979c79cbee4faf991f8c0783e"
+      },
+      "architectures": {
+        "linux/amd64": {
+          "status": "built-and-byte-identical-pair-verified",
+          "reference": "hone-duckdb-tpch@sha256:dd2e787549671c99c1cccc0f1db057e20f3ba224162b56997b8b9887a34315b4",
+          "digest": "sha256:dd2e787549671c99c1cccc0f1db057e20f3ba224162b56997b8b9887a34315b4",
+          "configDigest": "sha256:2b74135bfee674523f7daebd5e95e9b5b5dabfea6d79993041ffa855be51014f",
+          "dockerOs": "linux",
+          "dockerArchitecture": "amd64",
+          "host": "deckbox",
+          "nativeOrdering": {
+            "status": "completed",
+            "path": "diagnostics/ordering-report.amd64.json",
+            "sha256": "sha256:4b13bf75b23c59d467aae6690ede8a2a964a4d526d7d902b3cc2577a7ac35379",
+            "ticket": "HONE-41/HONE-42"
+          },
+          "nativeRebaseline": {
+            "status": "completed",
+            "path": "diagnostics/native-amd64-rebaseline.json",
+            "sha256": "sha256:06fd8b44e027e8bd4e3fb303b002d933082c5285b2183af45bac36d22ea46e20",
+            "ticket": "HONE-42"
+          },
+          "acceptedBuildOrdinals": [
+            1,
+            2
+          ],
+          "pairEvidence": {
+            "path": "hone-ticket-037-build/mismatch/continuation-pair-comparison.txt",
+            "sha256": "sha256:1abafec5b5368fdd15f55853af1f16fec07b76ff170bb66ad4956906b6427f1b",
+            "result": "byte-identical",
+            "compared": [
+              "config",
+              "rootfs diff IDs",
+              "history",
+              "platform"
+            ]
+          }
+        },
+        "linux/arm64": {
+          "status": "pending-ticket-038-046-native-refreeze",
+          "supersededDigest": "sha256:a19dc4edd5d6c1a43cdbff7bced30eb1eb2920518aac888473e2ec830161d1e2",
+          "supersededReason": "the historical image is ARM64-only and predates the required paired multi-architecture freeze",
+          "production": "Build the ticket-038-046 ARM64 pair natively from the reconciled ticket-037 definition; verify byte-identical pair output and linux/arm64; run native ordering and rebaseline; record the ARM64 digest; then publish one manifest list joining the accepted AMD64 and ARM64 digests before admission."
+        }
+      },
+      "multiArchitectureManifestStatus": "pending-native-arm64-ticket-038-046",
+      "nativeOrderingStatus": "completed"
+    },
+    "measurement": {
+      "platform": "linux/arm64 Docker Desktop on Apple M3 Max; final recalibration required on frozen GCE Linux host",
+      "freshProcess": true,
+      "q": "host-normalized reference-yardstick score NORM_CONST(1.0) * min(reference)/min(target) over 7 timed fresh-process target/reference pairs (2 warmups); the filter-free reference query never invokes the mutable PhysicalFilter and is run by a SEPARATE pristine runner built+sealed from the trusted baseline with no candidate overlay, so it is candidate-independent; each sample runs in its own cgroup leaf capped to one core (cpu.max) and one task (pids.max=1); the per-binary minimum cancels shared-host contention drift while rewarding a genuinely faster filter path",
+      "qFail": 0,
+      "warmupRuns": 2,
+      "timedRuns": 7,
+      "estimator": "min-of-N reference/target (per-binary minimum)",
+      "peakRssTolerance": 0.1,
+      "trustedParentTiming": true,
+      "perSampleTimeoutSec": 45
+    },
+    "robustnessReview": {
+      "protectedPathEscape": "the broker protects the evaluator, build graph, runner, tests, dependencies, assets, and every source file outside the one-file physical-filter envelope; the evaluator independently rejects additions and every symlink",
+      "benchmarkSpecialCasing": "independently authored, non-tautological train and validation predicates (distinct selective length thresholds over lower()/upper() case kernels) exercise the same physical-filter kernel over the same fixed database and exact typed output; any pass-through of the input chunk changes the selected row set and fails the exact-output oracle, the frozen upstream test subset includes a length-case filter test whose predicates drop rows, and split-inverting diagnostics must lose on validation",
+      "fixtureFingerprinting": "assets are hash-verified, copied read-only, and unmounted before candidate build; every sample starts with a swept /tmp and /dev/shm, a fresh working directory, and fresh IPC and NET namespaces",
+      "outputFabrication": "each process stdout is checked against an oracle retained only in the trusted parent after the sealed asset mount is removed",
+      "timerTampering": "CLOCK_MONOTONIC timing surrounds each full process in the trusted Python parent and the score is the per-binary minimum of 7 timed reference/target pairs (min(reference)/min(target)); no candidate-linked clock or reported duration is accepted",
+      "processLifecycle": "every sample runs in its own root-owned cgroup leaf (cpu.max one core, pids.max=1) with a fresh process group and bounded timeout; the leaf is killed and retired via cgroup.kill after every leg, and a pre-sample sweep kills any surviving demoted process and reaps orphans adopted by the pid-1 evaluator (a non-empty cgroup.procs after a sample fails it)",
+      "binaryMutation": "the candidate runner and the pristine reference runner are each copied into a root-owned read-only sealed directory before any sample runs and the entire build tree is deleted; peak memory comes from the whole-tree cgroup memory.peak, never a candidate-writable file or a single-child rusage",
+      "buildScriptMutation": "CMake, compiler flags, evaluator, worker, runner, and tests are protected; every evaluation rebuilds submitted source from scratch"
+    },
+    "terminalSeal": {
+      "taskId": "OSS-H02",
+      "contract": "capsules/contracts/OSS-H02.json",
+      "cohort": "terminal",
+      "optimizerPilots": 0,
+      "mutationHeadroomRuns": 0,
+      "seedOptimizerSessions": 0,
+      "optimizerCorpusExposure": false,
+      "trustedActivitiesOnly": true
+    }
+  }
+}

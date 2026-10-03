@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "ticket": "HONE-37/HONE-46",
+  "capsule": "bun-module-loader",
+  "status": "blocked-on-determinism",
+  "recordedAt": "2026-08-12T06:25:00Z",
+  "decisionKey": "bun-image-blocker",
+  "expectedBehavior": "Two clean, sequential native linux/amd64 builds from the accepted pinned inputs produce byte-identical image configuration, history, and complete rootfs layer identity.",
+  "observedBehavior": "The final evidence-informed pair retained identical configuration and history but produced different image IDs and different complete rootfs layer identity. No native Bun image or digest was accepted.",
+  "reproduction": {
+    "host": "deckbox",
+    "architecture": "linux/amd64",
+    "buildMode": "sequential --platform linux/amd64 --pull=false --no-cache --network=default --provenance=false --load",
+    "sourceDateEpoch": 1785589070,
+    "rustFlags": "-Zthreads=1",
+    "pair": {
+      "build3ImageId": "sha256:64926d5d9b4aef3546e0a0dd42e08d86645a3d4b6a79a667a52c03268e826cd6",
+      "build4ImageId": "sha256:c5b3ef225d2d6a93f056ae75af05beb9926c97da69bf88d109680139c32cf3bd",
+      "imageIdEqual": false,
+      "configEqual": true,
+      "historyEqual": true,
+      "rootfsEqual": false
+    },
+    "repeatability": "The bounded continuation pair remained non-identical after the determinism changes derived from the earlier pair."
+  },
+  "causalBoundary": {
+    "initiatingTrigger": "A clean native Bun rebuild materializes retained generated build state.",
+    "maskingCondition": "Comparing image configuration or history alone masks the divergence because both were equal; complete rootfs layer comparison exposes it.",
+    "visibleSymptom": "The two candidate images have distinct image IDs and rootfs layer identities, so the pair cannot be accepted.",
+    "earliestObservedDivergence": "Generated Ninja, Cargo, ccache, and metadata paths retained different bytes or metadata between builds.",
+    "disconfirmingCheck": "If the complete rootfs identities had matched after forcing rustc metadata ordering with -Zthreads=1, the determinism explanation would have been rejected. They did not match."
+  },
+  "disposition": {
+    "nativeDigestBound": false,
+    "pairProof": "failed-byte-identity",
+    "nativeOrdering": "not-run-with-unaccepted-image",
+    "rebaseline": "blocked-before-ordering",
+    "perArchitectureManifestProvenance": "blocked; historical ARM64 image remains bound and honestly labelled",
+    "admission": "excluded from non-Bun source sweep; blocks atomic 27/27 cohort admission",
+    "requiredAction": "Do not admit or fabricate a Bun native digest. Resolve bun-image-blocker before authorizing another bounded determinism probe and pair."
+  },
+  "evidence": {
+    "rawComparisonPath": "diagnostics/native-amd64-determinism-raw.txt",
+    "rawComparisonSha256": "sha256:1abafec5b5368fdd15f55853af1f16fec07b76ff170bb66ad4956906b6427f1b",
+    "durableReportSource": "/home/tim/.deck-durable/data/hone-ticket-037-build/report.md",
+    "durableReportSha256": "sha256:da23ab603162cf00283f84997b7e1103386adf5ea75cd379f3d83b8c84f216fc",
+    "dockerfileSha256": "sha256:e0b65111393b468d15edf1a071d67f15c5cf4ee966bcd20090f8d9a4e9fde76f",
+    "capsuleConfigSha256": "sha256:28e1fa60d16a4d166e7c2ca3c917c3ee31b3bcac55951cef72209949e5a13b39"
+  }
+}

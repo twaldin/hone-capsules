@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "ticket": "HONE-41/HONE-42/HONE-46",
+  "capsule": "node-url",
+  "status": "blocked-on-frozen-evaluator-native-test-contract",
+  "recordedAt": "2026-08-12T06:00:00Z",
+  "authorization": {
+    "decisionKey": "terminal-holdout-diagnostic",
+    "scope": "captain-authorized exact terminal verification/rebaseline diagnostic only",
+    "ownerGate": {
+      "environment": "HONE_TERMINAL_HOLDOUT_DIAGNOSTIC=1",
+      "flag": "--holdout-diagnostic"
+    },
+    "purpose": "Verify native AMD64 ordering and record a precise blocker without exposing the terminal holdout to any optimizer, campaign phase, model, or exploratory run."
+  },
+  "run": {
+    "command": "HONE_CAPSULE_DIR=capsules/node-url HONE_TERMINAL_HOLDOUT_DIAGNOSTIC=1 pnpm exec tsx capsules/tools/ordering-check.ts --holdout-diagnostic --stability-runs 5 --raw-measurements tmp/rebaseline/node-url2.json --report capsules/node-url/diagnostics/ordering-report.amd64.json",
+    "evalInvocations": 18,
+    "network": "none",
+    "wallSeconds": 183.3,
+    "rawMeasurementsSha256": "sha256:322616a09f05cedfaadbb1bf571a9d71926b9ee7ac420675ca8fb0e8164f9382",
+    "outcome": "all baseline and diagnostic aggregates were qFail=0; no native ordering report was accepted"
+  },
+  "image": {
+    "reference": "hone-node-url@sha256:7f68831b3d1405aaa68ae192a191d7a4568ecc9865bd95facdd1be889318fdef",
+    "architecture": "linux/amd64",
+    "manifestDigest": "sha256:7f68831b3d1405aaa68ae192a191d7a4568ecc9865bd95facdd1be889318fdef",
+    "configDigest": "sha256:ee7114463f835e47dc5f0e81e2a50a0a09e3096a5d01a3dc18b841a867cd8846",
+    "pairEvidenceStatus": "byte-identical corrected pair accepted before ordering",
+    "startupAndSourceReadability": "passed"
+  },
+  "blocker": {
+    "class": "protected-evaluator-native-test-contract",
+    "exactFailure": "test gate failed: WHATWG URL tests failed",
+    "representativeNativeFailure": "parallel/test-url-parse-deprecation asserted 1 !== 0 under the native image; other baseline repetitions stopped near 44% of the protected URL test suite with nonzero tools/test.py status",
+    "reproduction": "All ten baseline legs (five train and five validation) failed the protected WHATWG URL test gate. The corrected image independently passed its Dockerfile build-time custom URL subset, native startup, and protected-source readability probe, so this is not the corrected permission defect.",
+    "requiredDecision": "A future dedicated evaluator-design lane must reconcile the protected full URL test contract on native AMD64. This lane is not authorized to edit terminal evaluator, worker, tests, baseline, or diagnostic sources.",
+    "historicalArm64Evidence": "retained with its original architecture label; not relabelled as AMD64",
+    "cohort046Disposition": "blocked-capsule-set"
+  },
+  "sources": {
+    "capsuleConfigSha256AtRun": "sha256:9935ac7add60f5ddcb52e8b352b1ab6e6cbdd9e95c793b62e94bf76e1d2811c4",
+    "evaluatorSha256": "sha256:b181246ef5b4f5cb4b5fc4e24c24116b043ac308ddf94df4049d3839e0847ab2",
+    "workerSha256": "sha256:6871f98f3bb8e761f74ef8d5674c1b71781b2b8d0499f1f46e2156d73714540e",
+    "orderingToolSha256": "sha256:6790f0c28987cb32f79aa01c183aad7f074954ed6d3e0ca7c2720bb5d8f1e46a",
+    "apparmorProfileSha256": "sha256:d5a3a8d452b02780e2be40f5bd7e35771e987720974d86f01971493a6c2d5a3a"
+  }
+}

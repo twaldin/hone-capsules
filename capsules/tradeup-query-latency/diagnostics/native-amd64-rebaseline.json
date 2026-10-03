@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "ticket": "HONE-41/HONE-42/HONE-45",
+  "capsule": "tradeup-query-latency",
+  "status": "native-amd64-terminal-ordering-and-rebaseline-passed",
+  "recordedAt": "2026-08-12T06:23:00Z",
+  "authorization": {
+    "decisionKey": "terminal-holdout-diagnostic",
+    "scope": "captain-authorized exact terminal verification/rebaseline diagnostic only",
+    "ownerGate": {
+      "environment": "HONE_TERMINAL_HOLDOUT_DIAGNOSTIC=1",
+      "flag": "--holdout-diagnostic"
+    },
+    "purpose": "Verify native AMD64 ordering and record architecture-specific rebaseline evidence without exposing the terminal holdout to any optimizer, campaign phase, model, or exploratory run."
+  },
+  "baseline": {
+    "aggregateSamples": [0.00027034793115505247, 0.00027091031765344637, 0.00026675943568370904, 0.00026328195957661205, 0.00026399540111210566],
+    "allConstraintsPass": true,
+    "allValid": true,
+    "normalizer": {
+      "formula": "qReference = qBase + max(5*sigma, 0.05*abs(qBase-qFail))",
+      "qFail": 0,
+      "qBase": 0.0002670590090361851,
+      "sigma": 0.0000031429644317243924,
+      "qReference": 0.00028277383119480705,
+      "normalizationScale": 0.00001571482215862195,
+      "noiseFractionOfScale": 0.20000000000000015
+    }
+  },
+  "diagnosticRebaseline": {
+    "changedSources": [
+      {
+        "path": "diagnostics/naive/query.py",
+        "beforeSha256": "sha256:bd611bcbd58d7bc2232f5a782dcb6773a8786dd392d963e5e4c69af930e4597c",
+        "afterSha256": "sha256:6a555622781897a0a476db44e95cd105aaff93b80e3767af96d1d53969d8bdfc",
+        "reason": "The historical naive two-pass implementation was faster than the frozen baseline on native AMD64. The rebaseline makes the documented N+1-era design issue one independent full-market aggregate query per statistic while preserving exact output behavior."
+      }
+    ],
+    "protectedInputsUnchanged": ["baseline/**", "assets/**", "baseline/eval.py"],
+    "result": "broken < naive < baseline < improved, with shortcut train-only"
+  },
+  "host": {
+    "hostname": "deckbox",
+    "architecture": "x86_64",
+    "cpu": "AMD Ryzen 9 7900 12-Core Processor",
+    "dockerArchitecture": "amd64",
+    "apparmorProfile": "hone-evaluator-cgroup"
+  },
+  "image": {
+    "reference": "hone-mutation@sha256:e43b8871710267d86f3e1118b2f9a3d8ef0ab505b14e671da9728200260dcd10",
+    "manifestDigest": "sha256:e43b8871710267d86f3e1118b2f9a3d8ef0ab505b14e671da9728200260dcd10",
+    "architecture": "linux/amd64",
+    "pairStatus": "built-and-byte-identical-pair-verified"
+  },
+  "run": {
+    "command": "HONE_CAPSULE_DIR=capsules/tradeup-query-latency HONE_TERMINAL_HOLDOUT_DIAGNOSTIC=1 pnpm exec tsx capsules/tools/ordering-check.ts --holdout-diagnostic --stability-runs 5 --raw-measurements tmp/rebaseline/tradeup-query-latency6.json --report capsules/tradeup-query-latency/diagnostics/ordering-report.amd64.json",
+    "evalInvocations": 18,
+    "network": "none",
+    "wallSeconds": 573.1,
+    "orderingReport": "diagnostics/ordering-report.amd64.json",
+    "orderingReportSha256": "sha256:60b7d23dbf0fbc9022c8d6e39ac0f0d7d8a69290fa3180e85cb9dc454ae35390",
+    "rawMeasurementsSha256": "sha256:7d3f6e54bbedac3a940621d91fa1bfa4e17454c3b7b11b0d4caaff301ddaa65d"
+  },
+  "sources": {
+    "capsuleConfigSha256AtRun": "sha256:4e17450579bbeb9607eeab8821f3531ed046c2f6ab9b545dabaf699981e14a3f",
+    "evaluatorSha256": "sha256:3697e36e7bfc349b58e55e190c3b663e9988cb21106e12c0fb882d3d3e2b7ee1",
+    "orderingToolSha256": "sha256:6790f0c28987cb32f79aa01c183aad7f074954ed6d3e0ca7c2720bb5d8f1e46a",
+    "apparmorProfileSha256": "sha256:d5a3a8d452b02780e2be40f5bd7e35771e987720974d86f01971493a6c2d5a3a"
+  }
+}

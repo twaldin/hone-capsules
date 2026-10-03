@@ -1,0 +1,97 @@
+{
+  "schemaVersion": 2,
+  "id": "cap_8ac06369aa07",
+  "objective": "Reduce trusted parent-measured latency for sorting and coalescing frozen integer intervals while preserving the exact canonical union, including touching endpoints. Only solution.py is mutable; the evaluator, worker protocol, public contract, and train/validation fixtures are protected.",
+  "baseline": {
+    "kind": "git",
+    "commit": "41625a64bc727ccca50166ef2686b7e0fa895506"
+  },
+  "image": "hone-calibration-runtime@sha256:a0f426aaea895a9d86407f1954b30462ed0bc528bbff81c67acf484256a66cb3",
+  "evalEntrypoint": [
+    "python3",
+    "-I",
+    "-B",
+    "eval.py"
+  ],
+  "protectedPaths": [
+    "eval.py",
+    "worker.py",
+    "challenge.json"
+  ],
+  "assetGroups": [
+    {
+      "id": "train",
+      "visibility": "public",
+      "paths": [
+        "assets/train/cases.json"
+      ]
+    },
+    {
+      "id": "validation",
+      "visibility": "protected",
+      "paths": [
+        "assets/validation/cases.json"
+      ]
+    }
+  ],
+  "budget": {
+    "maxTokens": 12000000,
+    "maxUsd": 25,
+    "maxWallClockSec": 10800,
+    "maxEvaluatorInvocations": 200
+  },
+  "sandbox": {
+    "memoryBytes": 536870912,
+    "cpus": 1
+  },
+  "diagnosticOrdering": {
+    "path": "diagnostics/ordering-report.json",
+    "hash": "sha256:7c86963b837b03d87eeedc58f6b1dd5e05a1d0b140cd5d98bf3006fcad9e35a4"
+  },
+  "contentHashes": {
+    "assets/train/cases.json": "sha256:ed15d2fbc2404f3ceec795d52a6599b1be6624032ec0f2399d8c389ce59000e9",
+    "assets/validation/cases.json": "sha256:7032634ed55ec2065a5154c304a1ee89c93af6c8f5cf1111f92f7e4181de399f"
+  },
+  "meta": {
+    "evaluatorSource": "user",
+    "provenance": "Clean-room calibration-only task authored for M2 saturation measurement on 2026-08-12. Algorithm, baseline, public contract, deterministic fixtures (seeds 4409/4421/4507/4513), diagnostics, and evidence were first introduced in calibration-interval-merge and share no source, fixtures, objectives, or evidence with any M2 development or terminal capsule.",
+    "tags": [
+      "m2",
+      "calibration-only",
+      "excluded",
+      "intervals",
+      "union"
+    ],
+    "partition": "m2-calibration-only-excluded",
+    "sourceDetails": {
+      "origin": "Hone clean-room calibration task; standard interval-union definition only, no external repository or cohort task source",
+      "generator": "generate-assets.py",
+      "mutableSurface": "solution.py only",
+      "cohortContentReuse": "none"
+    },
+    "imageProvenance": {
+      "schemaVersion": 1,
+      "definition": "capsules/calibration-runtime/Dockerfile",
+      "definitionSha256": "sha256:21bfd0469d47a1b8d7f1a91f1b54dc869ee3f7900e3636153d1961450fc9c18c",
+      "pairProof": "capsules/calibration-runtime/image-build-proof.json",
+      "pairProofSha256": "sha256:5440a9de3a098367d5a113a2a50e4edde7597bd4d3464048ade1a1a0d1d57d3c",
+      "linux/amd64": {
+        "status": "built-pair-and-verified-native",
+        "digest": "sha256:a0f426aaea895a9d86407f1954b30462ed0bc528bbff81c67acf484256a66cb3",
+        "dockerOs": "linux",
+        "dockerArchitecture": "amd64"
+      },
+      "linux/arm64": {
+        "status": "honest-pending",
+        "reason": "no ARM64 build or digest is claimed"
+      },
+      "multiArchitectureManifestStatus": "pending-native-arm64"
+    },
+    "measurement": {
+      "q": "mean 1/(1+trusted-parent elapsed milliseconds) over sealed exact-output cases",
+      "qFail": 0,
+      "freshProcess": true,
+      "boundedBuild": "no candidate build step; one Python module import and invocation under the 512 MiB/1 CPU sandbox ceiling"
+    }
+  }
+}

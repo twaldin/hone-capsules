@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "capsuleId": "cap_8ac06369aa07",
+  "provenance": "Clean-room calibration-only integer interval-union task; deterministic fixtures from independent seeds 4409/4421/4507/4513; zero cohort task source, fixture, objective, or evidence reuse.",
+  "determinism": {
+    "generator": "generate-assets.py",
+    "trainSha256": "sha256:ed15d2fbc2404f3ceec795d52a6599b1be6624032ec0f2399d8c389ce59000e9",
+    "validationSha256": "sha256:7032634ed55ec2065a5154c304a1ee89c93af6c8f5cf1111f92f7e4181de399f"
+  },
+  "nativeImage": {
+    "reference": "hone-calibration-runtime@sha256:a0f426aaea895a9d86407f1954b30462ed0bc528bbff81c67acf484256a66cb3",
+    "platform": "linux/amd64",
+    "byteIdenticalPairProof": "../calibration-runtime/image-build-proof.json",
+    "arm64": "honest-pending"
+  },
+  "ordering": {
+    "report": "ordering-report.json",
+    "sha256": "sha256:7c86963b837b03d87eeedc58f6b1dd5e05a1d0b140cd5d98bf3006fcad9e35a4",
+    "failures": 0,
+    "evalInvocations": 14,
+    "network": "none",
+    "stabilitySpread": 0.1222,
+    "stabilityBand": 0.15,
+    "correctness": "baseline and improved passed exact public/train/validation outputs",
+    "sensitivity": "broken < naive < baseline < improved; train-only shortcut beat train baseline and failed to transfer to validation"
+  },
+  "boundedBuildAndHeadroom": {
+    "candidateBuild": "none",
+    "sandboxMemoryBytes": 536870912,
+    "sandboxCpus": 1,
+    "callTimeoutSec": 8,
+    "baselineRuntimeKind": "single isolated Python worker process"
+  },
+  "exploitDiscipline": "Evaluator, worker, public contract, protected validation bytes, assets, and diagnostics are outside solution.py; fresh processes, namespace reset, demoted UID, exact-output gates, no network, and no holdout asset group.",
+  "supersededAdmissionApproval": {
+    "basis": "Captain-recorded Gate-1 acceptance and Gate-2 non-provisional owner approval after approved adversarial review data/hone-calibration-harness/review-c1.md.",
+    "capsuleId": "cap_699c3a91be9d",
+    "capsuleDigest": "sha256:13b8db110df3ca3a9b4c962032d644ed8c2b81cfe1fd4e49f0715a3414ddb5ea",
+    "gate1ReceiptHash": "sha256:bda663de870b169bd4b436579ab9d01fe4146a26e7271836bd527a483630560a",
+    "gate2ReceiptHash": "sha256:ef2f4b2c144e967bdcfc617232608f2099d921e3c500087f0f4c3c6fd2080a29",
+    "provisional": false,
+    "status": "superseded-by-runtime-identity-change"
+  },
+  "currentAdmissionApproval": {
+    "basis": "Captain-recorded Gate-1 acceptance and Gate-2 non-provisional owner approval on 2026-08-12 via first mate after approved adversarial review data/hone-calibration-harness/review-c2.md; content invariance was proven at tree-hash level, the runtime digest was reproduced twice from scratch, pinned binaries were hash-verified, all four ordering surfaces passed under the new runtime, the exclusion fence passed in both directions, and the prior receipts remain honestly superseded.",
+    "capsuleId": "cap_8ac06369aa07",
+    "capsuleDigest": "sha256:0edd9151c0823e459ecb4ded0a16231ab5d785ea0e5b27d8723f9d9b0de68429",
+    "identities": {
+      "author": "agent:hone-calibration-harness",
+      "adversarialValidator": "agent:hone-calibration-harness-adv-c2",
+      "finalReviewer": "owner:captain"
+    },
+    "gate1ReceiptHash": "sha256:33e505e5bd44d2a4377752030b19895b70f1fd36baeeffc3de77332b823ab1d8",
+    "gate2ReceiptHash": "sha256:dd144183543c721e02e49fd9694dd8055721ab9e3ac62c298ec1d04e5c908212",
+    "provisional": false,
+    "status": "approved"
+  }
+}

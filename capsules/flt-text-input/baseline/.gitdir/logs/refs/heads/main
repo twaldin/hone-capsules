@@ -1,0 +1,6 @@
+0000000000000000000000000000000000000000 99e9803e1cc795c2cd4a898597164753b7678643 twaldin <timothy@waldin.net> 1784274827 -0700	commit (initial): Freeze FLT TextInput historical partial baseline
+99e9803e1cc795c2cd4a898597164753b7678643 5cb07fe196bba9c515a09446483df180e5c5a46f twaldin <timothy@waldin.net> 1784274949 -0700	commit (amend): Freeze FLT TextInput historical partial baseline
+5cb07fe196bba9c515a09446483df180e5c5a46f cecb7865952a4035fa351e0d0cb006e3cd12b925 twaldin <timothy@waldin.net> 1784275326 -0700	commit (amend): Freeze FLT TextInput historical partial baseline
+cecb7865952a4035fa351e0d0cb006e3cd12b925 15e93fc7f5deb13026d5e662e04158d9fcd21001 twaldin <timothy@waldin.net> 1784701775 -0700	commit: Baseline: sync worker.mjs into baseline commit
+15e93fc7f5deb13026d5e662e04158d9fcd21001 265e89f8fdeba576a2fbe216b0b71a17f4defae4 twaldin <timothy@waldin.net> 1784737992 -0700	commit: Baseline: prototype-independent worker recording path
+265e89f8fdeba576a2fbe216b0b71a17f4defae4 1ba636c7e6f18d7d5c7940ba1a8a4a5a2ae18bc0 twaldin <timothy@waldin.net> 1784881497 -0700	commit: flt-text-input: capture writeSync into local const before candidate import (ADAPTER-primitive)

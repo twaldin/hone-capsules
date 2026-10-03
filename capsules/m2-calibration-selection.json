@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "capsuleDirs": [
+    "capsules/calibration-bitset-rank",
+    "capsules/calibration-varint-decode",
+    "capsules/calibration-byte-escape",
+    "capsules/calibration-interval-merge"
+  ],
+  "episodeCaps": [2, 4, 8, 12],
+  "seeds": [110729, 221447, 442903, 885811, 1771637],
+  "bootstrap": {
+    "rngSeed": 1295205714,
+    "samples": 10000
+  }
+}

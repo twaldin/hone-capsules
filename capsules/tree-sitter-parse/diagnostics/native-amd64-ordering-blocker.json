@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "ticket": "HONE-41/HONE-42/HONE-46",
+  "capsule": "tree-sitter-parse",
+  "status": "blocked-on-frozen-evaluator-native-migration",
+  "recordedAt": "2026-08-12T03:10:00Z",
+  "authorization": {
+    "decisionKey": "terminal-holdout-diagnostic",
+    "scope": "captain-authorized exact terminal verification/rebaseline diagnostic only",
+    "ownerGate": {
+      "environment": "HONE_TERMINAL_HOLDOUT_DIAGNOSTIC=1",
+      "flag": "--holdout-diagnostic"
+    },
+    "purpose": "Verify native AMD64 ordering and record architecture-specific rebaseline evidence without exposing the terminal holdout to any optimizer, campaign phase, model, or exploratory run."
+  },
+  "run": {
+    "command": "HONE_CAPSULE_DIR=capsules/tree-sitter-parse HONE_TERMINAL_HOLDOUT_DIAGNOSTIC=1 pnpm exec tsx capsules/tools/ordering-check.ts --holdout-diagnostic --stability-runs 5 --raw-measurements tmp/rebaseline/tree-sitter-parse.json --report capsules/tree-sitter-parse/diagnostics/ordering-report.amd64.json",
+    "evalInvocations": 18,
+    "network": "none",
+    "rawMeasurementsSha256": "sha256:533d24ea71347157f838582549c6670a5b1e3a17812db7049a100e989f97075a"
+  },
+  "image": {
+    "reference": "hone-tree-sitter-parse@sha256:5109b6c56c6987b6a0d9ef7b756bba3999a70b058e0f003fed99d74e91f1c713",
+    "architecture": "linux/amd64",
+    "digest": "sha256:5109b6c56c6987b6a0d9ef7b756bba3999a70b058e0f003fed99d74e91f1c713",
+    "pairEvidenceStatus": "accepted-before-ordering"
+  },
+  "blocker": {
+    "class": "protected-evaluator-arm64-assumption",
+    "exactFailure": "candidate runtime failed to compile: generated harness.c hard-errors that trusted exit and trusted control channel are pinned to linux/arm64",
+    "source": "baseline/eval.py",
+    "sourceSha256": "sha256:9d86c629f9d22736c1115393b3e0ca4074d7aca0a07a011522637d4faddaea63",
+    "sourceLocations": ["generated harness.c:31", "generated harness.c:185"],
+    "requiredDecision": "Future captain authorization must migrate the protected evaluator's architecture-specific raw syscall harness. This lane must not edit protected evaluator, baseline, or asset bytes.",
+    "historicalArm64Evidence": "retained with its original architecture label; not relabelled as AMD64",
+    "cohort046Disposition": "blocked-capsule-set"
+  },
+  "sources": {
+    "capsuleConfigSha256AtRun": "sha256:da6b428364dd451cddb06e05157bce0e8c3db420d8874c1d413a875e6fc72818",
+    "orderingToolSha256": "sha256:6790f0c28987cb32f79aa01c183aad7f074954ed6d3e0ca7c2720bb5d8f1e46a"
+  }
+}
