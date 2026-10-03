@@ -34,7 +34,7 @@ The capsules used to live inside the Hone repository. In October 2026 I split th
 **Other.**
 
 - `seeded-astar`: a grid A* speedup, the first capsule written for the TypeScript rewrite. It is outside the cohort and is the default target of the ordering check.
-- `leduc-cfr-exploitability/artifacts/best/`: the improved Leduc hold'em CFR+ solver from Hone's fixed-compute campaign (0.9677× baseline runtime, holdout q 0.7733 → 0.7899), under the upstream [`davidvayn/pokersolver`](https://github.com/davidvayn/pokersolver) MIT notice. The capsule itself and its sealed cases are private.
+- `leduc-cfr-exploitability/artifacts/`: two improved Leduc hold'em CFR+ solvers, under the upstream [`davidvayn/pokersolver`](https://github.com/davidvayn/pokersolver) MIT notice. `fixed-compute-best/` is the fixed-compute winner: it keeps the same number of sweeps and weights the average policy by iteration³ below 100 iterations (0.9677× baseline runtime, holdout q 0.7733 → 0.7899). `best/` is the earlier candidate that tripled sweeps below 100 iterations; it bought its gain with extra compute and does not meet the fixed-compute rule. The capsule itself and its sealed cases are private.
 - `Dockerfile.task`: the generic `hone-task` image used by the early capsules.
 - `provenance/source-manifests/`: the historical manifest versions that Hone's task contracts (`capsule-kit/contracts/` in the engine) cite as their source identities, exported from the pre-split history with the commit and path each came from.
 - `test/`: integration tests that run Hone's trusted code against these capsules.
@@ -54,9 +54,10 @@ Keep those rules when you pull. The checkout is a few gigabytes because several 
 
 ## Running a capsule with Hone
 
-Clone Hone next to this repository and install it:
+Clone Hone next to this repository (from the directory that contains `hone-capsules`, not from inside it) and install it:
 
 ```sh
+cd ..   # if you are inside hone-capsules
 git clone https://github.com/twaldin/hone.git
 cd hone
 pnpm install --frozen-lockfile
@@ -84,7 +85,7 @@ To build or re-check a capsule, use Hone's `capsule-kit` (`scaffold` writes `man
 `test/` checks the real capsules against Hone's trusted code: seeded A* evaluator security and validity, its ordering check, scaffold reproducing its committed manifest byte for byte, the task contracts against the capsule tree and `provenance/`, and an opt-in Linux proof that the FLT evaluator runs under isolated user IDs. There is no `package.json` here; the tests use Hone's installed vitest and resolve `@hone/*` from a Hone checkout:
 
 ```sh
-HONE_ROOT=/path/to/hone \
+export HONE_ROOT=/path/to/hone
 HONE_CAPSULES_ROOT=$PWD/capsules \
   "$HONE_ROOT/node_modules/.bin/vitest" run --config vitest.config.ts --maxWorkers=1 --minWorkers=1
 ```

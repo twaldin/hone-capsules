@@ -21,7 +21,7 @@ Hone-authored and owner-approved derived material in this repository is MIT ([LI
 | `sqlite-speedtest1` | SQLite | `baseline/LICENSE.md` (public domain) |
 | `tree-sitter-parse` | tree-sitter | `baseline/LICENSE` |
 | `uv-resolver` | uv | `baseline/LICENSE-APACHE`, `baseline/LICENSE-MIT`, `source/LICENSE-APACHE`, `source/LICENSE-MIT` |
-| `leduc-cfr-exploitability` | [`davidvayn/pokersolver`](https://github.com/davidvayn/pokersolver) | `artifacts/best/LICENSE` (MIT) |
+| `leduc-cfr-exploitability` | [`davidvayn/pokersolver`](https://github.com/davidvayn/pokersolver) | `artifacts/best/LICENSE`, `artifacts/fixed-compute-best/LICENSE` (MIT) |
 
 Vendored toolchains, crates, wheels and image sources under these capsules (`toolchain/`, `image/`, `image-source/`, `source/`, `.candidate-*/`) carry their own notices in place.
 
