@@ -1,0 +1,19 @@
+2026-10-05T09:13:03Z workspace /tmp/hutter-naive-quant-dWjUNy
+2026-10-05T09:13:03Z start naive train CPUSET=1-4 nice=10
+2026-10-05T09:29:32Z finish naive train driver_rc=0
+2026-10-05T09:29:32Z start naive validation CPUSET=1-4 nice=10
+2026-10-05T09:44:12Z finish naive validation driver_rc=0
+2026-10-05T09:44:12Z removed workspace
+train valid True failed_gates [] failed_constraints []
+  train: -187591.0 bytes saved vs lexth11c over 4 slices; instructions 1.0001x lexth11c (limit 1.005x); CPU 2701.9s of 2730.1s budget
+  code_size_xz {'reference': 196828, 'candidate': 196976, 'delta': 148}
+  instructions 20320891481389 of 20421343381985
+  cpu 2701.88 of 2730.14
+validation valid True failed_gates [] failed_constraints []
+  validation: -99711.5 bytes saved vs lexth11c over 2 slices; instructions 1.0001x lexth11c (limit 1.005x); CPU 1179.8s of 1181.0s budget
+  code_size_xz {'reference': 196828, 'candidate': 196976, 'delta': 148}
+  instructions 10384572782027 of 10435918524093
+  cpu 1179.75 of 1181.01
+combined 0.7553105054627377 n 6 worse True
+NAIVE_PROOF_OK
+2026-10-05T09:44:12Z proof_rc=0

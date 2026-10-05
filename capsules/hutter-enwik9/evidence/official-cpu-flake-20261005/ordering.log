@@ -1,0 +1,22 @@
+$ tsx tools/ordering-check.ts --report --raw-measurements /home/tim/hutter/capsule-dev/final-evidence-admission-20261005/ordering-raw.json --partial-report /home/tim/hutter/capsule-dev/final-evidence-admission-20261005/ordering-partial.json
+variant    train        validation   combined     tests_pass(train/val)
+baseline   1.000e+0     0.000e+0     6.667e-1     true/false
+broken     0.000e+0     0.000e+0     0.000e+0     false/false
+naive      7.743e-1     7.173e-1     7.553e-1     true/true
+shortcut   1.200e+0     9.869e-1     1.129e+0     true/true
+improved   1.001e+0     1.001e+0     1.001e+0     true/true
+stability: aggregates [6.667e-1, 1.000e+0, 6.667e-1], spread 0.4286 (band 0.15)
+measurements: 14 broker evaluations in 28 containers (14 decode, 0 ended at an invalid encode; network none, host-exec free), wall 12952.8s
+
+raw measurements -> /home/tim/hutter/capsule-dev/final-evidence-admission-20261005/ordering-raw.json
+partial report -> /home/tim/hutter/capsule-dev/final-evidence-admission-20261005/ordering-partial.json
+
+ORDERING CHECK FAILED:
+- naive(0.7553105054627377) < baseline(0.6666666666666666)
+- shortcut does NOT beat baseline on validation (0.9869409257324708 < 0)
+- baseline stability spread 0.4286 < 0.15
+- baseline/validation tests_pass
+- baseline/validation quality is finite and in (0, 1]
+/home/tim/hutter/hone/capsule-kit:
+[ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL] @hone/capsule-kit@0.1.0 ordering-check: `tsx tools/ordering-check.ts --report --raw-measurements /home/tim/hutter/capsule-dev/final-evidence-admission-20261005/ordering-raw.json --partial-report /home/tim/hutter/capsule-dev/final-evidence-admission-20261005/ordering-partial.json`
+Exit status 1

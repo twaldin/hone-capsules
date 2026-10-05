@@ -21,9 +21,12 @@ Hone-authored and owner-approved derived material in this repository is MIT ([LI
 | `sqlite-speedtest1` | SQLite | `baseline/LICENSE.md` (public domain) |
 | `tree-sitter-parse` | tree-sitter | `baseline/LICENSE` |
 | `uv-resolver` | uv | `baseline/LICENSE-APACHE`, `baseline/LICENSE-MIT`, `source/LICENSE-APACHE`, `source/LICENSE-MIT` |
+| `hutter-enwik9` | cmix-lex-transformer lexth11c | `baseline/LICENSE` (GPL-3.0-only), `NOTICE` |
 | `leduc-cfr-exploitability` | [`davidvayn/pokersolver`](https://github.com/davidvayn/pokersolver) | `artifacts/best/LICENSE`, `artifacts/fixed-compute-best/LICENSE` (MIT) |
 
 Vendored toolchains, crates, wheels and image sources under these capsules (`toolchain/`, `image/`, `image-source/`, `source/`, `.candidate-*/`) carry their own notices in place.
+
+`hutter-enwik9` is a GPL-3.0-only derivative of lexth11c, not an MIT hone-authored task. Its native AST helper is the single copy in `baseline/hone/` (`asm_audit.cc`, `asm-audit`, `asm-allowlist.json`), distributed under that same GPL. The binary dynamically links `libclang-cpp.so.17` and `libLLVM-17.so.1`, which remain in the unchanged runtime image `hone-hutter-enwik9@sha256:2391980839f983b29a917f1842c66522ba0fa8c9ba9b3ad6685bcb2b42152d8d` (packages `libclang-cpp17` and `libllvm17`, Apache-2.0 WITH LLVM-exception). Those licenses are retained. `libclang-17-dev` and `llvm-17-dev` are temporary build headers only.
 
 ## Hone-authored and derived tasks
 

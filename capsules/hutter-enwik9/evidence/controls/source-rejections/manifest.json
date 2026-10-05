@@ -1,0 +1,46 @@
+{
+  "rejectLayer": "source_ok",
+  "astProblem": "object/integer-to-function-pointer cast",
+  "detail": "reinterpret_cast of dlsym void* to a function pointer",
+  "notRoundtripProof": true,
+  "evaluatorSha256": "1960622476e7f0fc04d94e4f90fdbdb799d1996c393365a5c5af9e42be19c4af",
+  "baselineHead": "3e9cb690a5c5c3dc32d556b73302c8db97282e2c",
+  "overlays": {
+    "negative-control": "8b60bde9583f6493885005ea54b6fbe3e238a5cf4754a6fbf0af64a470c65459",
+    "filesystem-control": "ed01f85edecce7928efa54f03815c95ae02b0476f2a9cdb892e0ee1933ca8164"
+  },
+  "files": {
+    "filesystem-control-train.json": {
+      "sha256": "4ec2c4a9757e50bf5c7bb7b184b9501fcac6fc07df115c886920773b9586baff",
+      "bytes": 2112,
+      "valid": false,
+      "source_ok": "fail",
+      "roundtrip_ok": "not_run",
+      "summary": "train: failed ['source_ok']; not run ['reference_ok', 'build_ok', 'isa_ok', 'jobs_ok', 'roundtrip_ok', 'instructions_within_budget', 'cpu_within_budget', 'no_stray_processes']; source_ok: src/predictor.cpp: object/integer-to-function-pointer cast"
+    },
+    "filesystem-control-validation.json": {
+      "sha256": "2a6c30b4ea7a3867cd73b6b09f5b21c37f34cadf9936d84bbb9c89af468042c7",
+      "bytes": 1551,
+      "valid": false,
+      "source_ok": "fail",
+      "roundtrip_ok": "not_run",
+      "summary": "validation: failed ['source_ok']; not run ['reference_ok', 'build_ok', 'isa_ok', 'jobs_ok', 'roundtrip_ok', 'instructions_within_budget', 'cpu_within_budget', 'no_stray_processes']; source_ok: src/predictor.cpp: object/integer-to-function-pointer cast"
+    },
+    "negative-control-train.json": {
+      "sha256": "4ec2c4a9757e50bf5c7bb7b184b9501fcac6fc07df115c886920773b9586baff",
+      "bytes": 2112,
+      "valid": false,
+      "source_ok": "fail",
+      "roundtrip_ok": "not_run",
+      "summary": "train: failed ['source_ok']; not run ['reference_ok', 'build_ok', 'isa_ok', 'jobs_ok', 'roundtrip_ok', 'instructions_within_budget', 'cpu_within_budget', 'no_stray_processes']; source_ok: src/predictor.cpp: object/integer-to-function-pointer cast"
+    },
+    "negative-control-validation.json": {
+      "sha256": "2a6c30b4ea7a3867cd73b6b09f5b21c37f34cadf9936d84bbb9c89af468042c7",
+      "bytes": 1551,
+      "valid": false,
+      "source_ok": "fail",
+      "roundtrip_ok": "not_run",
+      "summary": "validation: failed ['source_ok']; not run ['reference_ok', 'build_ok', 'isa_ok', 'jobs_ok', 'roundtrip_ok', 'instructions_within_budget', 'cpu_within_budget', 'no_stray_processes']; source_ok: src/predictor.cpp: object/integer-to-function-pointer cast"
+    }
+  }
+}

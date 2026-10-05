@@ -1,0 +1,49 @@
+{
+ "variant": "lexth11c",
+ "knobs": {
+  "PPMD_MEM_MB": "3500",
+  "FXCM_CM_DIV": "2",
+  "CMIX_L0_MIXER_MASK": "0x42e72du",
+  "CMIX_L0_LR_SCALE": "0.6",
+  "CMIX_L1_LR_SCALE": "0.25",
+  "TF_CODEBOOK": "1",
+  "TF_SMALL_W8": "1",
+  "TF_ACTQ_DYN": "1",
+  "CM_OPT": "-O2",
+  "TF_AVX512": "1",
+  "PGO_INPUT_DICT": "./prof_input/input_4mb",
+  "TFWEIGHTS": "/results/sota/train/runs/lex_h1_run11/export/lex_h1_run11.tfwc2"
+ },
+ "build_rc": 0,
+ "build_s": 771.9,
+ "ok": true,
+ "cpu": {
+  "model": "unknown",
+  "flags": {
+   "avx2": true,
+   "fma": true,
+   "f16c": true,
+   "bmi2": true,
+   "avx512f": true,
+   "avx_vnni": false
+  }
+ },
+ "host_mem_gb": 80.0,
+ "cflags_defines": [
+  "CFLAGS_DEFINES=-DSEED=923 -DUPDATE_LIMIT=3000 -DPPMD_MEM_MB=3500 -DCMIX_L0_LR_SCALE=0.6 -DCMIX_L1_LR_SCALE=0.25 -DCMIX_L0_MIXER_MASK=0x42e72du -DFXCM_CM_DIV=2"
+ ],
+ "sizes": {
+  "cmix": 3477137,
+  "cmix_orig": 198236,
+  "comp_dict": 100866,
+  "comp_order": 199980,
+  "comp_tfweights": 2978039,
+  "header.dat": 16,
+  "progress.log": 123677
+ },
+ "portability_checks": [
+  "AVX-512 confinement: 1090 EVEX/zmm/mask instructions inside the 25 sections of ('tf_qmat_dense_avx512.o', 'tf_qmat_sparse_avx512.o'), 0 outside, 0 VEX-encoded VNNI, 0 unexpected mnemonics",
+  "AVX-512 confinement check passed for ./cmix (AVX-512 code only in the runtime-dispatched qmat_*_avx512 objects)",
+  "no reciprocal-estimate instructions in ./cmix"
+ ]
+}

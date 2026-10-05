@@ -1,0 +1,73 @@
+{
+  "reviewPath": "/home/tim/hutter/hone-capsules/capsules/hutter-enwik9/evidence/admission/runtime-grok.txt",
+  "capsuleDigest": "sha256:9e000e87d87778b0c23aaec59ffa40fcc3e751b538464acd6f45f5a2b01cc871",
+  "reviewDisclosure": {
+    "authorFamily": "OpenAI",
+    "secondaryReviewerFamily": "OpenAI",
+    "secondaryReviewerSharesAuthorFamily": true,
+    "exception": "Parent-authorized fresh reviewer after Opus policy refusals; Grok supplies the other model family",
+    "ownerApprovalRecorded": false
+  },
+  "receipts": [
+    {
+      "v": 1,
+      "sequence": 0,
+      "previousReceiptHash": null,
+      "capsuleDigest": "sha256:9e000e87d87778b0c23aaec59ffa40fcc3e751b538464acd6f45f5a2b01cc871",
+      "action": "gate1-accept",
+      "identities": {
+        "author": {
+          "identity": "hutter-capsule",
+          "kind": "agent"
+        },
+        "adversarial-validator": {
+          "identity": "hutter-capsule-adv",
+          "kind": "agent"
+        },
+        "final-reviewer": {
+          "identity": "omp-main",
+          "kind": "agent"
+        }
+      },
+      "provisional": false,
+      "timestamp": "2026-10-05T17:53:53.300Z",
+      "recordHash": "sha256:a916168b5dec4f417cdb8dd3ab65d92cd01ed8e28e0863f2213872de0ed40e55"
+    },
+    {
+      "v": 1,
+      "sequence": 1,
+      "previousReceiptHash": "sha256:a916168b5dec4f417cdb8dd3ab65d92cd01ed8e28e0863f2213872de0ed40e55",
+      "capsuleDigest": "sha256:9e000e87d87778b0c23aaec59ffa40fcc3e751b538464acd6f45f5a2b01cc871",
+      "action": "gate2-approve",
+      "identities": {
+        "author": {
+          "identity": "hutter-capsule",
+          "kind": "agent"
+        },
+        "adversarial-validator": {
+          "identity": "hutter-capsule-adv",
+          "kind": "agent"
+        },
+        "final-reviewer": {
+          "identity": "omp-main",
+          "kind": "agent"
+        }
+      },
+      "delegation": {
+        "delegator": {
+          "identity": "tim",
+          "kind": "owner"
+        },
+        "delegate": {
+          "identity": "omp-main",
+          "kind": "agent"
+        },
+        "scope": "provisional-private-apply-none",
+        "budgetUsd": 25
+      },
+      "provisional": true,
+      "timestamp": "2026-10-05T17:53:53.302Z",
+      "recordHash": "sha256:dcf6359cf544785feedafcf49c652ed91ab64cddc12d9efb755b79148e7ab747"
+    }
+  ]
+}

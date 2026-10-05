@@ -33,6 +33,7 @@ The capsules used to live inside the Hone repository. In October 2026 I split th
 
 **Other.**
 
+- `hutter-enwik9`: fewer compressed bytes than lexth11c on frozen slices of its preprocessed enwik9 stream, at no extra CPU. GPL-3.0-only (`NOTICE`, `baseline/LICENSE`). enwik9 and the slices are not in git; `tools/fetch_enwik9.sh` and `tools/make_stream.sh` rebuild them and `tools/*.sha256` pin them.
 - `seeded-astar`: a grid A* speedup, the first capsule written for the TypeScript rewrite. It is outside the cohort and is the default target of the ordering check.
 - `leduc-cfr-exploitability/artifacts/`: two improved Leduc hold'em CFR+ solvers, under the upstream [`davidvayn/pokersolver`](https://github.com/davidvayn/pokersolver) MIT notice. `fixed-compute-best/` is the fixed-compute winner: it keeps the same number of sweeps and weights the average policy by iteration³ below 100 iterations (0.9677× baseline runtime, holdout q 0.7733 → 0.7899). `best/` is the earlier candidate that tripled sweeps below 100 iterations; it bought its gain with extra compute and does not meet the fixed-compute rule. The capsule itself and its sealed cases are private.
 - `Dockerfile.task`: the generic `hone-task` image used by the early capsules.

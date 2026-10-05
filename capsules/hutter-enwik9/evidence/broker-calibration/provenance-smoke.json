@@ -1,0 +1,20 @@
+{
+  "defaultRejectsCpuOnlyFailures": true,
+  "allMatchingBrokerRecordsConsumed": 12,
+  "rawOutputHashesPreserved": true,
+  "explicitCpuOnlyModeRejectsNonCpuFailure": true,
+  "unequalRepeatCountsRejected": true,
+  "liveEvaluatorAcceptsCalibratedProvenance": true,
+  "tamperedFactorMarginSpreadAndInstructionGateRejected": true,
+  "instructionMargin": 0.005,
+  "cpuMargin": 0.01904996370829111,
+  "cpuMarginSafetyFactor": 1.5,
+  "baselineCpuSec": {
+    "train": 2704.2366666666667,
+    "validation": 1177.955
+  },
+  "baselineInstructions": {
+    "train": 20319744602870,
+    "validation": 10383998525263
+  }
+}

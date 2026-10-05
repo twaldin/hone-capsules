@@ -1,0 +1,42 @@
+{
+  "reviewedBaselineCommit": "7027bc622068fabbe9b6afc805c37364558dd739",
+  "reviewedEvaluatorSha256": "24ab9f99e2b45c4eb89ffcb844657df59dcbc9366fae91f337bb9cc9186ebfce",
+  "reviewedManifestSha256": "571b80c2997cb49f932a57e95aeeee286eee5e136d3be8c2f03d36dbd7fd8ed6",
+  "authorModel": "openai-codex/gpt-6.1-sol",
+  "authorFamily": "OpenAI",
+  "harness": "omp",
+  "reviewers": [
+    {
+      "agent": "HutterFinish.HutterFinalGrok",
+      "axis": "Spec and final runtime soundness",
+      "model": "xai-oauth/grok-4.7",
+      "family": "xAI/Grok",
+      "sessionId": "01a10d24-e7d1-74cf-bdd5-83a988eae1ed",
+      "modelChangeTimestamp": "2026-10-05T17:38:05.109Z",
+      "resolvedModelIsFallback": false,
+      "verdict": "GO",
+      "report": "runtime-grok.txt"
+    },
+    {
+      "agent": "HutterFinish.HutterFinalFresh",
+      "axis": "Standards and final runtime soundness",
+      "model": "openai-codex/gpt-6.1-sol",
+      "family": "OpenAI",
+      "sessionId": "01a10d24-e7c5-7646-925c-6f3be2631848",
+      "modelChangeTimestamp": "2026-10-05T17:38:05.120Z",
+      "resolvedModelIsFallback": false,
+      "freshContext": true,
+      "sharesAuthorFamily": true,
+      "verdict": "GO",
+      "report": "runtime-openai.txt"
+    }
+  ],
+  "metadataVerification": "Parent inspected native session model_change entries; models are not inferred from agent labels.",
+  "sameFamilyException": "Parent-authorized fresh OpenAI reviewer after both Opus review launches refused; Grok provides the other family.",
+  "scope": "provisional-private-apply-none",
+  "finalReviewer": "agent:omp-main",
+  "delegatedFrom": "owner:tim",
+  "budgetUsd": 25,
+  "ownerApprovalRecorded": false,
+  "formalM1Authorized": false
+}

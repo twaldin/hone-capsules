@@ -1,0 +1,56 @@
+{
+ "job": "lexth11c",
+ "input": "enwik9",
+ "input_bytes": 1000000000,
+ "enwik9_sha256": "159b85351e5f76e60cbe32e04c677847a9ecba3adc79addab6f4c6c7aa3744bc",
+ "compress_cmd": "/usr/bin/time -v -o time.txt ./cmix -e /work/enwik9 out.cmix",
+ "comp9_bytes": 3477137,
+ "comp9_sha256": "e77c9a659b31c1358368da0ef49a8683080197b9b14a11b1e6e80a43c94cb463",
+ "archive9_bytes": 95836613,
+ "archive9_sha256": "a5b9c2e3fe000a0299606da20c4915d992ff09d8fd819f8ac6a640aa0eb0d956",
+ "S_hutter": 99313750,
+ "transformer_vocab_line": "",
+ "compress_time_v": {
+  "user_s": "196733.18",
+  "sys_s": "33.15",
+  "wall": "55:24:11",
+  "peak_rss_kb": "9765024",
+  "exit": "0"
+ },
+ "compress_wall_s": 199451.0,
+ "compress_wall_h": 55.403,
+ "compress_peak_rss_kb": 9765024,
+ "references": {
+  "zmix_1.0_S": 99312424,
+  "zmix_1.0_archive9": 96096261,
+  "fx2t_aug21_S": 100420830,
+  "fx2t_ltcb_archive9": 96996198,
+  "rata_cmix_archive9": 96849689,
+  "lexth1c_S": 100389826,
+  "lexth10cbA_S": 100121952
+ },
+ "collected_at": "2026-09-24 12:58:22 EDT",
+ "note": "compress phase only; decode verifications pending (jobs.py) | 2026-09-27 00:35 ET: Intel clean-room decode CMP_OK; S=99,313,750 VERIFIED.",
+ "decode_intel_cleanroom": {
+  "host": "Modal V2 sandbox, GenuineIntel (cloud=aws pool), 12 GiB cgroup, 9 snapshot/restore hops all on GenuineIntel",
+  "cmd": "./archive9 (self-extracting) -> out; cmp out enwik9",
+  "result": "CMP_OK",
+  "out_sha256": "159b85351e5f76e60cbe32e04c677847a9ecba3adc79addab6f4c6c7aa3744bc",
+  "out_sha256_matches_enwik9": true,
+  "user_s": 206375.53,
+  "wall": "59:26:45",
+  "peak_rss_kb": 9597984,
+  "exit_status": 0,
+  "started_et": "2026-09-24 12:57",
+  "finished_et": "2026-09-27 00:31",
+  "evidence_dir": "outputs/artifacts/hutter_lexth11c/decode_intel/ (time.txt, CMP, out.sha256, dec.log, vendor_start/end.txt)"
+ },
+ "decode_amd_partial": {
+  "host": "AuthenticAMD, no AVX-512 (Modal default pool), 24 h cap",
+  "decoded_stream_bytes": 292667392,
+  "stream_sha256": "da32fd81c894794e97d7d754de9f8cd682624fa61bc5468b453909c1adcd7b4a",
+  "byte_identical_to_intel_stream_over_overlap": true,
+  "evidence": "zenith-results:/sota/rescue/lexth11c_amd_partial/"
+ },
+ "verified": true
+}

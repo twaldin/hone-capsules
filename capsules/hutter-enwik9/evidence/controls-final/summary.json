@@ -1,0 +1,275 @@
+{
+  "negative-control": {
+    "train": {
+      "valid": false,
+      "bytes_saved": -1069501.0,
+      "constraints": {
+        "isolation_ok": true,
+        "reference_ok": false,
+        "build_ok": false,
+        "source_ok": false,
+        "isa_ok": false,
+        "jobs_ok": false,
+        "roundtrip_ok": false,
+        "instructions_within_budget": false,
+        "cpu_within_budget": false,
+        "no_stray_processes": false,
+        "tests_pass": false
+      },
+      "gates": {
+        "isolation_ok": "pass",
+        "reference_ok": "not_run",
+        "build_ok": "not_run",
+        "source_ok": "fail",
+        "isa_ok": "not_run",
+        "jobs_ok": "not_run",
+        "roundtrip_ok": "not_run",
+        "instructions_within_budget": "not_run",
+        "cpu_within_budget": "not_run",
+        "no_stray_processes": "not_run"
+      },
+      "summary": "train: failed ['source_ok']; not run ['reference_ok', 'build_ok', 'isa_ok', 'jobs_ok', 'roundtrip_ok', 'instructions_within_budget', 'cpu_within_budget', 'no_stray_processes']; source_ok: src/predictor.cpp: object/integer-to-function-pointer cast",
+      "slices": null,
+      "instructions_total": null,
+      "instructions_budget": null,
+      "cpu_sec_total": null,
+      "cpu_sec_budget": null,
+      "changed_files": [
+        "src/predictor.cpp"
+      ],
+      "decode_stderr": false
+    },
+    "validation": {
+      "valid": false,
+      "bytes_saved": -411847.0,
+      "constraints": {
+        "isolation_ok": true,
+        "reference_ok": false,
+        "build_ok": false,
+        "source_ok": false,
+        "isa_ok": false,
+        "jobs_ok": false,
+        "roundtrip_ok": false,
+        "instructions_within_budget": false,
+        "cpu_within_budget": false,
+        "no_stray_processes": false,
+        "tests_pass": false
+      },
+      "gates": {
+        "isolation_ok": "pass",
+        "reference_ok": "not_run",
+        "build_ok": "not_run",
+        "source_ok": "fail",
+        "isa_ok": "not_run",
+        "jobs_ok": "not_run",
+        "roundtrip_ok": "not_run",
+        "instructions_within_budget": "not_run",
+        "cpu_within_budget": "not_run",
+        "no_stray_processes": "not_run"
+      },
+      "summary": "validation: failed ['source_ok']; not run ['reference_ok', 'build_ok', 'isa_ok', 'jobs_ok', 'roundtrip_ok', 'instructions_within_budget', 'cpu_within_budget', 'no_stray_processes']; source_ok: src/predictor.cpp: object/integer-to-function-pointer cast",
+      "slices": null,
+      "instructions_total": null,
+      "instructions_budget": null,
+      "cpu_sec_total": null,
+      "cpu_sec_budget": null,
+      "changed_files": [
+        "src/predictor.cpp"
+      ],
+      "decode_stderr": false
+    }
+  },
+  "filesystem-control": {
+    "train": {
+      "valid": false,
+      "bytes_saved": -1069501.0,
+      "constraints": {
+        "isolation_ok": true,
+        "reference_ok": false,
+        "build_ok": false,
+        "source_ok": false,
+        "isa_ok": false,
+        "jobs_ok": false,
+        "roundtrip_ok": false,
+        "instructions_within_budget": false,
+        "cpu_within_budget": false,
+        "no_stray_processes": false,
+        "tests_pass": false
+      },
+      "gates": {
+        "isolation_ok": "pass",
+        "reference_ok": "not_run",
+        "build_ok": "not_run",
+        "source_ok": "fail",
+        "isa_ok": "not_run",
+        "jobs_ok": "not_run",
+        "roundtrip_ok": "not_run",
+        "instructions_within_budget": "not_run",
+        "cpu_within_budget": "not_run",
+        "no_stray_processes": "not_run"
+      },
+      "summary": "train: failed ['source_ok']; not run ['reference_ok', 'build_ok', 'isa_ok', 'jobs_ok', 'roundtrip_ok', 'instructions_within_budget', 'cpu_within_budget', 'no_stray_processes']; source_ok: src/predictor.cpp: object/integer-to-function-pointer cast",
+      "slices": null,
+      "instructions_total": null,
+      "instructions_budget": null,
+      "cpu_sec_total": null,
+      "cpu_sec_budget": null,
+      "changed_files": [
+        "src/predictor.cpp"
+      ],
+      "decode_stderr": false
+    },
+    "validation": {
+      "valid": false,
+      "bytes_saved": -411847.0,
+      "constraints": {
+        "isolation_ok": true,
+        "reference_ok": false,
+        "build_ok": false,
+        "source_ok": false,
+        "isa_ok": false,
+        "jobs_ok": false,
+        "roundtrip_ok": false,
+        "instructions_within_budget": false,
+        "cpu_within_budget": false,
+        "no_stray_processes": false,
+        "tests_pass": false
+      },
+      "gates": {
+        "isolation_ok": "pass",
+        "reference_ok": "not_run",
+        "build_ok": "not_run",
+        "source_ok": "fail",
+        "isa_ok": "not_run",
+        "jobs_ok": "not_run",
+        "roundtrip_ok": "not_run",
+        "instructions_within_budget": "not_run",
+        "cpu_within_budget": "not_run",
+        "no_stray_processes": "not_run"
+      },
+      "summary": "validation: failed ['source_ok']; not run ['reference_ok', 'build_ok', 'isa_ok', 'jobs_ok', 'roundtrip_ok', 'instructions_within_budget', 'cpu_within_budget', 'no_stray_processes']; source_ok: src/predictor.cpp: object/integer-to-function-pointer cast",
+      "slices": null,
+      "instructions_total": null,
+      "instructions_budget": null,
+      "cpu_sec_total": null,
+      "cpu_sec_budget": null,
+      "changed_files": [
+        "src/predictor.cpp"
+      ],
+      "decode_stderr": false
+    }
+  },
+  "direct-io-control": {
+    "train": {
+      "valid": false,
+      "bytes_saved": -1069501.0,
+      "constraints": {
+        "isolation_ok": true,
+        "reference_ok": true,
+        "build_ok": true,
+        "source_ok": true,
+        "isa_ok": true,
+        "jobs_ok": true,
+        "roundtrip_ok": false,
+        "instructions_within_budget": false,
+        "cpu_within_budget": true,
+        "no_stray_processes": true,
+        "tests_pass": false
+      },
+      "gates": {
+        "isolation_ok": "pass",
+        "reference_ok": "pass",
+        "build_ok": "pass",
+        "source_ok": "pass",
+        "isa_ok": "pass",
+        "jobs_ok": "pass",
+        "roundtrip_ok": "fail",
+        "instructions_within_budget": "fail",
+        "cpu_within_budget": "pass",
+        "no_stray_processes": "pass"
+      },
+      "summary": "train: failed ['roundtrip_ok', 'instructions_within_budget']; not run []; instructions 20890335389826 of 20421343325884; CPU 2188.1s of 2755.8s; train-02:decompress: output differs from the slice; train-31:decompress: output differs from the slice; train-875-census:decompress: output differs from the slice; train-tail:decompress: output differs from the slice",
+      "slices": {
+        "train-02": {
+          "bytes": 277,
+          "baseline_bytes": 292636,
+          "roundtrip": false
+        },
+        "train-31": {
+          "bytes": 277,
+          "baseline_bytes": 283231,
+          "roundtrip": false
+        },
+        "train-875-census": {
+          "bytes": 277,
+          "baseline_bytes": 48936,
+          "roundtrip": false
+        },
+        "train-tail": {
+          "bytes": 278,
+          "baseline_bytes": 444698,
+          "roundtrip": false
+        }
+      },
+      "instructions_total": 20890335389826,
+      "instructions_budget": 20421343325884,
+      "cpu_sec_total": 2188.06,
+      "cpu_sec_budget": 2755.75,
+      "changed_files": [
+        "src/predictor.cpp"
+      ],
+      "decode_stderr": true
+    },
+    "validation": {
+      "valid": false,
+      "bytes_saved": -411847.0,
+      "constraints": {
+        "isolation_ok": true,
+        "reference_ok": true,
+        "build_ok": true,
+        "source_ok": true,
+        "isa_ok": true,
+        "jobs_ok": true,
+        "roundtrip_ok": false,
+        "instructions_within_budget": false,
+        "cpu_within_budget": true,
+        "no_stray_processes": true,
+        "tests_pass": false
+      },
+      "gates": {
+        "isolation_ok": "pass",
+        "reference_ok": "pass",
+        "build_ok": "pass",
+        "source_ok": "pass",
+        "isa_ok": "pass",
+        "jobs_ok": "pass",
+        "roundtrip_ok": "fail",
+        "instructions_within_budget": "fail",
+        "cpu_within_budget": "pass",
+        "no_stray_processes": "pass"
+      },
+      "summary": "validation: failed ['roundtrip_ok', 'instructions_within_budget']; not run []; instructions 11029490137146 of 10435918517889; CPU 1028.6s of 1200.4s; validation-18:decompress: output differs from the slice; validation-855-census:decompress: output differs from the slice",
+      "slices": {
+        "validation-18": {
+          "bytes": 277,
+          "baseline_bytes": 341076,
+          "roundtrip": false
+        },
+        "validation-855-census": {
+          "bytes": 276,
+          "baseline_bytes": 70771,
+          "roundtrip": false
+        }
+      },
+      "instructions_total": 11029490137146,
+      "instructions_budget": 10435918517889,
+      "cpu_sec_total": 1028.62,
+      "cpu_sec_budget": 1200.39,
+      "changed_files": [
+        "src/predictor.cpp"
+      ],
+      "decode_stderr": true
+    }
+  },
+  "problems": []
+}

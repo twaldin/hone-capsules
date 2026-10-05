@@ -1,0 +1,1 @@
+{"valid": false, "objectives": {"bytes_saved": -1069501.0}, "constraints": {"isolation_ok": true, "reference_ok": false, "build_ok": false, "source_ok": false, "isa_ok": false, "jobs_ok": false, "roundtrip_ok": false, "instructions_within_budget": false, "cpu_within_budget": false, "no_stray_processes": false, "tests_pass": false}}

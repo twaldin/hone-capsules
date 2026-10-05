@@ -1,0 +1,2 @@
+$ tsx tools/scaffold.ts /home/tim/hutter/hone-capsules/capsules/hutter-enwik9
+cap_ebf0f311bc34  ->  /home/tim/hutter/hone-capsules/capsules/hutter-enwik9/manifest.json

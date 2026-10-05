@@ -1,0 +1,12 @@
+# Derived from enwik9. Rebuild with tools/fetch_enwik9.sh, tools/make_stream.sh and tools/derive_slices.py.
+# Pins: tools/enwik9.md5, tools/enwik9.sha256, tools/stream.sha256, tools/assets.sha256.
+# Ordering and soundness overlays are committed. The shortcut memo is not; tools/make_diagnostics.py rebuilds it.
+# Pin: tools/diagnostics.sha256.
+assets/
+enwik9
+enwik9.zip
+lexth11c-stream.bin
+*.cmix.temp
+diagnostics/shortcut/src/models/train-memo.h
+__pycache__/
+*.pyc

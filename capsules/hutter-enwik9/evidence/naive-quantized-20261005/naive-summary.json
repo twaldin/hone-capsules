@@ -1,0 +1,161 @@
+{
+  "variant": "naive",
+  "diag_sha256": "90cd6e6cea3e576b180b3829d1e46e08cc5a81011a73b4e86fdefde7ace0cd27",
+  "train": {
+    "valid": true,
+    "tests_pass": true,
+    "bytes_saved": -187590.962368296,
+    "constraints": {
+      "isolation_ok": true,
+      "reference_ok": true,
+      "build_ok": true,
+      "source_ok": true,
+      "isa_ok": true,
+      "jobs_ok": true,
+      "roundtrip_ok": true,
+      "instructions_within_budget": true,
+      "cpu_within_budget": true,
+      "no_stray_processes": true,
+      "tests_pass": true
+    },
+    "gates": {
+      "isolation_ok": "pass",
+      "reference_ok": "pass",
+      "build_ok": "pass",
+      "source_ok": "pass",
+      "isa_ok": "pass",
+      "jobs_ok": "pass",
+      "roundtrip_ok": "pass",
+      "instructions_within_budget": "pass",
+      "cpu_within_budget": "pass",
+      "no_stray_processes": "pass"
+    },
+    "failed_gates": [],
+    "failed_constraints": [],
+    "summary": "train: -187591.0 bytes saved vs lexth11c over 4 slices; instructions 1.0001x lexth11c (limit 1.005x); CPU 2701.9s of 2730.1s budget",
+    "slices": {
+      "train-02": {
+        "bytes": 334705,
+        "baseline_bytes": 292636,
+        "roundtrip": true
+      },
+      "train-31": {
+        "bytes": 326144,
+        "baseline_bytes": 283231,
+        "roundtrip": true
+      },
+      "train-875-census": {
+        "bytes": 112322,
+        "baseline_bytes": 48936,
+        "roundtrip": true
+      },
+      "train-tail": {
+        "bytes": 483918,
+        "baseline_bytes": 444698,
+        "roundtrip": true
+      }
+    },
+    "instructions_total": 20320891481389,
+    "instructions_budget": 20421343381985,
+    "cpu_sec_total": 2701.88,
+    "cpu_sec_budget": 2730.14,
+    "code_size_xz": {
+      "reference": 196828,
+      "candidate": 196976,
+      "delta": 148
+    },
+    "changed_files": [
+      "src/predictor.cpp"
+    ],
+    "perExample": {
+      "train-02": {
+        "score": 0.8743082765730837,
+        "feedback": "334705 B vs lexth11c 292636 B (-42069 B), code term 0.7 B, round trip ok"
+      },
+      "train-31": {
+        "score": 0.8684211797741244,
+        "feedback": "326144 B vs lexth11c 283231 B (-42913 B), code term 0.7 B, round trip ok"
+      },
+      "train-875-census": {
+        "score": 0.43567312970605376,
+        "feedback": "112322 B vs lexth11c 48936 B (-63386 B), code term 0.7 B, round trip ok"
+      },
+      "train-tail": {
+        "score": 0.9189518058341779,
+        "feedback": "483918 B vs lexth11c 444698 B (-39220 B), code term 0.7 B, round trip ok"
+      }
+    },
+    "mean_score": 0.77433859797186
+  },
+  "validation": {
+    "valid": true,
+    "tests_pass": true,
+    "bytes_saved": -99711.48188492801,
+    "constraints": {
+      "isolation_ok": true,
+      "reference_ok": true,
+      "build_ok": true,
+      "source_ok": true,
+      "isa_ok": true,
+      "jobs_ok": true,
+      "roundtrip_ok": true,
+      "instructions_within_budget": true,
+      "cpu_within_budget": true,
+      "no_stray_processes": true,
+      "tests_pass": true
+    },
+    "gates": {
+      "isolation_ok": "pass",
+      "reference_ok": "pass",
+      "build_ok": "pass",
+      "source_ok": "pass",
+      "isa_ok": "pass",
+      "jobs_ok": "pass",
+      "roundtrip_ok": "pass",
+      "instructions_within_budget": "pass",
+      "cpu_within_budget": "pass",
+      "no_stray_processes": "pass"
+    },
+    "failed_gates": [],
+    "failed_constraints": [],
+    "summary": "validation: -99711.5 bytes saved vs lexth11c over 2 slices; instructions 1.0001x lexth11c (limit 1.005x); CPU 1179.8s of 1181.0s budget",
+    "slices": {
+      "validation-18": {
+        "bytes": 379411,
+        "baseline_bytes": 341076,
+        "roundtrip": true
+      },
+      "validation-855-census": {
+        "bytes": 132146,
+        "baseline_bytes": 70771,
+        "roundtrip": true
+      }
+    },
+    "instructions_total": 10384572782027,
+    "instructions_budget": 10435918524093,
+    "cpu_sec_total": 1179.75,
+    "cpu_sec_budget": 1181.01,
+    "code_size_xz": {
+      "reference": 196828,
+      "candidate": 196976,
+      "delta": 148
+    },
+    "changed_files": [
+      "src/predictor.cpp"
+    ],
+    "perExample": {
+      "validation-18": {
+        "score": 0.8989600555661076,
+        "feedback": "379411 B vs lexth11c 341076 B (-38335 B), code term 0.7 B, round trip ok"
+      },
+      "validation-855-census": {
+        "score": 0.5355485853228789,
+        "feedback": "132146 B vs lexth11c 70771 B (-61375 B), code term 0.7 B, round trip ok"
+      }
+    },
+    "mean_score": 0.7172543204444932
+  },
+  "combined": 0.7553105054627377,
+  "n_scores": 6,
+  "worse_than_baseline": true
+}

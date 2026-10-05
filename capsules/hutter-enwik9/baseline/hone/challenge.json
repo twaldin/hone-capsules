@@ -1,0 +1,258 @@
+{
+  "version": 1,
+  "upstream": {
+    "repository": "https://github.com/Neel49/cmix-lex-transformer",
+    "tag": "lexth11c",
+    "commit": "653f64e5083e430503fbe3d885def946891e7ed0"
+  },
+  "weights": "models/lex_h1_run11.tfwc2",
+  "build": {
+    "CFLAGS_DEFINES": "-DSEED=923 -DUPDATE_LIMIT=3000 -DPPMD_MEM_MB=3500 -DCMIX_L0_LR_SCALE=0.6 -DCMIX_L1_LR_SCALE=0.25 -DCMIX_L0_MIXER_MASK=0x42e72du -DFXCM_CM_DIV=2",
+    "CFLAGS_TF_DEFINES": "-DQMAT_CODEBOOK=1 -DQMAT_WMAX=21 -DQMAT_SMALL_W8=1 -DTF_ACTQ_DYN=1 -DTF_AVX512=1",
+    "CM_OPT": "-O2"
+  },
+  "mutable": [
+    "src/models/**",
+    "src/mixer/**",
+    "src/contexts/**",
+    "src/states/**",
+    "src/predictor.cpp",
+    "src/predictor.h",
+    "src/context-manager.cpp",
+    "src/context-manager.h"
+  ],
+  "benchCpus": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "scratchBytes": "2g",
+  "addressSpaceLimitBytes": 9950000000,
+  "fileSizeLimitBytes": 67108864,
+  "buildTimeoutSec": 900,
+  "jobTimeoutSec": 1800,
+  "cpuMargin": 0.01904996370829111,
+  "baselineCpuSec": {
+    "train": 2704.2366666666667,
+    "validation": 1177.955
+  },
+  "instructionMargin": 0.005,
+  "baselineInstructions": {
+    "train": 20319744602870,
+    "validation": 10383998525263
+  },
+  "slices": {
+    "train-02": {
+      "split": "train",
+      "bytes": 1470800,
+      "originalEquivalentBytes": 2505029,
+      "sha256": "b66641c23d7bb6d8ea7835dbbce5c75abbe07c5ea17cd8a0ac383dba70765edd",
+      "baselineBytes": 292636,
+      "baselineInstructions": {
+        "compress": 2674507188079,
+        "decompress": 2674282386640
+      },
+      "baselineCpuSec": {
+        "compress": 361.83000000000004,
+        "decompress": 364.4166666666667
+      }
+    },
+    "train-31": {
+      "split": "train",
+      "bytes": 1468103,
+      "originalEquivalentBytes": 2500436,
+      "sha256": "b244775b72dd11b4a3f6fe50b2152b91cab9226330de507b0d8498d33c8eb5cf",
+      "baselineBytes": 283231,
+      "baselineInstructions": {
+        "compress": 2602048252739,
+        "decompress": 2601824078380
+      },
+      "baselineCpuSec": {
+        "compress": 359.5783333333333,
+        "decompress": 358.09333333333336
+      }
+    },
+    "train-875-census": {
+      "split": "train",
+      "bytes": 1469336,
+      "originalEquivalentBytes": 2502536,
+      "sha256": "76659d62654e97a7fd1c3fc3c48d6e6085c12a52ae65e15ac2990e02d67b5d74",
+      "baselineBytes": 48936,
+      "baselineInstructions": {
+        "compress": 2521015196770,
+        "decompress": 2520787679467
+      },
+      "baselineCpuSec": {
+        "compress": 344.13666666666666,
+        "decompress": 340.1
+      }
+    },
+    "train-tail": {
+      "split": "train",
+      "bytes": 1467847,
+      "originalEquivalentBytes": 2500000,
+      "sha256": "9fe7937eb77f74f53b73116fa7854ebeaa82ece54c04f775cf423164da689e5e",
+      "baselineBytes": 444698,
+      "baselineInstructions": {
+        "compress": 2362756571504,
+        "decompress": 2362523249292
+      },
+      "baselineCpuSec": {
+        "compress": 250.015,
+        "decompress": 326.06666666666666
+      }
+    },
+    "validation-18": {
+      "split": "validation",
+      "bytes": 1470334,
+      "originalEquivalentBytes": 2504236,
+      "sha256": "aef4218037eeea978243d9c75486146a9ca81c6832fa6bc5d22b9facb1e1fa4b",
+      "baselineBytes": 341076,
+      "baselineInstructions": {
+        "compress": 2652664011342,
+        "decompress": 2652408656411
+      },
+      "baselineCpuSec": {
+        "compress": 311.205,
+        "decompress": 287.545
+      }
+    },
+    "validation-855-census": {
+      "split": "validation",
+      "bytes": 1469099,
+      "originalEquivalentBytes": 2502132,
+      "sha256": "c3f889317c9176ef2c7bebdde933c4d6691fb3cfa8f5bbc15bf32caa50f8a265",
+      "baselineBytes": 70771,
+      "baselineInstructions": {
+        "compress": 2539588246036,
+        "decompress": 2539337611473
+      },
+      "baselineCpuSec": {
+        "compress": 303.62833333333333,
+        "decompress": 275.57666666666665
+      }
+    }
+  },
+  "calibration": {
+    "host": "deckbox",
+    "cpus": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "repeats": 6,
+    "records": [
+      {
+        "file": "base-train-r1.json",
+        "sha256": "95dec5da00d998e989bf40a503c5f3b7e899e53a1b10440df3ca123f903d2785"
+      },
+      {
+        "file": "base-train-r2.json",
+        "sha256": "a1ccde8215655caa4e580fc2452e3aeb7b04081da23040c91199093b2e980a80"
+      },
+      {
+        "file": "base-train-r3.json",
+        "sha256": "22fe217d7e7f4c9719eb7351cc727855ba8aa94cc8034ddb3b26b8db99ab0256"
+      },
+      {
+        "file": "base-train-r4.json",
+        "sha256": "0427d5f8af496f7798540bd3c27d593a86d3bab3966c7bfad0b1c0a7d9763e4f"
+      },
+      {
+        "file": "base-train-r5.json",
+        "sha256": "3703d936c84a1bca7462ce66d0932c8aad0190f486e4c92a03c3204c056869ae"
+      },
+      {
+        "file": "base-train-r6.json",
+        "sha256": "d03608a4d9213d7b0e984eed64b8a3f2d64d3a9b6a8465de08ad78556008f946"
+      },
+      {
+        "file": "base-validation-r1.json",
+        "sha256": "18e81aefad0d9dc8db9f8e95e97baf68710ed6a1f3d78256f36f78fc768a6ff0"
+      },
+      {
+        "file": "base-validation-r2.json",
+        "sha256": "1ac72be87b4a985dba8b879fa3a5d7436da03436fb28d0dae80a23be41456868"
+      },
+      {
+        "file": "base-validation-r3.json",
+        "sha256": "c5f58111fd10afc78df62f3fa671c3a9e0835a8f36afebb1b1716b24184ef166"
+      },
+      {
+        "file": "base-validation-r4.json",
+        "sha256": "fc9cd7852f2c54e61bc130dda16ef34f0e52595f1e3e248a12b45e7e0bc3d936"
+      },
+      {
+        "file": "base-validation-r5.json",
+        "sha256": "bb73851e089deab68b81b23813c9e472a11460839cce41274247b35c3a4fa45e"
+      },
+      {
+        "file": "base-validation-r6.json",
+        "sha256": "792fc5e8f988879d3c92aa819aa76e5c1f10d518fda3a76b3d8b19955a02bcb9"
+      }
+    ],
+    "splitMeasurements": {
+      "train": [
+        {
+          "cpuSec": 2698.55,
+          "instructions": 20319744584328
+        },
+        {
+          "cpuSec": 2704.7,
+          "instructions": 20319744601129
+        },
+        {
+          "cpuSec": 2698.33,
+          "instructions": 20319744608270
+        },
+        {
+          "cpuSec": 2694.29,
+          "instructions": 20319744595096
+        },
+        {
+          "cpuSec": 2701.9300000000003,
+          "instructions": 20319744602669
+        },
+        {
+          "cpuSec": 2727.62,
+          "instructions": 20319744625728
+        }
+      ],
+      "validation": [
+        {
+          "cpuSec": 1175.8200000000002,
+          "instructions": 10383998517991
+        },
+        {
+          "cpuSec": 1175.1299999999999,
+          "instructions": 10383998501594
+        },
+        {
+          "cpuSec": 1180.48,
+          "instructions": 10383998543858
+        },
+        {
+          "cpuSec": 1184.41,
+          "instructions": 10383998498099
+        },
+        {
+          "cpuSec": 1169.45,
+          "instructions": 10383998515242
+        },
+        {
+          "cpuSec": 1182.44,
+          "instructions": 10383998574793
+        }
+      ]
+    },
+    "cpuSpreadOverMean": {
+      "train": 0.012325104681419622,
+      "validation": 0.012699975805527407
+    },
+    "cpuMarginRule": "max(0.005, 1.5 * max CPU spread over mean across splits)",
+    "cpuMarginSafetyFactor": 1.5,
+    "cpuOnlyFailuresAccepted": true
+  }
+}

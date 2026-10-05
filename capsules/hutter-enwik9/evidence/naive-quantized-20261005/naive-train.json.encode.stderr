@@ -1,0 +1,5 @@
+[eval encode 09:13:03] split=train slices=['train-02', 'train-31', 'train-875-census', 'train-tail'] cpus=[1, 2, 3, 4]
+[eval encode 09:13:03] candidate changes 1 mutable file(s): ['src/predictor.cpp']
+[eval encode 09:13:13] AST checked 43 translation units including template instantiations
+[eval encode 09:13:30] code size (xz of stripped binary): reference 196828, candidate 196976
+[eval encode 09:23:23] reference sanity: {'slice': 'train-tail', 'bytes': 444698, 'baseline_bytes': 444698, 'compress': {'instructions': 2362756597177, 'recorded': 2362756575652, 'ratio': 1.0, 'cpu_sec': 334.52}, 'decompress': {'instructions': 2362523289963, 'recorded': 2362523267536, 'ratio': 1.0, 'cpu_sec': 254.88}}

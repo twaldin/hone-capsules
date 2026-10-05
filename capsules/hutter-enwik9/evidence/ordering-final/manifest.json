@@ -1,0 +1,131 @@
+{
+  "schemaVersion": 2,
+  "id": "cap_ebf0f311bc34",
+  "objective": "Make lexth11c (cmix-lex-transformer, the strongest open Hutter Prize enwik9 compressor) produce fewer compressed bytes on frozen cold-start slices of its own preprocessed enwik9 stream, without extra user-mode instructions. Each slice is coded cold (fresh model, dictionary pretraining only) with the complete native model -- ppmd, the fixed pretrained transformer, every context model, the mixers and SSE -- on one pinned core. Encode and decode run as two fresh containers. The decoder has no workspace mount. Its root-only handoff carries the authenticated candidate executable, the archive bytes, and scorer metadata; protected dictionary, weights, vocabulary, and split assets come from immutable mounts. Candidate-produced mutable state other than the archive bytes does not cross. Score: bytes saved versus lexth11c, minus twice the growth of the xz-compressed decompressor binary amortised over enwik9. Hard gates: byte-exact round trip, user-mode instructions <= lexth11c x 1.005 (primary), CPU seconds within lexth11c's measured noise (secondary), 9.95 GB address space, no reciprocal/rsqrt-estimate or non-dispatched AVX-512 instructions, and no I/O, threads, processes, clocks or inline asm added to model code. A cold-start slice win is not a full-stream or Hutter Prize result. Only the model, mixer, SSE, context and state sources (src/models, src/mixer, src/contexts, src/states, src/predictor.*, src/context-manager.*) are mutable; preprocessing, dictionary, article order, transformer and weights, coder, build flags and the evaluator are protected.",
+  "baseline": {
+    "kind": "git",
+    "commit": "7027bc622068fabbe9b6afc805c37364558dd739"
+  },
+  "image": "hone-hutter-enwik9@sha256:2391980839f983b29a917f1842c66522ba0fa8c9ba9b3ad6685bcb2b42152d8d",
+  "evalEntrypoint": [
+    "python3",
+    "-I",
+    "-B",
+    "eval.py"
+  ],
+  "protectedPaths": [
+    "eval.py",
+    "hone/**",
+    "makefile",
+    "build.sh",
+    "build_and_construct_comp.sh",
+    "install.sh",
+    "install_tools/**",
+    "comp9.args",
+    "LICENSE",
+    "README.md",
+    "README-HPJA.md",
+    "README-cmix-lex.md",
+    "changes.md",
+    "docs/**",
+    "evidence/**",
+    "dictionary/**",
+    "models/**",
+    "prof_input/**",
+    "cpp_infer/**",
+    "src/runner.cpp",
+    "src/preprocess_roundtrip.cpp",
+    "src/r1_reorder_transform.cpp",
+    "src/r1_reorder_transform.h",
+    "src/preprocess/**",
+    "src/readalike_prepr/**",
+    "src/coder/**",
+    "src/ds/**"
+  ],
+  "assetGroups": [
+    {
+      "id": "train",
+      "visibility": "public",
+      "paths": [
+        "assets/train/train-02.bin",
+        "assets/train/train-31.bin",
+        "assets/train/train-875-census.bin",
+        "assets/train/train-tail.bin"
+      ]
+    },
+    {
+      "id": "validation",
+      "visibility": "protected",
+      "paths": [
+        "assets/validation/validation-18.bin",
+        "assets/validation/validation-855-census.bin"
+      ]
+    }
+  ],
+  "budget": {
+    "maxTokens": 4000000,
+    "maxUsd": 25,
+    "maxWallClockSec": 86400,
+    "maxEvaluatorInvocations": 40
+  },
+  "sandbox": {
+    "memoryBytes": 34359738368,
+    "cpus": 4
+  },
+  "evaluatorTimeoutSec": 3600,
+  "evalPhases": [
+    "encode",
+    "decode"
+  ],
+  "diagnosticOrdering": {
+    "path": "diagnostics/ordering-report.json",
+    "hash": "sha256:cc6188e80db10d7bae2a6d6487bc5183e33347889a53ff8249e47aae79b8a4f0"
+  },
+  "contentHashes": {
+    "assets/train/train-02.bin": "sha256:b66641c23d7bb6d8ea7835dbbce5c75abbe07c5ea17cd8a0ac383dba70765edd",
+    "assets/train/train-31.bin": "sha256:b244775b72dd11b4a3f6fe50b2152b91cab9226330de507b0d8498d33c8eb5cf",
+    "assets/train/train-875-census.bin": "sha256:76659d62654e97a7fd1c3fc3c48d6e6085c12a52ae65e15ac2990e02d67b5d74",
+    "assets/train/train-tail.bin": "sha256:9fe7937eb77f74f53b73116fa7854ebeaa82ece54c04f775cf423164da689e5e",
+    "assets/validation/validation-18.bin": "sha256:aef4218037eeea978243d9c75486146a9ca81c6832fa6bc5d22b9facb1e1fa4b",
+    "assets/validation/validation-855-census.bin": "sha256:c3f889317c9176ef2c7bebdde933c4d6691fb3cfa8f5bbc15bf32caa50f8a265"
+  },
+  "meta": {
+    "evaluatorSource": "user",
+    "provenance": "Pinned public source Neel49/cmix-lex-transformer tag lexth11c (653f64e5083e430503fbe3d885def946891e7ed0), the pending Hutter Prize entry S=99,313,750. Baseline commit = that tree plus the hone harness: src/runner.cpp -S/-D slice modes (whole-stream vocabulary, dictionary pretraining, native transformer), eval.py and hone/. Slices are cut by tools/derive_slices.py from the stream FX_PREPARE_ONLY=1 cmix -e enwik9 leaves (587,138,826 B, sha256 7826ff63dedd526c119dda08e6e044be8fa8f6e89a55f3d6b1f3447cdfc5c1ce); enwik9 and the slices are not committed (tools/make_stream.sh, tools/assets.sha256).",
+    "license": "GPL-3.0-only (upstream LICENSE preserved in baseline/; derivative of cmix-lex, fx2-cmix, cmix, paq8 and PPMd)",
+    "tags": [
+      "hutter-prize",
+      "enwik9",
+      "compression",
+      "cmix",
+      "gpl-3.0"
+    ],
+    "evaluation": "evalPhases exactly [encode, decode]: two fresh containers, one invocation and one evaluatorTimeoutSec shared by both phases. The decoder has no workspace mount. Root-only handoff carries the authenticated candidate executable, archive bytes, and scorer metadata; protected dictionary, weights, vocabulary, and split assets come from immutable mounts. Candidate-produced mutable state other than the archive bytes does not cross. Primary gate: user-mode instructions <= baseline x 1.005. Secondary gate: CPU seconds within calibrated cpuMargin. Cold-start slice scores are not a full-stream Hutter result.",
+    "sourceDetails": {
+      "repository": "https://github.com/Neel49/cmix-lex-transformer",
+      "tag": "lexth11c",
+      "commit": "653f64e5083e430503fbe3d885def946891e7ed0",
+      "mutableSurface": [
+        "src/models",
+        "src/mixer",
+        "src/contexts",
+        "src/states",
+        "src/predictor.cpp",
+        "src/predictor.h",
+        "src/context-manager.cpp",
+        "src/context-manager.h"
+      ],
+      "slices": "Cold start (dictionary pretraining only; not a warm full-stream measurement). Train: stream offsets 2 %, 31 %, 87.5 % (census town articles) and the last 1,467,847 bytes (payload_lex tail + side blob); validation: 18 % and 85.5 % (census); holdout region at 66 % reserved, not cut. ~2.5 MB of original enwik9 each.",
+      "holdoutRegion": {
+        "name": "holdout-66",
+        "streamStart": 387513009,
+        "streamEnd": 388990491,
+        "cut": false
+      }
+    },
+    "toolchain": {
+      "image": "image/Dockerfile: hone-mutation@sha256:620f544b48d4fe3678d186e31062af2e718d89cb955a0debe7e9deac520cf0bd (engine optimizer/worker/Dockerfile.mutation over hone-capsules Dockerfile.task) + Debian clang/lld 17.0.6 (apt.llvm.org bookworm), binutils 2.40, xz 5.4.1",
+      "build": "upstream makefile target cmix, lexth11c defines (hone/challenge.json build), no PGO/LTO, -march=x86-64-v3 -mrecip=none, AVX-512 VNNI only in the cpuid-dispatched qmat objects"
+    }
+  }
+}

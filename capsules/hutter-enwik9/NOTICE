@@ -1,0 +1,32 @@
+hutter-enwik9 capsule
+
+baseline/ is cmix-lex-transformer `lexth11c` by Neel Patel
+(https://github.com/Neel49/cmix-lex-transformer, commit 653f64e5083e430503fbe3d885def946891e7ed0), a
+derivative of cmix-lex (Ibrahim Marcouch), fx2-cmix and fx2-cmix-transformer-v1 (Kaido Orav, Byron
+Knoll), cmix (Byron Knoll), paq8 and PPMd. It is licensed under the GNU General Public License v3
+(baseline/LICENSE); authorship of every inherited component is unchanged.
+
+The hone harness added to it (baseline/src/runner.cpp -S/-D slice modes, baseline/eval.py,
+baseline/hone/), and this capsule's tools/, diagnostics/ and image/ are distributed under the same
+GNU GPL v3 so that every candidate the optimizer derives from this baseline stays GPL-3.0-only.
+See baseline/LICENSE for the license text.
+
+baseline/hone/asm_audit.cc, baseline/hone/asm-audit, and baseline/hone/asm-allowlist.json are the
+single copies of that GPL-3.0-only helper. tools/asm-audit/ holds the temporary-image Dockerfile
+and rebuild script only. The rebuild copies the protected source into a throwaway context and
+deletes it. The binary dynamically links libclang-cpp.so.17 and libLLVM-17.so.1 from the
+unchanged runtime image hone-hutter-enwik9@sha256:2391980839f983b29a917f1842c66522ba0fa8c9ba9b3ad6685bcb2b42152d8d
+(packages libclang-cpp17 and libllvm17). Those libraries remain Apache-2.0 WITH LLVM-exception
+(copyright files in that image under /usr/share/doc/libclang-cpp17 and /usr/share/doc/libllvm17).
+This capsule does not relicense them. libclang-17-dev and llvm-17-dev are installed only in the
+temporary image built from tools/asm-audit/Dockerfile. They are not in the runtime image.
+
+enwik9 is the first 10^9 bytes of the English Wikipedia dump of 2006-03-03 (Matt Mahoney;
+http://mattmahoney.net/dc/enwik9.zip), used by the Hutter Prize under CC BY-SA. It is not committed.
+tools/fetch_enwik9.sh downloads it and checks the published md5 plus the sha256 in tools/enwik9.sha256.
+tools/make_stream.sh rebuilds the frozen lexth11c stream (tools/stream.sha256) and
+tools/derive_slices.py cuts the slices. tools/assets.sha256 pins those slices. tools/calibrate.py
+fills challenge.json from repeat measurements and is part of this package. Large derived bytes
+(enwik9, the stream, assets/, the shortcut memo) stay out of git; see .gitignore.
+
+Operator contract (two fresh-container phases, instruction and CPU gates, cold start, provisional envelope, calibration): README.md.

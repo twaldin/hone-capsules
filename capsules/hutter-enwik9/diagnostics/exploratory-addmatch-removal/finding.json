@@ -1,0 +1,300 @@
+{
+  "baselineCommit": "3e9cb690a5c5c3dc32d556b73302c8db97282e2c",
+  "combinedScore": {
+    "archiveOnlyCombined": 1.0000049524123371,
+    "archiveOnlyImprovementPercent": 0.0004952412337111411,
+    "baseline": 1.0,
+    "candidate": 1.000026764617767,
+    "definition": "mean of the six per-slice scores (4 train + 2 validation), as tools/ordering-check.ts aggregate()",
+    "improvementFraction": 2.6764617766961152e-05,
+    "improvementPercent": 0.002676461776696115,
+    "improvementPercentRounded": "0.0027%",
+    "trainMeanScore": 1.0000358571903187,
+    "validationMeanScore": 1.0000085794726634
+  },
+  "date": "2026-10-05",
+  "kind": "exploratory-seed-finding",
+  "notAdmittedWinner": "Exploratory seed only. It is not an admitted diagnostic variant, not an improvement claim for the full stream or the Hutter Prize, and it does not change the admitted baseline or objective.",
+  "pinnedInputs": {
+    "capsuleConfigSha256": "363160c9f9f35bf629062a8970fe91c1f462de4aec53d88214066a21ab3602b1",
+    "challengeJsonSha256": "e01c62de1dbfa739526397a1b370c4e2943adb01bab55f93d2073ea112b96328",
+    "evalPySha256": "1960622476e7f0fc04d94e4f90fdbdb799d1996c393365a5c5af9e42be19c4af",
+    "note": "eval.py and challenge.json mtimes (2026-10-04 23:55 UTC) precede the ordering run (2026-10-05 ~05:22-08:58 UTC); the raw rows themselves carry no evaluator hash."
+  },
+  "primaryLimitations": [
+    "Cold-start slices only (fresh model, dictionary pretraining, 2.5 MB original-equivalent each); this is not a warm full-stream or Hutter Prize result. Long-range match models are expected to matter more on the full stream; that was not measured.",
+    "Tiny effect: net archive change is -17 B of 1,069,501 B (train) and -1 B of 411,847 B (validation). Two of six slices got larger (train-02 +1 B, validation-855-census +3 B).",
+    "About 81% of the combined gain is the evaluator code-size term (-560 xz bytes of binary = about -2.8 B per slice credit), not modelling gain; archive-only combined is +0.000495%.",
+    "One candidate build, seed 0, six slices. Archive bytes are deterministic across the three baseline repeats; the effect has no independent replication or held-out slice beyond the six.",
+    "CPU deltas (+0.13% train, -0.24% validation) lie inside the spread of the three baseline repeats (train 2698.33-2704.70 s, validation 1175.13-1180.48 s); only the instruction delta (about -0.58%) is outside measurement noise.",
+    "Instruction budget headroom is thin: candidate uses about 98.9% of the 1.005x lexth11c limit on both splits (ratio 0.9941 / 0.9943); CPU is 99.0% / 99.3% of its budget.",
+    "The validation-split numbers here are protected-group measurements; keep this file out of any mutation-visible tree."
+  ],
+  "probeVisibility": "None by default. The pilot builds the mutation user prompt only from the capsule objective, the parent trusted evaluation, in-run lineage, and budget (optimizer/assets/context.ts buildEpisodeContext). There is no seed/hint/notes input, and this file sits outside the baseline git tree the sandbox checks out. See section 10 of HutterCapsule.md.",
+  "rawMeasurement": {
+    "host": "deckbox",
+    "orderingRunStatus": "failed (only assertion: naive(1.000026764617767) < baseline(1)); 14 logical evaluations / 28 containers",
+    "partialReportSha256": "a4e4904bb408f241e4d45b18164771386294dbf1e6c5c3d284ba0fa2775f83bb",
+    "path": "/home/tim/hutter/capsule-dev/final-evidence-rerun-20261005/ordering-raw.json",
+    "rowSelection": "variant=naive and variant=baseline, seed=0, split in (train, validation)",
+    "sha256": "ae9dfa6314ee2d44dfbb5ec8c7836cb006a91871d3dc831b0d292d04327325c2"
+  },
+  "schemaVersion": 1,
+  "source": {
+    "baselinePredictorSha256": "6cbc1fbc6b01c1b5d7b1ab4b4fe49b0f0cff4d80ccaca8fcf0245bbf20d34b8d",
+    "edit": "baseline src/predictor.cpp with the single line `  AddMatch();` (baseline line 304, directly after `  AddWord();`) deleted; no other change.",
+    "path": "diagnostics/exploratory-addmatch-removal/src/predictor.cpp",
+    "sha256": "488dc9777a41f3d35501d7725742ee0015ca61b59a67c10c8470bd06f149fba3"
+  },
+  "splits": {
+    "train": {
+      "allGatesPass": true,
+      "archiveBytes": {
+        "baseline": 1069501,
+        "candidate": 1069484,
+        "delta": -17
+      },
+      "baselineRepeatSpread": {
+        "archiveBytes": [
+          1069501,
+          1069501,
+          1069501
+        ],
+        "cpuSec": [
+          2698.55,
+          2704.7,
+          2698.33
+        ],
+        "instructions": [
+          20319744584328,
+          20319744601129,
+          20319744608270
+        ]
+      },
+      "bytesSavedObjective": {
+        "baseline": 0,
+        "candidate": 28.208961119999998
+      },
+      "changedFiles": [
+        "src/predictor.cpp"
+      ],
+      "codeXzBytes": {
+        "baseline": 196828,
+        "candidate": 196268,
+        "delta": -560
+      },
+      "constraints": {
+        "build_ok": true,
+        "cpu_within_budget": true,
+        "instructions_within_budget": true,
+        "isa_ok": true,
+        "isolation_ok": true,
+        "jobs_ok": true,
+        "no_stray_processes": true,
+        "reference_ok": true,
+        "roundtrip_ok": true,
+        "source_ok": true,
+        "tests_pass": true
+      },
+      "cpuSec": {
+        "baseline": 2698.55,
+        "budget": 2730.14,
+        "candidate": 2702.13,
+        "candidateFractionOfBudget": 0.9897404528705489,
+        "delta": 3.58,
+        "percentDelta": 0.13266383798706816
+      },
+      "gates": {
+        "build_ok": "pass",
+        "cpu_within_budget": "pass",
+        "instructions_within_budget": "pass",
+        "isa_ok": "pass",
+        "isolation_ok": "pass",
+        "jobs_ok": "pass",
+        "no_stray_processes": "pass",
+        "reference_ok": "pass",
+        "roundtrip_ok": "pass",
+        "source_ok": "pass"
+      },
+      "instructions": {
+        "baseline": 20319744584328,
+        "baseline_cpu_sec_compress": 1311.72,
+        "baseline_cpu_sec_decompress": 1386.83,
+        "baseline_instructions_compress": 10160327212339,
+        "baseline_instructions_decompress": 10159417371989,
+        "budget": 20421343381985,
+        "candidate": 20200865024424,
+        "candidateFractionOfBudget": 0.9892035331154806,
+        "candidate_cpu_sec_compress": 1322.63,
+        "candidate_cpu_sec_decompress": 1379.5,
+        "candidate_instructions_compress": 10100883182639,
+        "candidate_instructions_decompress": 10099981841785,
+        "delta": -118879559904,
+        "percentDelta": -0.5850445580683483,
+        "ratio": 0.9941495544193165
+      },
+      "meanScore": {
+        "baseline": 1.0,
+        "candidate": 1.0000358571903187
+      },
+      "slices": {
+        "train-02": {
+          "archiveByteDelta": 1,
+          "baselineArchiveBytes": 292636,
+          "candidateArchiveBytes": 292637,
+          "codeTermBytes": -2.80563248,
+          "originalEquivalentBytes": 2505029,
+          "roundtripOk": true,
+          "scoreArchiveOnly": 0.9999965827971172,
+          "scoreWithCodeTerm": 1.000006170271673
+        },
+        "train-31": {
+          "archiveByteDelta": -4,
+          "baselineArchiveBytes": 283231,
+          "candidateArchiveBytes": 283227,
+          "codeTermBytes": -2.80048832,
+          "originalEquivalentBytes": 2500436,
+          "roundtripOk": true,
+          "scoreArchiveOnly": 1.0000141229473178,
+          "scoreWithCodeTerm": 1.0000240109719851
+        },
+        "train-875-census": {
+          "archiveByteDelta": -1,
+          "baselineArchiveBytes": 48936,
+          "candidateArchiveBytes": 48935,
+          "codeTermBytes": -2.80284032,
+          "originalEquivalentBytes": 2502536,
+          "roundtripOk": true,
+          "scoreArchiveOnly": 1.0000204352712783,
+          "scoreWithCodeTerm": 1.000077716524921
+        },
+        "train-tail": {
+          "archiveByteDelta": -13,
+          "baselineArchiveBytes": 444698,
+          "candidateArchiveBytes": 444685,
+          "codeTermBytes": -2.8,
+          "originalEquivalentBytes": 2500000,
+          "roundtripOk": true,
+          "scoreArchiveOnly": 1.0000292341770016,
+          "scoreWithCodeTerm": 1.0000355309926954
+        }
+      }
+    },
+    "validation": {
+      "allGatesPass": true,
+      "archiveBytes": {
+        "baseline": 411847,
+        "candidate": 411846,
+        "delta": -1
+      },
+      "baselineRepeatSpread": {
+        "archiveBytes": [
+          411847,
+          411847,
+          411847
+        ],
+        "cpuSec": [
+          1175.82,
+          1175.13,
+          1180.48
+        ],
+        "instructions": [
+          10383998517991,
+          10383998501594,
+          10383998543858
+        ]
+      },
+      "bytesSavedObjective": {
+        "baseline": 0,
+        "candidate": 6.607132160000001
+      },
+      "changedFiles": [
+        "src/predictor.cpp"
+      ],
+      "codeXzBytes": {
+        "baseline": 196828,
+        "candidate": 196268,
+        "delta": -560
+      },
+      "constraints": {
+        "build_ok": true,
+        "cpu_within_budget": true,
+        "instructions_within_budget": true,
+        "isa_ok": true,
+        "isolation_ok": true,
+        "jobs_ok": true,
+        "no_stray_processes": true,
+        "reference_ok": true,
+        "roundtrip_ok": true,
+        "source_ok": true,
+        "tests_pass": true
+      },
+      "cpuSec": {
+        "baseline": 1175.82,
+        "budget": 1181.01,
+        "candidate": 1172.95,
+        "candidateFractionOfBudget": 0.9931753329777055,
+        "delta": -2.87,
+        "percentDelta": -0.24408497899337522
+      },
+      "gates": {
+        "build_ok": "pass",
+        "cpu_within_budget": "pass",
+        "instructions_within_budget": "pass",
+        "isa_ok": "pass",
+        "isolation_ok": "pass",
+        "jobs_ok": "pass",
+        "no_stray_processes": "pass",
+        "reference_ok": "pass",
+        "roundtrip_ok": "pass",
+        "source_ok": "pass"
+      },
+      "instructions": {
+        "baseline": 10383998517991,
+        "baseline_cpu_sec_compress": 616.43,
+        "baseline_cpu_sec_decompress": 559.39,
+        "baseline_instructions_compress": 5192252226224,
+        "baseline_instructions_decompress": 5191746291767,
+        "budget": 10435918524093,
+        "candidate": 10324534299859,
+        "candidateFractionOfBudget": 0.9893268403756841,
+        "candidate_cpu_sec_compress": 612.29,
+        "candidate_cpu_sec_decompress": 560.66,
+        "candidate_instructions_compress": 5162515346862,
+        "candidate_instructions_decompress": 5162018952997,
+        "delta": -59464218132,
+        "percentDelta": -0.5726524135088673,
+        "ratio": 0.9942734758649113
+      },
+      "meanScore": {
+        "baseline": 1.0,
+        "candidate": 1.0000085794726634
+      },
+      "slices": {
+        "validation-18": {
+          "archiveByteDelta": -4,
+          "baselineArchiveBytes": 341076,
+          "candidateArchiveBytes": 341072,
+          "codeTermBytes": -2.80474432,
+          "originalEquivalentBytes": 2504236,
+          "roundtripOk": true,
+          "scoreArchiveOnly": 1.0000117277290426,
+          "scoreWithCodeTerm": 1.0000199512134624
+        },
+        "validation-855-census": {
+          "archiveByteDelta": 3,
+          "baselineArchiveBytes": 70771,
+          "candidateArchiveBytes": 70774,
+          "codeTermBytes": -2.80238784,
+          "originalEquivalentBytes": 2502132,
+          "roundtripOk": true,
+          "scoreArchiveOnly": 0.9999576115522649,
+          "scoreWithCodeTerm": 0.9999972077318645
+        }
+      }
+    }
+  },
+  "status": "seed-not-admitted-winner",
+  "title": "Remove the five AddMatch match models from lexth11c Predictor (cold-start slices)",
+  "upstreamCommit": "653f64e5083e430503fbe3d885def946891e7ed0"
+}

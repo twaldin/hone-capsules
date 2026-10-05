@@ -1,0 +1,15 @@
+$ tsx tools/ordering-check.ts --report --raw-measurements /home/tim/hutter/capsule-dev/final-evidence-cpu-safety-20261005/ordering-raw.json --partial-report /home/tim/hutter/capsule-dev/final-evidence-cpu-safety-20261005/ordering-partial.json
+variant    train        validation   combined     tests_pass(train/val)
+baseline   1.000e+0     1.000e+0     1.000e+0     true/true
+broken     0.000e+0     0.000e+0     0.000e+0     false/false
+naive      7.743e-1     7.173e-1     7.553e-1     true/true
+shortcut   1.200e+0     9.869e-1     1.129e+0     true/true
+improved   1.001e+0     1.001e+0     1.001e+0     true/true
+stability: aggregates [1.000e+0, 1.000e+0, 1.000e+0], spread 0.0000 (band 0.15)
+measurements: 14 broker evaluations in 28 containers (14 decode, 0 ended at an invalid encode; network none, host-exec free), wall 12947.6s
+
+raw measurements -> /home/tim/hutter/capsule-dev/final-evidence-cpu-safety-20261005/ordering-raw.json
+partial report -> /home/tim/hutter/capsule-dev/final-evidence-cpu-safety-20261005/ordering-partial.json
+report -> /home/tim/hutter/hone-capsules/capsules/hutter-enwik9/diagnostics/ordering-report.json
+
+ordering check PASSED
