@@ -18,6 +18,8 @@ with ThreadPoolExecutor(4) as ex: res = list(ex.map(run, units))
 out = {"evalSha256": ev.EVAL_SHA256, "helperSha256": ev.sha256_file(helper), "units": [], "problems": []}
 entries = {}
 for source, flags, rc, so, se in res:
+    if rc != 0:
+        sys.exit(f"AST helper failed on {source} (rc={rc}): {se[:500]}")
     rep = json.loads(so)
     out["units"].append({"source": source, "flags": flags, "rc": rc, "stderrSha256": hashlib.sha256(se.encode()).hexdigest(),
                          "stderrBytes": len(se), "problems": rep["problems"], "statements": len(rep["assembly"]),

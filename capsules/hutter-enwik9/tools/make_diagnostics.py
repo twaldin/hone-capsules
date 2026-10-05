@@ -601,11 +601,11 @@ def write_smoke() -> None:
 
 def record_hashes() -> None:
     lines = []
-    for path in sorted(DIAG.rglob("*")):
+    for path in sorted(DIAG.glob("*/src/predictor.cpp")):
         if not path.is_file():
             continue
         rel = path.relative_to(CAPSULE).as_posix()
-        if rel.endswith("train-memo.h") or rel.startswith("diagnostics/exploratory-addmatch-removal/"):
+        if rel.startswith("diagnostics/exploratory-addmatch-removal/"):
             continue
         digest = hashlib.sha256(path.read_bytes()).hexdigest()
         lines.append(f"{digest}  {rel}")
