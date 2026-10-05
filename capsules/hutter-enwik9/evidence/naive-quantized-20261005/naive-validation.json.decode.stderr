@@ -1,0 +1,1 @@
+[eval decode 09:39:21] split=validation slices=['validation-18', 'validation-855-census'] cpus=[1, 2, 3, 4]

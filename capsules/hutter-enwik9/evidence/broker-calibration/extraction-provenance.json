@@ -1,0 +1,128 @@
+{
+  "schemaVersion": 1,
+  "kind": "exact-output extraction; no score or constraint changes",
+  "engineCommit": "1187107d824296916e08eab80aafd8daf28f23fc",
+  "baselineCommit": "3e9cb690a5c5c3dc32d556b73302c8db97282e2c",
+  "evaluatorSha256": "1960622476e7f0fc04d94e4f90fdbdb799d1996c393365a5c5af9e42be19c4af",
+  "challengeBeforeSha256": "e01c62de1dbfa739526397a1b370c4e2943adb01bab55f93d2073ea112b96328",
+  "cpuset": "1-4",
+  "measuredJobs": "one measured job per pinned core; reference chain queued",
+  "records": [
+    {
+      "file": "base-train-r1.json",
+      "sha256": "95dec5da00d998e989bf40a503c5f3b7e899e53a1b10440df3ca123f903d2785",
+      "sourceRawPath": "/home/tim/hutter/capsule-dev/final-evidence-rerun-20261005/ordering-raw.json",
+      "sourceRawSha256": "ae9dfa6314ee2d44dfbb5ec8c7836cb006a91871d3dc831b0d292d04327325c2",
+      "sourceVariant": "baseline",
+      "sourceSplit": "train",
+      "sourceSeed": 0
+    },
+    {
+      "file": "base-validation-r1.json",
+      "sha256": "18e81aefad0d9dc8db9f8e95e97baf68710ed6a1f3d78256f36f78fc768a6ff0",
+      "sourceRawPath": "/home/tim/hutter/capsule-dev/final-evidence-rerun-20261005/ordering-raw.json",
+      "sourceRawSha256": "ae9dfa6314ee2d44dfbb5ec8c7836cb006a91871d3dc831b0d292d04327325c2",
+      "sourceVariant": "baseline",
+      "sourceSplit": "validation",
+      "sourceSeed": 0
+    },
+    {
+      "file": "base-train-r2.json",
+      "sha256": "a1ccde8215655caa4e580fc2452e3aeb7b04081da23040c91199093b2e980a80",
+      "sourceRawPath": "/home/tim/hutter/capsule-dev/final-evidence-rerun-20261005/ordering-raw.json",
+      "sourceRawSha256": "ae9dfa6314ee2d44dfbb5ec8c7836cb006a91871d3dc831b0d292d04327325c2",
+      "sourceVariant": "baseline",
+      "sourceSplit": "train",
+      "sourceSeed": 1
+    },
+    {
+      "file": "base-validation-r2.json",
+      "sha256": "1ac72be87b4a985dba8b879fa3a5d7436da03436fb28d0dae80a23be41456868",
+      "sourceRawPath": "/home/tim/hutter/capsule-dev/final-evidence-rerun-20261005/ordering-raw.json",
+      "sourceRawSha256": "ae9dfa6314ee2d44dfbb5ec8c7836cb006a91871d3dc831b0d292d04327325c2",
+      "sourceVariant": "baseline",
+      "sourceSplit": "validation",
+      "sourceSeed": 1
+    },
+    {
+      "file": "base-train-r3.json",
+      "sha256": "22fe217d7e7f4c9719eb7351cc727855ba8aa94cc8034ddb3b26b8db99ab0256",
+      "sourceRawPath": "/home/tim/hutter/capsule-dev/final-evidence-rerun-20261005/ordering-raw.json",
+      "sourceRawSha256": "ae9dfa6314ee2d44dfbb5ec8c7836cb006a91871d3dc831b0d292d04327325c2",
+      "sourceVariant": "baseline",
+      "sourceSplit": "train",
+      "sourceSeed": 2
+    },
+    {
+      "file": "base-validation-r3.json",
+      "sha256": "c5f58111fd10afc78df62f3fa671c3a9e0835a8f36afebb1b1716b24184ef166",
+      "sourceRawPath": "/home/tim/hutter/capsule-dev/final-evidence-rerun-20261005/ordering-raw.json",
+      "sourceRawSha256": "ae9dfa6314ee2d44dfbb5ec8c7836cb006a91871d3dc831b0d292d04327325c2",
+      "sourceVariant": "baseline",
+      "sourceSplit": "validation",
+      "sourceSeed": 2
+    },
+    {
+      "file": "base-train-r4.json",
+      "sha256": "0427d5f8af496f7798540bd3c27d593a86d3bab3966c7bfad0b1c0a7d9763e4f",
+      "sourceRawPath": "/home/tim/hutter/capsule-dev/final-evidence-admission-20261005/ordering-raw.json",
+      "sourceRawSha256": "66bbc5862b7ba5e4418185113b16ca9734dd01bbb05fec707bae6733d10f15a5",
+      "sourceVariant": "baseline",
+      "sourceSplit": "train",
+      "sourceSeed": 0
+    },
+    {
+      "file": "base-validation-r4.json",
+      "sha256": "fc9cd7852f2c54e61bc130dda16ef34f0e52595f1e3e248a12b45e7e0bc3d936",
+      "sourceRawPath": "/home/tim/hutter/capsule-dev/final-evidence-admission-20261005/ordering-raw.json",
+      "sourceRawSha256": "66bbc5862b7ba5e4418185113b16ca9734dd01bbb05fec707bae6733d10f15a5",
+      "sourceVariant": "baseline",
+      "sourceSplit": "validation",
+      "sourceSeed": 0
+    },
+    {
+      "file": "base-train-r5.json",
+      "sha256": "3703d936c84a1bca7462ce66d0932c8aad0190f486e4c92a03c3204c056869ae",
+      "sourceRawPath": "/home/tim/hutter/capsule-dev/final-evidence-admission-20261005/ordering-raw.json",
+      "sourceRawSha256": "66bbc5862b7ba5e4418185113b16ca9734dd01bbb05fec707bae6733d10f15a5",
+      "sourceVariant": "baseline",
+      "sourceSplit": "train",
+      "sourceSeed": 1
+    },
+    {
+      "file": "base-validation-r5.json",
+      "sha256": "bb73851e089deab68b81b23813c9e472a11460839cce41274247b35c3a4fa45e",
+      "sourceRawPath": "/home/tim/hutter/capsule-dev/final-evidence-admission-20261005/ordering-raw.json",
+      "sourceRawSha256": "66bbc5862b7ba5e4418185113b16ca9734dd01bbb05fec707bae6733d10f15a5",
+      "sourceVariant": "baseline",
+      "sourceSplit": "validation",
+      "sourceSeed": 1
+    },
+    {
+      "file": "base-train-r6.json",
+      "sha256": "d03608a4d9213d7b0e984eed64b8a3f2d64d3a9b6a8465de08ad78556008f946",
+      "sourceRawPath": "/home/tim/hutter/capsule-dev/final-evidence-admission-20261005/ordering-raw.json",
+      "sourceRawSha256": "66bbc5862b7ba5e4418185113b16ca9734dd01bbb05fec707bae6733d10f15a5",
+      "sourceVariant": "baseline",
+      "sourceSplit": "train",
+      "sourceSeed": 2
+    },
+    {
+      "file": "base-validation-r6.json",
+      "sha256": "792fc5e8f988879d3c92aa819aa76e5c1f10d518fda3a76b3d8b19955a02bcb9",
+      "sourceRawPath": "/home/tim/hutter/capsule-dev/final-evidence-admission-20261005/ordering-raw.json",
+      "sourceRawSha256": "66bbc5862b7ba5e4418185113b16ca9734dd01bbb05fec707bae6733d10f15a5",
+      "sourceVariant": "baseline",
+      "sourceSplit": "validation",
+      "sourceSeed": 2
+    }
+  ],
+  "cpuMarginSafetyFactor": 1.5,
+  "policy": "Parent-authorized: every available same-condition baseline-identical broker record; 1.5 times maximum observed split CPU spread; primary instruction gate unchanged at +0.5%",
+  "sourcePinsEvidence": "Operator-observed unchanged baseline commit/evaluator/image/config pins; original engine rows contain no embedded source hashes, so these are not retroactively claimed row-level hash bindings",
+  "includedBrokerRuns": [
+    "final-evidence-rerun-20261005",
+    "final-evidence-admission-20261005"
+  ],
+  "excluded": "Driver-only repeats are not broker records. First pre-fix official run failed before raw persistence; its lost counters cannot be included."
+}

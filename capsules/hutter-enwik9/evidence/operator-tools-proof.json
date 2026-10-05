@@ -1,0 +1,30 @@
+{
+  "scope": "Operator-only actual AST result-processing loop and actual record_hashes function; no native helper, evaluator, ordering or asset regeneration run",
+  "cases": [
+    {
+      "case": "zero_exit_writes_complete_report",
+      "passed": true,
+      "reportWritten": true
+    },
+    {
+      "case": "nonzero_exit_rejects_before_json_parse",
+      "passed": true,
+      "reportWritten": false
+    },
+    {
+      "case": "later_helper_failure_publishes_no_partial_report",
+      "passed": true,
+      "reportWritten": false
+    },
+    {
+      "case": "diagnostic_pins_match_exact_seven_predictors",
+      "passed": true,
+      "entries": 7,
+      "orderingReportExcluded": true,
+      "memoExcluded": true,
+      "exploratoryExcluded": true
+    }
+  ],
+  "deriveScriptSha256": "e5b45772da816be368d7f93da60a8e1edc68864eb67ae79eef9bd9ed86e115aa",
+  "diagnosticGeneratorSha256": "6dc0f4dc451ad37824d543747556bb894eea7534a402fcfe73c0b32e20241508"
+}

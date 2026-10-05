@@ -1,0 +1,49 @@
+hutter-enwik9 final runtime review
+VERDICT: GO
+
+Reviewer: xai-oauth/grok-4.7 (family xAI/Grok; harness omp; agent HutterFinish.HutterFinalGrok).
+Author route disclosed to this review: OpenAI GPT-6.1-sol. This report is the other-family Grok runtime review, not the authorized fresh OpenAI-family reviewer. Same-family exception applies only to that other reviewer and must be disclosed in the receipt companion. Provisional only: final reviewer agent:omp-main, delegation owner:tim, scope provisional-private-apply-none, budget $25. No owner approval is recorded or implied. Not formal M1. Probes stay blind, apply:none; AddMatch finding remains operator-only.
+
+No evaluator, build, lint, test, or formatter was run. Long baseline units on CPUs 5/8/10 were not touched. Inspection used existing proofs only.
+
+Accepted and not reopened: CPU secondary margin 0.01904996370829111 = max(0.005, 1.5 * max measured matching-broker spread); instruction margin 0.005; stripped-binary indirect/mid-instruction completeness unprovable, with authorized AST/protected-build/linear-disassembly/runtime W^X and documented residual undefined-C++-control-flow risk; 69 raw hits diagnostic non-boundaries only; semantic-identical original asm reuse/deletion authorized, new/changed asm forbidden.
+
+Reviewed hashes (live capsule and committed blobs match the frozen contract):
+- embedded baseline HEAD 7027bc622068fabbe9b6afc805c37364558dd739 (parent 3e9cb690a5c5c3dc32d556b73302c8db97282e2c historical). Commit message: Bind CPU noise gate to all broker repeats with 1.5x spread. Tracked work tree clean. Untracked only .gitdir/ and __pycache__/ (eval entrypoint is python3 -I -B).
+- eval.py 24ab9f99e2b45c4eb89ffcb844657df59dcbc9366fae91f337bb9cc9186ebfce
+- hone/asm-audit b23cce41ffe7ecbceeb1bf7f7f7d7a5104643dfeebd791f075267a88d351345b
+- hone/asm_audit.cc 1e2372b1300268b209b0c6240dc9ae799cd5362d0552490f9b4d722b9e652d34
+- hone/asm-allowlist.json 530dc39f8168ac303db318adb1453d17e1a39a84d1205ead0016ab0735bf5104
+- hone/challenge.json eac2801b1cf699eb46a702f7dd04c820ee2a75113f36fe1f1bed305f5e7e5664
+- capsule.config.json 363160c9f9f35bf629062a8970fe91c1f462de4aec53d88214066a21ab3602b1
+- manifest.json 571b80c2997cb49f932a57e95aeeee286eee5e136d3be8c2f03d36dbd7fd8ed6 (cap_ebf0f311bc34; pins ordering report sha256:cc6188e80db10d7bae2a6d6487bc5183e33347889a53ff8249e47aae79b8a4f0 and baseline commit 7027bc6)
+- ordering report cc6188e80db10d7bae2a6d6487bc5183e33347889a53ff8249e47aae79b8a4f0 (diagnostics/ordering-report.json and evidence/ordering-final copy)
+- ordering raw 8f8c6fe06d67567b63e0f212f2da6d581f37e4f3efe1e5b73dba75985799a6a3 (original final-evidence-cpu-safety-20261005 and copy)
+- ordering partial 02d511ee979fa30edd13437f9110cbb36ea0379218478dabc7d811d8abdf5d21 (original and copy)
+- README 9267b1a309407f57e66590a486e5a4d93d3a7a76ad67020b62aef3cfc160cbff
+- tools/calibrate.py 4bed3b8db59a600835b66c535d53c5d51d0e5a6432fe245b6625d99a6504deb3
+- qmat_cpu.cpp d4672e0005afcd961137a75d09f30b0dd23f165af1e4680867b58362bcf8dd85
+- final-controls summary a93281ce462d8152d469500e63867f8bac5dbb0ff026c93e71f6212721622123 (original final-evaluator/ and evidence/controls-final/ byte-identical, including DONE, input.sha256, six result JSONs, phase logs, baseline head/status)
+- live hone HEAD 1187107d824296916e08eab80aafd8daf28f23fc (PR28 ordering fix; ancestor check yes)
+
+HEAD:eval.py vs parent is only the protected CPU rule: cpuMarginSafetyFactor 1.5, rule string, and expected = max(0.005, 1.5 * max(margins)). challenge.json is the other file in that commit. ISA/AST/isolation code is unchanged, so the earlier helper proof still covers the final evaluator's assembly gate.
+
+Final-hash controls (input.sha256 pins eval.py 24ab9f99, challenge eac2801b, asm-audit b23cce41, allowlist 530dc39f, overlays 8b60bde9 / ed01f85e / 55424c3d; baseline head 7027bc6 before and after; tracked status unchanged; DONE FINAL_EVALUATOR_CONTROLS_DONE; summary problems []):
+- negative 8b60bde9583f6493885005ea54b6fbe3e238a5cf4754a6fbf0af64a470c65459 and filesystem ed01f85edecce7928efa54f03815c95ae02b0476f2a9cdb892e0ee1933ca8164: both splits valid false, source_ok fail, message "src/predictor.cpp: object/integer-to-function-pointer cast", downstream gates not_run, no decode phase files. Encode stderr is a source_ok failure after the candidate change is recorded. bytes_saved is the fail-closed baseline penalty (-1069501 train / -411847 validation), not a cheat score.
+- direct-io 55424c3d60585dd55c439300af14cd4ac9a527196f1810450444be264752e828: both splits reach a separate decode phase (encode stderr shows AST 43 TUs, reference sanity, then decode stderr). source/reference/build/ISA/jobs/isolation/CPU/no-stray pass. roundtrip and instructions fail. All six archives fail byte compare. Sizes: train 277/277/277/278 B vs 292636/283231/48936/444698; validation 277/276 B vs 341076/70771. Instructions 20890335389826 > 20421343325884 (train) and 11029490137146 > 10435918517889 (validation). Invalid scores stay the baseline penalty.
+
+Official ordering (raw mtime 2026-10-05T17:06:39Z, after commit 13:30:18Z; wall 12947.6 s; log is the live --report writer, not a memo replay). Partial status complete: 14 logical evaluations, 28 physical containers, 14 decode launches, 0 early invalid encodes. Raw hash is distinct from calibration sources ae9dfa6314ee2d44dfbb5ec8c7836cb006a91871d3dc831b0d292d04327325c2 and 66bbc5862b7ba5e4418185113b16ca9734dd01bbb05fec707bae6733d10f15a5. Reference recorded slice instructions and archive bytes match final challenge.json, and CPU budgets are the new 1.5x budgets (2755.75 / 1200.39), so this run is the final challenge, not the pre-fix evaluator (that evaluator rejects this margin rule). Independently recomputed from perExample scores: baseline 1/1/1, stability spread 0; naive train 0.77433859797186, validation 0.7172543204444932, combined 0.7553105054627377; improved 1.0010905492367306 / 1.0011969899790416 / 1.0011260294841675; shortcut validation 0.9869409257324708 < 1 and train 1.1995355080763392 > 1; broken invalid both splits. failures []. Scaffold log writes cap_ebf0f311bc34. Cold-start / not-a-Hutter-Prize limitation is in README, capsule.config.json objective, and manifest meta. Budget 40 / 4_000_000 / $25 / 86400. evalPhases exactly [encode, decode]. NOTICE is GPL-3.0-only.
+
+Calibration: all 12 evidence/broker-calibration records match challenge.json sha256 receipts and the original all-broker-calibration-20261005 copies. Spot checks base-train-r1, base-validation-r4, and base-train-r6 are byte-equal to the named source-raw output objects; source raw hashes match. Train CPU mean 2704.2366666666667, spread 0.012325104681419622; validation CPU mean 1177.955, spread 0.012699975805527407; 1.5 * max spread = 0.01904996370829111 exactly. Instruction means 20319744602870 and 10383998525263 (integer mean within the evaluator's abs(delta) <= 1 allowance). Instruction budgets in the ordering raw are the 1.005x gates (20421343325884 / 10435918517889). Validation r4 and r6 are the only invalid calibration rows; failed constraints are exactly cpu_within_budget and tests_pass; changed_files [], roundtrip true, archive bytes identical. Inclusion widens the margin and is the authorized non-cherry-picked set. Provenance smoke records 12 records consumed, hashes preserved, exact calibration accepted, tampered factor/margin/spread/instruction margin rejected. Driver-only evidence/calibration remains historical.
+
+ASM evidence: asm-verification.json problems [], helper hash matches live b23cce41, allowlist 530dc39f, 43 translation units, 4 allowlist entries, emitted blocks present, local branch targets inside the original block on instruction boundaries, forbiddenMnemonicsFound empty, real object code matches llvm-mc. ast-native-controls.json rejects reciprocal/template/inline-asm/integer-function-cast/target/changed-mnemonic/changed-constraint and passes safe-function and baseline-asm-reuse. raw-hit-classification.json diagnosticOnly, total 69, boundaryHits 0, no hit has boundary true. gate-proof baselineProblems []. These ASM artifacts pin evaluator 1960622476; that is expected because the final eval.py delta does not touch the gate.
+
+Non-blocking observations, not REVISE:
+- eval.py provenance_problems (baseline/eval.py:147-195) recomputes means and the 1.5x margin from embedded splitMeasurements and checks receipt sha256 shape, but does not open evidence/broker-calibration. Current receipts match the files; hone/** is protected. Not a present mismatch.
+- Per-slice instruction phase sums differ from split totals by +1 train / -1 validation, inside calibration_problems' 1e-6 relative tolerance (eval.py:236) and the mean tolerance of 1 (eval.py:185).
+- README cites hone 9df2e439 for the two-phase launch. Live HEAD is the later PR28 merge 1187107d. Two-phase behavior is unchanged; ordering was run on 1187107d.
+- Scorer rows still have no embedded container ids or evaluator hash. Binding is by challenge bytes in the reference check, the new CPU budgets, input.sha256 on the final controls, and the ordering tool's command transcript gate (verifyOrderingMeasurements) which must pass before status complete / PASSED.
+
+No concrete unsoundness beyond the accepted boundary was found. Runtime evidence meets the frozen cold-start slice objective and the provisional admission contract at the exact final hashes.
+
+Checked and not run: no new evaluator, ordering, scaffold, or control execution.

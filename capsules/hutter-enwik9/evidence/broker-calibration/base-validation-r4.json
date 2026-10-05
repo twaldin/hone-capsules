@@ -1,0 +1,127 @@
+{
+  "constraints": {
+    "build_ok": true,
+    "cpu_within_budget": false,
+    "instructions_within_budget": true,
+    "isa_ok": true,
+    "isolation_ok": true,
+    "jobs_ok": true,
+    "no_stray_processes": true,
+    "reference_ok": true,
+    "roundtrip_ok": true,
+    "source_ok": true,
+    "tests_pass": false
+  },
+  "diagnostics": {
+    "changed_files": [],
+    "code_size_xz": {
+      "candidate": 196828,
+      "delta": 0,
+      "reference": 196828
+    },
+    "cpu_sec_budget": 1181.01,
+    "cpu_sec_total": 1184.41,
+    "gates": {
+      "build_ok": "pass",
+      "cpu_within_budget": "fail",
+      "instructions_within_budget": "pass",
+      "isa_ok": "pass",
+      "isolation_ok": "pass",
+      "jobs_ok": "pass",
+      "no_stray_processes": "pass",
+      "reference_ok": "pass",
+      "roundtrip_ok": "pass",
+      "source_ok": "pass"
+    },
+    "instructions_budget": 10435918524093,
+    "instructions_total": 10383998498099,
+    "jobs": [
+      {
+        "cpu": 2,
+        "cpu_sec": 313.47,
+        "instructions": 2652663999415,
+        "job": "validation-18:compress",
+        "maxrss_kb": 6027148,
+        "status": 0,
+        "timed_out": false,
+        "wall_sec": 313.52
+      },
+      {
+        "cpu": 3,
+        "cpu_sec": 307.47,
+        "instructions": 2539588237926,
+        "job": "validation-855-census:compress",
+        "maxrss_kb": 5992400,
+        "status": 0,
+        "timed_out": false,
+        "wall_sec": 307.52
+      },
+      {
+        "cpu": 1,
+        "cpu_sec": 288.48,
+        "instructions": 2652408659878,
+        "job": "validation-18:decompress",
+        "maxrss_kb": 6025068,
+        "status": 0,
+        "timed_out": false,
+        "wall_sec": 288.53
+      },
+      {
+        "cpu": 2,
+        "cpu_sec": 274.99,
+        "instructions": 2539337600880,
+        "job": "validation-855-census:decompress",
+        "maxrss_kb": 5990320,
+        "status": 0,
+        "timed_out": false,
+        "wall_sec": 275.04
+      }
+    ],
+    "quality": 0,
+    "reference_check": {
+      "baseline_bytes": 70771,
+      "bytes": 70771,
+      "compress": {
+        "cpu_sec": 304.88,
+        "instructions": 2539588251340,
+        "ratio": 1,
+        "recorded": 2539588256422
+      },
+      "decompress": {
+        "cpu_sec": 256.7,
+        "instructions": 2539337551336,
+        "ratio": 1,
+        "recorded": 2539337612433
+      },
+      "slice": "validation-855-census"
+    },
+    "slices": {
+      "validation-18": {
+        "baseline_bytes": 341076,
+        "bytes": 341076,
+        "roundtrip": true
+      },
+      "validation-855-census": {
+        "baseline_bytes": 70771,
+        "bytes": 70771,
+        "roundtrip": true
+      }
+    },
+    "split": "validation",
+    "summary": "validation: failed ['cpu_within_budget']; not run []; instructions 10383998498099 of 10435918524093; CPU 1184.4s of 1181.0s; "
+  },
+  "objectives": {
+    "bytes_saved": -411847
+  },
+  "perExample": {
+    "validation-18": {
+      "feedback": "invalid: validation: failed ['cpu_within_budget']; not run []; instructions 10383998498099 of 10435918524093; CPU 1184.4s of 1181.0s; ",
+      "score": 0
+    },
+    "validation-855-census": {
+      "feedback": "invalid: validation: failed ['cpu_within_budget']; not run []; instructions 10383998498099 of 10435918524093; CPU 1184.4s of 1181.0s; ",
+      "score": 0
+    }
+  },
+  "valid": false
+}

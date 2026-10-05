@@ -1,0 +1,56 @@
+hutter-enwik9 — final Standards and independent runtime review
+VERDICT: GO
+Actionable patch-introduced defects: none. Confidence: 0.94.
+
+SCOPE AND AUTHORITY
+Read local://HutterCapsule.md section 10 completely, including its rulings and provenance limitations. Reviewed primary source, dispatch, proof and runtime records, not just the control summary. This GO is limited to provisional-private-apply-none: bounded blind sequential probes, apply:none, 40 evaluations including external validation, 4M tokens, $25 and 24h. It is not owner approval, formal M1 admission, full-stream validation, or a proof of arbitrary C++/indirect-target soundness. Final reviewer authority remains agent:omp-main delegated by owner:tim. No receipts were created.
+
+ACTUAL REVIEWER METADATA
+Author: OpenAI GPT6.1-sol / OpenAI family, as identified in the assignment.
+Reviewer: openai-codex/gpt-6.1-sol, xhigh / OpenAI family, OMP native coding-agent/API harness. Identity is supplied execution-session model metadata, not inferred from an agent label or default review role. Fresh review context. Author and reviewer share a family: the parent explicitly authorized this exception after both Opus refusals, with Grok as the other-family reviewer. This report does not supply or impersonate the separately required Grok GO; publish the same-family exception with the receipt companion.
+
+EXACT REVIEWED SNAPSHOT IDENTITIES
+CAP=/home/tim/hutter/hone-capsules/capsules/hutter-enwik9
+Paths are CAP-relative. Hashes are the recorded input/provenance pins inspected and cross-referenced in this read-only review, not newly computed checksums.
+Baseline commit: 7027bc622068fabbe9b6afc805c37364558dd739
+baseline/eval.py: 24ab9f99e2b45c4eb89ffcb844657df59dcbc9366fae91f337bb9cc9186ebfce
+baseline/hone/asm-audit: b23cce41ffe7ecbceeb1bf7f7f7d7a5104643dfeebd791f075267a88d351345b
+baseline/hone/asm_audit.cc: 1e2372b1300268b209b0c6240dc9ae799cd5362d0552490f9b4d722b9e652d34
+baseline/hone/asm-allowlist.json: 530dc39f8168ac303db318adb1453d17e1a39a84d1205ead0016ab0735bf5104
+baseline/hone/challenge.json: eac2801b1cf699eb46a702f7dd04c820ee2a75113f36fe1f1bed305f5e7e5664
+capsule.config.json: 363160c9f9f35bf629062a8970fe91c1f462de4aec53d88214066a21ab3602b1
+manifest.json: 571b80c2997cb49f932a57e95aeeee286eee5e136d3be8c2f03d36dbd7fd8ed6
+README.md: 9267b1a309407f57e66590a486e5a4d93d3a7a76ad67020b62aef3cfc160cbff
+tools/calibrate.py: 4bed3b8db59a600835b66c535d53c5d51d0e5a6432fe245b6625d99a6504deb3
+ordering report: cc6188e80db10d7bae2a6d6487bc5183e33347889a53ff8249e47aae79b8a4f0
+ordering raw: 8f8c6fe06d67567b63e0f212f2da6d581f37e4f3efe1e5b73dba75985799a6a3
+ordering partial: 02d511ee979fa30edd13437f9110cbb36ea0379218478dabc7d811d8abdf5d21
+Runtime image: hone-hutter-enwik9@sha256:2391980839f983b29a917f1842c66522ba0fa8c9ba9b3ad6685bcb2b42152d8d
+Original protected qmat source: d4672e0005afcd961137a75d09f30b0dd23f165af1e4680867b58362bcf8dd85
+Negative-control predictor: 8b60bde9583f6493885005ea54b6fbe3e238a5cf4754a6fbf0af64a470c65459
+Filesystem-control predictor: ed01f85edecce7928efa54f03815c95ae02b0476f2a9cdb892e0ee1933ca8164
+Direct-I/O-control predictor: 55424c3d60585dd55c439300af14cd4ac9a527196f1810450444be264752e828
+
+STANDARDS — PASS (0 blocking findings)
+Standards sources: README.md, NOTICE and capsule.config.json. Read the evaluator in full, helper source, allowlist, challenge, calibrator, protected make recipes, manifest, and control deltas/context. The evaluator/helper remain protected; there is one helper/allowlist copy, not a second convention. Config and manifest agree on the pinned image, exact phase tuple, protected paths, public train/protected validation, six asset hashes, 3600s timeout, resources and provisional envelope. GPL/upstream attribution and cold-start/full-stream limitations are explicit. The smell baseline was applied as a heuristic: intentional separate control fixtures and low-level ABI constants do not establish correctness defects. No actionable documented-standard violation was found within this scope.
+
+RUNTIME AND PRIMARY EVIDENCE — GO (0 blocking findings)
+1. Separation and consuming dispatch
+Inspected baseline/eval.py and engine trusted/broker/src/broker.ts: evaluateReserved, parseEncodePhaseOutput, assertTrustedHandoff, resourceArgs and createHandoffDir; also schema/src/capsule.ts. The exact honeEvalContinue decode marker has an explicit consuming branch. Encode-only valid output is rejected. Encode teardown precedes a distinct decode launch; decode has no workspace and read-only handoff. One invocation and remaining timeout cover both phases. Root-only state binds protocol version, split, evaluator/challenge, binary and archive hashes and required encode gates. Only scorer-produced binary/archive/metadata cross the 0700 handoff. Worker logs, build/run trees and other state do not. Dropped jobs have private IPC/network namespaces, Landlock, no-new-privileges, seccomp, affinity and resource limits; validity requires every gate true and positive counters. Read evalrun2.sh and final phase logs as the existing control execution path.
+
+2. Calibration and metadata binding
+Read all twelve broker-calibration outputs, both source ordering raw files, extraction-provenance.json and provenance-smoke.json, plus challenge and calibrator. They retain unchanged-source/zero-code-delta measurements, complete zero-exit jobs, positive counters and exact round trips. Two historical validation outputs retain their CPU/tests failures; extraction did not relabel them valid. Current means: train 20319744602870 instructions / 2704.2366666666667 CPU-s; validation 10383998525263 / 1177.955 CPU-s. Authorized CPU margin = 1.5*max(0.012325104681419622,0.012699975805527407) = 0.01904996370829111. Primary instruction margin stays 0.005. Evaluator checks the protected factor/rule, repeat-derived means/spreads/margin, positive per-phase references and total consistency. The final commit delta changes only that policy/provenance and calibrated references. Historical rows have no embedded source hashes; no retrospective row-level cryptographic binding is claimed.
+
+3. AST, ISA and original assembly
+Read asm-verification.json, ast-native-controls.json, helper-derivation.json, gate-proof.txt, make-plan.txt, raw-hit-classification.json, verifier source and preserved attention assembly/disassembly/local labels. The helper hash is bound to the immutable allowlist and helper reports are consumed fail-closed. Protected recipes cover 43 TUs, including template instantiations. Four semantic assembly entries have emitted proofs, no unmatched entries and no problems; recorded real/instrumented/llvm-mc code-and-relocation signatures agree. Attention branches 0x34/0x165/0x16d target 0x16b/0x40/0x1f7 inside block 0x12–0x24f at instruction boundaries. Stored AST controls reject reciprocal/macro/template references, changed asm/constraints, forbidden casts/attributes and file-scope/MS asm; safe function references and authorized baseline-identical reuse pass. Historical proofs are not presented as final-hash runtime controls. All 69 raw hits are non-boundaries and diagnostic only. The parent-authorized general indirect/mid-instruction boundary limitation remains explicit, not reopened or concealed.
+
+4. Official ordering and scaffold
+Read evidence/ordering-final report, all 14 raw outputs, partial state, ordering/scaffold logs and manifest copy. All six baseline outputs (seeds 0–2, both splits) are valid with all gates passed, calibrated bytes and zero code-size delta. Partial/log records: 14 logical evaluations, 28 physical containers, 14 fresh decode launches, complete status, failures=[], wall 12947.6s. Scores: baseline 1; naive 0.7553105054627377; improved 1.0011260294841675; broken 0/invalid; shortcut validation 0.9869409257324708<1. Stability [1,1,1], spread 0. Scaffold emits cap_ebf0f311bc34. Manifest baseline, assets and ordering-report bindings agree with the snapshot.
+
+5. Final-hash controls, not stale smoke
+Primary directory: /home/tim/hutter/capsule-dev/final-evidence-20261005/final-evaluator/.
+Read input.sha256, baseline-head.txt, baseline before/after status, DONE, all six result JSONs, all source-failure encode logs, direct-I/O encode markers and encode/decode logs, and summary.json. Head is the exact final commit; before/after status contains only the same .gitdir/ and __pycache__/ untracked entries. Negative/filesystem controls reject BOTH splits at object/integer-to-function-pointer cast, downstream NOT_RUN. Those four records are source rejection proof, not fresh-decode proof. Direct-I/O passes source/reference/build/ISA/jobs/isolation/CPU/no-stray on BOTH splits and reaches fresh decode. Archives: train 277/277/277/278 B, validation 277/276 B. All six round trips fail although all twelve jobs exit 0; instructions also fail: train 20890335389826 > 20421343325884; validation 11029490137146 > 10435918517889. Both results remain invalid with every perExample zero. Summary problems=[] agrees with the primary records. The older 44-B smoke is not used as final proof.
+
+VERIFICATION BOUNDARY AND HANDOFF
+No repository/source/evidence edits, builds, lint, tests, formatters, evaluator/calibration invocations, checksum-verification runs, baseline-process operations or probe launches. Only this report is newly written. Existing proofs were inspected; read-only git diffs/shows used nice. Long baseline CPUs5/8/10 were not disturbed. No runtime rerun is requested by this review. Parent publication/admission still needs the separately required other-family GO and provisional delegation/same-family-exception disclosure, never owner:tim approval.
+

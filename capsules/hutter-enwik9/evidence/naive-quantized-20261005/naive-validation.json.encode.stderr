@@ -1,0 +1,5 @@
+[eval encode 09:29:33] split=validation slices=['validation-18', 'validation-855-census'] cpus=[1, 2, 3, 4]
+[eval encode 09:29:33] candidate changes 1 mutable file(s): ['src/predictor.cpp']
+[eval encode 09:29:42] AST checked 43 translation units including template instantiations
+[eval encode 09:29:59] code size (xz of stripped binary): reference 196828, candidate 196976
+[eval encode 09:39:20] reference sanity: {'slice': 'validation-855-census', 'bytes': 70771, 'baseline_bytes': 70771, 'compress': {'instructions': 2539588246273, 'recorded': 2539588256422, 'ratio': 1.0, 'cpu_sec': 305.32}, 'decompress': {'instructions': 2539337573367, 'recorded': 2539337612433, 'ratio': 1.0, 'cpu_sec': 255.38}}

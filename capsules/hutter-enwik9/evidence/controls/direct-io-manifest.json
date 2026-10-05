@@ -1,0 +1,160 @@
+{
+  "overlay": "diagnostics/direct-io-control/src/predictor.cpp",
+  "overlaySha256": "55424c3d60585dd55c439300af14cd4ac9a527196f1810450444be264752e828",
+  "evaluatorSha256": "1960622476e7f0fc04d94e4f90fdbdb799d1996c393365a5c5af9e42be19c4af",
+  "baselineHead": "3e9cb690a5c5c3dc32d556b73302c8db97282e2c",
+  "rejectLayer": [
+    "roundtrip_ok",
+    "instructions_within_budget"
+  ],
+  "reachedFreshDecode": true,
+  "roundtripProof": true,
+  "notAdmissionBlocker": true,
+  "archiveBytesNote": "actual bytes, not the 44 B scoped-smoke figure",
+  "train": {
+    "sha256": "df257476af637efefc8c936e6e2df97bcc20b87d25f3404ddd5c294fcdf44195",
+    "valid": false,
+    "constraints": {
+      "isolation_ok": true,
+      "reference_ok": true,
+      "build_ok": true,
+      "source_ok": true,
+      "isa_ok": true,
+      "jobs_ok": true,
+      "roundtrip_ok": false,
+      "instructions_within_budget": false,
+      "cpu_within_budget": true,
+      "no_stray_processes": true,
+      "tests_pass": false
+    },
+    "gates": {
+      "isolation_ok": "pass",
+      "reference_ok": "pass",
+      "build_ok": "pass",
+      "source_ok": "pass",
+      "isa_ok": "pass",
+      "jobs_ok": "pass",
+      "roundtrip_ok": "fail",
+      "instructions_within_budget": "fail",
+      "cpu_within_budget": "pass",
+      "no_stray_processes": "pass"
+    },
+    "slices": {
+      "train-02": {
+        "bytes": 277,
+        "baseline_bytes": 292636,
+        "roundtrip": false
+      },
+      "train-31": {
+        "bytes": 277,
+        "baseline_bytes": 283231,
+        "roundtrip": false
+      },
+      "train-875-census": {
+        "bytes": 277,
+        "baseline_bytes": 48936,
+        "roundtrip": false
+      },
+      "train-tail": {
+        "bytes": 278,
+        "baseline_bytes": 444698,
+        "roundtrip": false
+      }
+    },
+    "instructions_total": 20890335419251,
+    "instructions_budget": 20421343381985,
+    "cpu_sec_total": 2189.6,
+    "cpu_sec_budget": 2730.14,
+    "code_size_xz": {
+      "reference": 196828,
+      "candidate": 197308,
+      "delta": 480
+    },
+    "summary": "train: failed ['roundtrip_ok', 'instructions_within_budget']; not run []; instructions 20890335419251 of 20421343381985; CPU 2189.6s of 2730.1s; train-02:decompress: output differs from the slice; train-31:decompress: output differs from the slice; train-875-census:decompress: output differs from the slice; train-tail:decompress: output differs from the slice"
+  },
+  "validation": {
+    "sha256": "70006d3877a0c45b6a47f0631c663b5f20706ff216528190de62a7229ea6f7cd",
+    "valid": false,
+    "constraints": {
+      "isolation_ok": true,
+      "reference_ok": true,
+      "build_ok": true,
+      "source_ok": true,
+      "isa_ok": true,
+      "jobs_ok": true,
+      "roundtrip_ok": false,
+      "instructions_within_budget": false,
+      "cpu_within_budget": true,
+      "no_stray_processes": true,
+      "tests_pass": false
+    },
+    "gates": {
+      "isolation_ok": "pass",
+      "reference_ok": "pass",
+      "build_ok": "pass",
+      "source_ok": "pass",
+      "isa_ok": "pass",
+      "jobs_ok": "pass",
+      "roundtrip_ok": "fail",
+      "instructions_within_budget": "fail",
+      "cpu_within_budget": "pass",
+      "no_stray_processes": "pass"
+    },
+    "slices": {
+      "validation-18": {
+        "bytes": 277,
+        "baseline_bytes": 341076,
+        "roundtrip": false
+      },
+      "validation-855-census": {
+        "bytes": 276,
+        "baseline_bytes": 70771,
+        "roundtrip": false
+      }
+    },
+    "instructions_total": 11029490186999,
+    "instructions_budget": 10435918524093,
+    "cpu_sec_total": 1029.26,
+    "cpu_sec_budget": 1181.01,
+    "code_size_xz": {
+      "reference": 196828,
+      "candidate": 197308,
+      "delta": 480
+    },
+    "summary": "validation: failed ['roundtrip_ok', 'instructions_within_budget']; not run []; instructions 11029490186999 of 10435918524093; CPU 1029.3s of 1181.0s; validation-18:decompress: output differs from the slice; validation-855-census:decompress: output differs from the slice"
+  },
+  "files": {
+    "direct-io-control-train.decode.stderr": {
+      "sha256": "0664cf6b91363d06136facd04caae902271d079c7bf6876a2b7ad3c864f28034",
+      "bytes": 119
+    },
+    "direct-io-control-train.encode.stderr": {
+      "sha256": "4e04a844b74a5218ef5b6e90b2ea05a9789ab5f28c2be4d7f4ada45a96b4be1f",
+      "bytes": 703
+    },
+    "direct-io-control-train.json": {
+      "sha256": "df257476af637efefc8c936e6e2df97bcc20b87d25f3404ddd5c294fcdf44195",
+      "bytes": 4632
+    },
+    "direct-io-control-train.log": {
+      "sha256": "f58e1efe5cf2c3016d8d04ded12c8f6ad77e590e7fd40e23a160a4d50dba0bd4",
+      "bytes": 327
+    },
+    "direct-io-control-validation.decode.stderr": {
+      "sha256": "87c3affb602fcfc03185ea630533fa5eb9e691d333be48cd9775787df179a22f",
+      "bytes": 108
+    },
+    "direct-io-control-validation.encode.stderr": {
+      "sha256": "d867874836c8d21baea8f8766c90a9d567e274f358aa0fe8b47f65d336539c6e",
+      "bytes": 702
+    },
+    "direct-io-control-validation.json": {
+      "sha256": "70006d3877a0c45b6a47f0631c663b5f20706ff216528190de62a7229ea6f7cd",
+      "bytes": 2855
+    },
+    "direct-io-control-validation.log": {
+      "sha256": "3e2bfd401e9f041c0a43a1f31a044b8f04bbe48975b9565ea9cb64dc3aed640b",
+      "bytes": 326
+    }
+  }
+}

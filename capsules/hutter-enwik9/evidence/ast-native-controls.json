@@ -1,0 +1,73 @@
+{
+  "path": "ev.ast_source_gate",
+  "image": "hone-hutter-enwik9@sha256:2391980839f983b29a917f1842c66522ba0fa8c9ba9b3ad6685bcb2b42152d8d",
+  "evalSha256": "1960622476e7f0fc04d94e4f90fdbdb799d1996c393365a5c5af9e42be19c4af",
+  "helperSha256": "b23cce41ffe7ecbceeb1bf7f7f7d7a5104643dfeebd791f075267a88d351345b",
+  "allowlistSha256": "530dc39f8168ac303db318adb1453d17e1a39a84d1205ead0016ab0735bf5104",
+  "allowlistVersion": 1,
+  "allowlistEntries": 4,
+  "cases": {
+    "reciprocal": [
+      "control.cpp: reciprocal-estimate intrinsic reference"
+    ],
+    "macro-reciprocal": [
+      "control.cpp: reciprocal-estimate intrinsic reference"
+    ],
+    "template-reciprocal": [
+      "control.cpp: reciprocal-estimate intrinsic reference"
+    ],
+    "inline-asm": [
+      "control.cpp: assembly differs from the verified unmodified-baseline allowlist"
+    ],
+    "integer-function": [
+      "control.cpp: object/integer-to-function-pointer cast"
+    ],
+    "target-attribute": [
+      "control.cpp: target/optimize attribute"
+    ],
+    "optimize-attribute": [
+      "AST translation-unit analysis failed"
+    ],
+    "file-scope-asm": [
+      "control.cpp: FileScopeAsmDecl"
+    ],
+    "ms-asm": [
+      "AST translation-unit analysis failed"
+    ],
+    "safe-function": [],
+    "baseline-asm-reuse": [],
+    "changed-mnemonic": [
+      "control.cpp: assembly differs from the verified unmodified-baseline allowlist"
+    ],
+    "changed-constraint": [
+      "control.cpp: assembly differs from the verified unmodified-baseline allowlist"
+    ]
+  },
+  "passed": [
+    "safe-function",
+    "baseline-asm-reuse"
+  ],
+  "rejected": [
+    "reciprocal",
+    "macro-reciprocal",
+    "template-reciprocal",
+    "inline-asm",
+    "integer-function",
+    "target-attribute",
+    "optimize-attribute",
+    "file-scope-asm",
+    "ms-asm",
+    "changed-mnemonic",
+    "changed-constraint"
+  ],
+  "notes": {
+    "fixture": "relative control.cpp; makefile recipe carries -std=c++17 -march=x86-64-v3 -mrecip=none",
+    "baselineAsmReuse": "unexecuted xgetbv with outputs =a/=d, input c, volatile, matching qmat_cpu.cpp",
+    "changedMnemonic": "same body, xgetbv replaced by nop",
+    "changedConstraint": "same body, input constraint c replaced by r",
+    "msAsm": " -fms-extensions so the visitor can classify MSAsmStmt; this Clang has no MS asm target, so the gate sees a non-zero helper exit",
+    "optimize": "helper adds -Werror=unknown-attributes; Clang 17 does not know optimize",
+    "notAdmission": true,
+    "noByteDirectiveControl": true
+  }
+}

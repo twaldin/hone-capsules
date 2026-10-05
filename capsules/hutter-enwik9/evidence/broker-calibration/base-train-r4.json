@@ -1,0 +1,185 @@
+{
+  "constraints": {
+    "build_ok": true,
+    "cpu_within_budget": true,
+    "instructions_within_budget": true,
+    "isa_ok": true,
+    "isolation_ok": true,
+    "jobs_ok": true,
+    "no_stray_processes": true,
+    "reference_ok": true,
+    "roundtrip_ok": true,
+    "source_ok": true,
+    "tests_pass": true
+  },
+  "diagnostics": {
+    "changed_files": [],
+    "code_size_xz": {
+      "candidate": 196828,
+      "delta": 0,
+      "reference": 196828
+    },
+    "cpu_sec_budget": 2730.14,
+    "cpu_sec_total": 2694.29,
+    "gates": {
+      "build_ok": "pass",
+      "cpu_within_budget": "pass",
+      "instructions_within_budget": "pass",
+      "isa_ok": "pass",
+      "isolation_ok": "pass",
+      "jobs_ok": "pass",
+      "no_stray_processes": "pass",
+      "reference_ok": "pass",
+      "roundtrip_ok": "pass",
+      "source_ok": "pass"
+    },
+    "instructions_budget": 20421343381985,
+    "instructions_total": 20319744595096,
+    "jobs": [
+      {
+        "cpu": 2,
+        "cpu_sec": 357.2,
+        "instructions": 2674507186758,
+        "job": "train-02:compress",
+        "maxrss_kb": 6030612,
+        "status": 0,
+        "timed_out": false,
+        "wall_sec": 357.43
+      },
+      {
+        "cpu": 3,
+        "cpu_sec": 359.3,
+        "instructions": 2602048250027,
+        "job": "train-31:compress",
+        "maxrss_kb": 6025612,
+        "status": 0,
+        "timed_out": false,
+        "wall_sec": 359.51
+      },
+      {
+        "cpu": 4,
+        "cpu_sec": 339.85,
+        "instructions": 2521015193876,
+        "job": "train-875-census:compress",
+        "maxrss_kb": 5950736,
+        "status": 0,
+        "timed_out": false,
+        "wall_sec": 340.32
+      },
+      {
+        "cpu": 4,
+        "cpu_sec": 248.94,
+        "instructions": 2362756584018,
+        "job": "train-tail:compress",
+        "maxrss_kb": 6013136,
+        "status": 0,
+        "timed_out": false,
+        "wall_sec": 248.98
+      },
+      {
+        "cpu": 1,
+        "cpu_sec": 364.77,
+        "instructions": 2674282371548,
+        "job": "train-02:decompress",
+        "maxrss_kb": 6028336,
+        "status": 0,
+        "timed_out": false,
+        "wall_sec": 365.06
+      },
+      {
+        "cpu": 2,
+        "cpu_sec": 354.74,
+        "instructions": 2601824061094,
+        "job": "train-31:decompress",
+        "maxrss_kb": 6023340,
+        "status": 0,
+        "timed_out": false,
+        "wall_sec": 355
+      },
+      {
+        "cpu": 3,
+        "cpu_sec": 338.76,
+        "instructions": 2520787680222,
+        "job": "train-875-census:decompress",
+        "maxrss_kb": 5948844,
+        "status": 0,
+        "timed_out": false,
+        "wall_sec": 338.98
+      },
+      {
+        "cpu": 4,
+        "cpu_sec": 330.73,
+        "instructions": 2362523267553,
+        "job": "train-tail:decompress",
+        "maxrss_kb": 6010860,
+        "status": 0,
+        "timed_out": false,
+        "wall_sec": 331.08
+      }
+    ],
+    "quality": 1,
+    "reference_check": {
+      "baseline_bytes": 444698,
+      "bytes": 444698,
+      "compress": {
+        "cpu_sec": 324.31,
+        "instructions": 2362756559003,
+        "ratio": 1,
+        "recorded": 2362756575652
+      },
+      "decompress": {
+        "cpu_sec": 255.71,
+        "instructions": 2362523280979,
+        "ratio": 1,
+        "recorded": 2362523267536
+      },
+      "slice": "train-tail"
+    },
+    "slices": {
+      "train-02": {
+        "baseline_bytes": 292636,
+        "bytes": 292636,
+        "roundtrip": true
+      },
+      "train-31": {
+        "baseline_bytes": 283231,
+        "bytes": 283231,
+        "roundtrip": true
+      },
+      "train-875-census": {
+        "baseline_bytes": 48936,
+        "bytes": 48936,
+        "roundtrip": true
+      },
+      "train-tail": {
+        "baseline_bytes": 444698,
+        "bytes": 444698,
+        "roundtrip": true
+      }
+    },
+    "split": "train",
+    "summary": "train: +0.0 bytes saved vs lexth11c over 4 slices; instructions 1.0000x lexth11c (limit 1.005x); CPU 2694.3s of 2730.1s budget"
+  },
+  "objectives": {
+    "bytes_saved": 0
+  },
+  "perExample": {
+    "train-02": {
+      "feedback": "292636 B vs lexth11c 292636 B (+0 B), code term 0.0 B, round trip ok",
+      "score": 1
+    },
+    "train-31": {
+      "feedback": "283231 B vs lexth11c 283231 B (+0 B), code term 0.0 B, round trip ok",
+      "score": 1
+    },
+    "train-875-census": {
+      "feedback": "48936 B vs lexth11c 48936 B (+0 B), code term 0.0 B, round trip ok",
+      "score": 1
+    },
+    "train-tail": {
+      "feedback": "444698 B vs lexth11c 444698 B (+0 B), code term 0.0 B, round trip ok",
+      "score": 1
+    }
+  },
+  "valid": true
+}

@@ -1,0 +1,559 @@
+{
+ "asmTranslationUnits": [
+  "cpp_infer/src/opt/attn.cpp",
+  "cpp_infer/src/opt/kda.cpp",
+  "cpp_infer/src/opt/qmat_cpu.cpp"
+ ],
+ "emittedBlocksPerEntry": {
+  "1ee7199199f577b79a2c6a40e60916951e3afedc34d34a4a46d2829c23869b83": 1,
+  "4fa9504da56684a2e34ab82043295d981e32eb1f58aed74008fa88c06de2d33f": 1,
+  "5fcf71e75ed00bfa45c47291c660cc72d50ff21d5b5d48a7d3c52912a33147e4": 5,
+  "6c7a72c88bacf2d35530970fd80485087971060312345c109c94a3c4a9b2ced3": 3
+ },
+ "entriesWithoutEmittedBlock": [],
+ "evalSha256": "1960622476e7f0fc04d94e4f90fdbdb799d1996c393365a5c5af9e42be19c4af",
+ "helperSha256": "b23cce41ffe7ecbceeb1bf7f7f7d7a5104643dfeebd791f075267a88d351345b",
+ "objectProofs": [
+  {
+   "asmSha256": "e537ef92b4875371aff987af6d3e40ff651ae88a6e35159f2daf33e869578122",
+   "blockCount": 1,
+   "blocks": [
+    {
+     "asmLines": [
+      3521,
+      3637
+     ],
+     "asmSourceNamedLabelOrder": "matched by ordinal shape",
+     "bodySha256": "6d91a392063511f0c81fe88385b61c65cdfafd33a388be78b0b166de628782b4",
+     "branchLabelChecks": [
+      {
+       "addr": 52,
+       "disassembledTarget": 363,
+       "equal": true,
+       "label": ".Ltmp0",
+       "labelAddress": 363,
+       "mnemonic": "je"
+      },
+      {
+       "addr": 357,
+       "disassembledTarget": 64,
+       "equal": true,
+       "label": ".Ltmp1",
+       "labelAddress": 64,
+       "mnemonic": "jne"
+      },
+      {
+       "addr": 365,
+       "disassembledTarget": 503,
+       "equal": true,
+       "label": ".Ltmp2",
+       "labelAddress": 503,
+       "mnemonic": "je"
+      }
+     ],
+     "branches": [
+      {
+       "addr": 52,
+       "insideBlock": true,
+       "mnemonic": "je",
+       "operands": "16b <hutblk_0_start+0x159>",
+       "relocationOnBranch": false,
+       "target": 363,
+       "targetOnInstructionBoundary": true
+      },
+      {
+       "addr": 357,
+       "insideBlock": true,
+       "mnemonic": "jne",
+       "operands": "40 <hutblk_0_start+0x2e>",
+       "relocationOnBranch": false,
+       "target": 64,
+       "targetOnInstructionBoundary": true
+      },
+      {
+       "addr": 365,
+       "insideBlock": true,
+       "mnemonic": "je",
+       "operands": "1f7 <hutblk_0_start+0x1e5>",
+       "relocationOnBranch": false,
+       "target": 503,
+       "targetOnInstructionBoundary": true
+      }
+     ],
+     "compilerEmittedDirectives": [
+      ".p2align 4, 0x90"
+     ],
+     "end": 591,
+     "endOnBoundary": true,
+     "forbiddenMnemonicsFound": [],
+     "inboundBranchesIntoInterior": [],
+     "index": 0,
+     "instructionCount": 111,
+     "labels": {
+      ".Ltmp0": {
+       "address": 363,
+       "inBlock": true,
+       "section": ".text._ZN3fx23opt12_GLOBAL__N_111pv_dense_i8EPKaPKfifPf"
+      },
+      ".Ltmp1": {
+       "address": 64,
+       "inBlock": true,
+       "section": ".text._ZN3fx23opt12_GLOBAL__N_111pv_dense_i8EPKaPKfifPf"
+      },
+      ".Ltmp2": {
+       "address": 503,
+       "inBlock": true,
+       "section": ".text._ZN3fx23opt12_GLOBAL__N_111pv_dense_i8EPKaPKfifPf"
+      }
+     },
+     "matchedAllowlistSha256": [
+      "4fa9504da56684a2e34ab82043295d981e32eb1f58aed74008fa88c06de2d33f"
+     ],
+     "mnemonics": [
+      "add",
+      "dec",
+      "je",
+      "jne",
+      "nopw",
+      "prefetcht0",
+      "test",
+      "vbroadcastss",
+      "vcvtdq2ps",
+      "vfmadd231ps",
+      "vmovaps",
+      "vmulps",
+      "vpmovsxbd",
+      "vxorps"
+     ],
+     "relocationsInBlock": [],
+     "section": ".text._ZN3fx23opt12_GLOBAL__N_111pv_dense_i8EPKaPKfifPf",
+     "start": 18,
+     "startOnBoundary": true
+    }
+   ],
+   "instrumentedAsmSha256": "f9e1fb7a7f5c38127d42544955068e917bae4f2dfb46e4afc888870c52c275f1",
+   "instrumentedObjectCodeSha256": "552226b316ddc7c559ad4780d7888bf4d3c568748c0380f4af65f2c8508ee73a",
+   "llvmMcObjectCodeSha256": "552226b316ddc7c559ad4780d7888bf4d3c568748c0380f4af65f2c8508ee73a",
+   "llvmMcRetainedTempLabels": [
+    "0000000000000040 t .Ltmp1",
+    "000000000000016b t .Ltmp0",
+    "00000000000001f7 t .Ltmp2"
+   ],
+   "realObjectCodeSha256": "552226b316ddc7c559ad4780d7888bf4d3c568748c0380f4af65f2c8508ee73a",
+   "realObjectSha256": "8064fd38a3adaf7ad2737f54aa84b61062d0d8b3f0fa731bf7dc7ad89cf75cca",
+   "sentinelSymbols": [
+    "0000000000000012 t hutblk_0_start",
+    "000000000000024f t hutblk_0_end"
+   ],
+   "source": "cpp_infer/src/opt/attn.cpp"
+  },
+  {
+   "asmSha256": "dd6815833f2a51eddb3f086067c4b1f0859e8ad3891480299dc2981d0cf9423c",
+   "blockCount": 5,
+   "blocks": [
+    {
+     "asmLines": [
+      1560,
+      1563
+     ],
+     "asmSourceNamedLabelOrder": "matched by ordinal shape",
+     "bodySha256": "8e7799b0828b4a635af7b2445d0e310b95500fcc072caa1803d06bbaef88cb21",
+     "branchLabelChecks": [],
+     "branches": [],
+     "compilerEmittedDirectives": [],
+     "end": 48,
+     "endOnBoundary": true,
+     "forbiddenMnemonicsFound": [],
+     "inboundBranchesIntoInterior": [],
+     "index": 0,
+     "instructionCount": 2,
+     "labels": {},
+     "matchedAllowlistSha256": [
+      "5fcf71e75ed00bfa45c47291c660cc72d50ff21d5b5d48a7d3c52912a33147e4"
+     ],
+     "mnemonics": [
+      "lfence",
+      "rdtsc"
+     ],
+     "relocationsInBlock": [],
+     "section": ".text._ZN3fx23opt14kda_layer_stepERKNS0_10KdaWeightsERNS0_8KdaStateEPKfS7_S7_S7_S7_S7_PfPNS0_8KdaDebugEPNS0_10KdaProfileE",
+     "start": 43,
+     "startOnBoundary": true
+    },
+    {
+     "asmLines": [
+      1948,
+      1951
+     ],
+     "asmSourceNamedLabelOrder": "matched by ordinal shape",
+     "bodySha256": "8e7799b0828b4a635af7b2445d0e310b95500fcc072caa1803d06bbaef88cb21",
+     "branchLabelChecks": [],
+     "branches": [],
+     "compilerEmittedDirectives": [],
+     "end": 1946,
+     "endOnBoundary": true,
+     "forbiddenMnemonicsFound": [],
+     "inboundBranchesIntoInterior": [],
+     "index": 1,
+     "instructionCount": 2,
+     "labels": {},
+     "matchedAllowlistSha256": [
+      "5fcf71e75ed00bfa45c47291c660cc72d50ff21d5b5d48a7d3c52912a33147e4"
+     ],
+     "mnemonics": [
+      "lfence",
+      "rdtsc"
+     ],
+     "relocationsInBlock": [],
+     "section": ".text._ZN3fx23opt14kda_layer_stepERKNS0_10KdaWeightsERNS0_8KdaStateEPKfS7_S7_S7_S7_S7_PfPNS0_8KdaDebugEPNS0_10KdaProfileE",
+     "start": 1941,
+     "startOnBoundary": true
+    },
+    {
+     "asmLines": [
+      2691,
+      2694
+     ],
+     "asmSourceNamedLabelOrder": "matched by ordinal shape",
+     "bodySha256": "8e7799b0828b4a635af7b2445d0e310b95500fcc072caa1803d06bbaef88cb21",
+     "branchLabelChecks": [],
+     "branches": [],
+     "compilerEmittedDirectives": [],
+     "end": 5679,
+     "endOnBoundary": true,
+     "forbiddenMnemonicsFound": [],
+     "inboundBranchesIntoInterior": [],
+     "index": 2,
+     "instructionCount": 2,
+     "labels": {},
+     "matchedAllowlistSha256": [
+      "5fcf71e75ed00bfa45c47291c660cc72d50ff21d5b5d48a7d3c52912a33147e4"
+     ],
+     "mnemonics": [
+      "lfence",
+      "rdtsc"
+     ],
+     "relocationsInBlock": [],
+     "section": ".text._ZN3fx23opt14kda_layer_stepERKNS0_10KdaWeightsERNS0_8KdaStateEPKfS7_S7_S7_S7_S7_PfPNS0_8KdaDebugEPNS0_10KdaProfileE",
+     "start": 5674,
+     "startOnBoundary": true
+    },
+    {
+     "asmLines": [
+      2745,
+      2748
+     ],
+     "asmSourceNamedLabelOrder": "matched by ordinal shape",
+     "bodySha256": "8e7799b0828b4a635af7b2445d0e310b95500fcc072caa1803d06bbaef88cb21",
+     "branchLabelChecks": [],
+     "branches": [],
+     "compilerEmittedDirectives": [],
+     "end": 5916,
+     "endOnBoundary": true,
+     "forbiddenMnemonicsFound": [],
+     "inboundBranchesIntoInterior": [],
+     "index": 3,
+     "instructionCount": 2,
+     "labels": {},
+     "matchedAllowlistSha256": [
+      "5fcf71e75ed00bfa45c47291c660cc72d50ff21d5b5d48a7d3c52912a33147e4"
+     ],
+     "mnemonics": [
+      "lfence",
+      "rdtsc"
+     ],
+     "relocationsInBlock": [],
+     "section": ".text._ZN3fx23opt14kda_layer_stepERKNS0_10KdaWeightsERNS0_8KdaStateEPKfS7_S7_S7_S7_S7_PfPNS0_8KdaDebugEPNS0_10KdaProfileE",
+     "start": 5911,
+     "startOnBoundary": true
+    },
+    {
+     "asmLines": [
+      3073,
+      3076
+     ],
+     "asmSourceNamedLabelOrder": "matched by ordinal shape",
+     "bodySha256": "8e7799b0828b4a635af7b2445d0e310b95500fcc072caa1803d06bbaef88cb21",
+     "branchLabelChecks": [],
+     "branches": [],
+     "compilerEmittedDirectives": [],
+     "end": 7884,
+     "endOnBoundary": true,
+     "forbiddenMnemonicsFound": [],
+     "inboundBranchesIntoInterior": [],
+     "index": 4,
+     "instructionCount": 2,
+     "labels": {},
+     "matchedAllowlistSha256": [
+      "5fcf71e75ed00bfa45c47291c660cc72d50ff21d5b5d48a7d3c52912a33147e4"
+     ],
+     "mnemonics": [
+      "lfence",
+      "rdtsc"
+     ],
+     "relocationsInBlock": [],
+     "section": ".text._ZN3fx23opt14kda_layer_stepERKNS0_10KdaWeightsERNS0_8KdaStateEPKfS7_S7_S7_S7_S7_PfPNS0_8KdaDebugEPNS0_10KdaProfileE",
+     "start": 7879,
+     "startOnBoundary": true
+    }
+   ],
+   "instrumentedAsmSha256": "48591ee24c03f638ea82270b27bbba31bf386d14b4ca7c6114b86c8f3703867a",
+   "instrumentedObjectCodeSha256": "780445ff7023f88f2e094a6e2088d410c4cdccba32a495a386c3b66d075216f3",
+   "llvmMcObjectCodeSha256": "780445ff7023f88f2e094a6e2088d410c4cdccba32a495a386c3b66d075216f3",
+   "llvmMcRetainedTempLabels": [],
+   "realObjectCodeSha256": "780445ff7023f88f2e094a6e2088d410c4cdccba32a495a386c3b66d075216f3",
+   "realObjectSha256": "8ce6a8d0ceba3d26ba87644ae44cd3024a1270b308959dd774d4f6bac9e0ee14",
+   "sentinelSymbols": [
+    "000000000000002b t hutblk_0_start",
+    "0000000000000030 t hutblk_0_end",
+    "0000000000000795 t hutblk_1_start",
+    "000000000000079a t hutblk_1_end",
+    "000000000000162a t hutblk_2_start",
+    "000000000000162f t hutblk_2_end",
+    "0000000000001717 t hutblk_3_start",
+    "000000000000171c t hutblk_3_end",
+    "0000000000001ec7 t hutblk_4_start",
+    "0000000000001ecc t hutblk_4_end"
+   ],
+   "source": "cpp_infer/src/opt/kda.cpp"
+  },
+  {
+   "asmSha256": "4ce1823ae0289bef8c8f00449fddf0be063044115d832503da5091300b08e537",
+   "blockCount": 4,
+   "blocks": [
+    {
+     "asmLines": [
+      99,
+      103
+     ],
+     "asmSourceNamedLabelOrder": "matched by ordinal shape",
+     "bodySha256": "59ea0de27253f810ec1bc533a11bd105753ee2804787e0d8391cd5dbed5dad2d",
+     "branchLabelChecks": [],
+     "branches": [],
+     "compilerEmittedDirectives": [],
+     "end": 41,
+     "endOnBoundary": true,
+     "forbiddenMnemonicsFound": [],
+     "inboundBranchesIntoInterior": [],
+     "index": 0,
+     "instructionCount": 3,
+     "labels": {},
+     "matchedAllowlistSha256": [
+      "6c7a72c88bacf2d35530970fd80485087971060312345c109c94a3c4a9b2ced3"
+     ],
+     "mnemonics": [
+      "cpuid",
+      "xchg"
+     ],
+     "relocationsInBlock": [],
+     "section": ".text._ZN3fx23opt12_GLOBAL__N_16detectEv",
+     "start": 33,
+     "startOnBoundary": true
+    },
+    {
+     "asmLines": [
+      109,
+      113
+     ],
+     "asmSourceNamedLabelOrder": "matched by ordinal shape",
+     "bodySha256": "5fd831e19e80f29de9b8b3cc29f178faf7227c95ffa40ab989b1345944de00ae",
+     "branchLabelChecks": [],
+     "branches": [],
+     "compilerEmittedDirectives": [],
+     "end": 60,
+     "endOnBoundary": true,
+     "forbiddenMnemonicsFound": [],
+     "inboundBranchesIntoInterior": [],
+     "index": 1,
+     "instructionCount": 3,
+     "labels": {},
+     "matchedAllowlistSha256": [
+      "6c7a72c88bacf2d35530970fd80485087971060312345c109c94a3c4a9b2ced3"
+     ],
+     "mnemonics": [
+      "cpuid",
+      "xchg"
+     ],
+     "relocationsInBlock": [],
+     "section": ".text._ZN3fx23opt12_GLOBAL__N_16detectEv",
+     "start": 52,
+     "startOnBoundary": true
+    },
+    {
+     "asmLines": [
+      119,
+      121
+     ],
+     "asmSourceNamedLabelOrder": "matched by ordinal shape",
+     "bodySha256": "a6daffb16b8796593ae86042ad783b057cf1431b1dd98b4f23c6f907c4dfaad2",
+     "branchLabelChecks": [],
+     "branches": [],
+     "compilerEmittedDirectives": [],
+     "end": 75,
+     "endOnBoundary": true,
+     "forbiddenMnemonicsFound": [],
+     "inboundBranchesIntoInterior": [],
+     "index": 2,
+     "instructionCount": 1,
+     "labels": {},
+     "matchedAllowlistSha256": [
+      "1ee7199199f577b79a2c6a40e60916951e3afedc34d34a4a46d2829c23869b83"
+     ],
+     "mnemonics": [
+      "xgetbv"
+     ],
+     "relocationsInBlock": [],
+     "section": ".text._ZN3fx23opt12_GLOBAL__N_16detectEv",
+     "start": 72,
+     "startOnBoundary": true
+    },
+    {
+     "asmLines": [
+      132,
+      136
+     ],
+     "asmSourceNamedLabelOrder": "matched by ordinal shape",
+     "bodySha256": "59ea0de27253f810ec1bc533a11bd105753ee2804787e0d8391cd5dbed5dad2d",
+     "branchLabelChecks": [],
+     "branches": [],
+     "compilerEmittedDirectives": [],
+     "end": 109,
+     "endOnBoundary": true,
+     "forbiddenMnemonicsFound": [],
+     "inboundBranchesIntoInterior": [],
+     "index": 3,
+     "instructionCount": 3,
+     "labels": {},
+     "matchedAllowlistSha256": [
+      "6c7a72c88bacf2d35530970fd80485087971060312345c109c94a3c4a9b2ced3"
+     ],
+     "mnemonics": [
+      "cpuid",
+      "xchg"
+     ],
+     "relocationsInBlock": [],
+     "section": ".text._ZN3fx23opt12_GLOBAL__N_16detectEv",
+     "start": 101,
+     "startOnBoundary": true
+    }
+   ],
+   "instrumentedAsmSha256": "b7b1d407883b7214218de0f57395acf6572e7f20e737d5e02a204ba620070e30",
+   "instrumentedObjectCodeSha256": "717530a3de22c539dc2d01464bac3de7772113ec1c9c4c42f5f3a3fe3cb4619c",
+   "llvmMcObjectCodeSha256": "717530a3de22c539dc2d01464bac3de7772113ec1c9c4c42f5f3a3fe3cb4619c",
+   "llvmMcRetainedTempLabels": [
+    "0000000000000025 t .Ltmp0",
+    "000000000000002a t .Ltmp1",
+    "0000000000000045 t .Ltmp2"
+   ],
+   "realObjectCodeSha256": "717530a3de22c539dc2d01464bac3de7772113ec1c9c4c42f5f3a3fe3cb4619c",
+   "realObjectSha256": "923ab5d8591ce3ef6db036b222f8505a5164bf3fed9c32828921d785ce1c8276",
+   "sentinelSymbols": [
+    "0000000000000021 t hutblk_0_start",
+    "0000000000000029 t hutblk_0_end",
+    "0000000000000034 t hutblk_1_start",
+    "000000000000003c t hutblk_1_end",
+    "0000000000000048 t hutblk_2_start",
+    "000000000000004b t hutblk_2_end",
+    "0000000000000065 t hutblk_3_start",
+    "000000000000006d t hutblk_3_end"
+   ],
+   "source": "cpp_infer/src/opt/qmat_cpu.cpp"
+  }
+ ],
+ "planCommandHeads": {
+  "clang++-17": 16,
+  "portable": 1,
+  "rm": 1
+ },
+ "planCommands": 18,
+ "planNonTuCommands": [
+  "portable AVX2 baseline (x86-64-v3) used",
+  "clang++-17 -m64 -fuse-ld=lld -Wl,--gc-sections -Wl,-Map=cmix.map -std=c++17 bit-context.o bracket-context.o bracket.o byte-mixer.o byte-model.o combined-context.o context-hash.o context-manager.o decoder.o dictionary.o direct-hash.o direct.",
+  "rm -f *.o"
+ ],
+ "problems": [],
+ "sourceAudit": [
+  {
+   "branches": [],
+   "directives": [],
+   "labels": [],
+   "mnemonicCount": 1,
+   "mnemonics": [
+    "xgetbv"
+   ],
+   "ok": true,
+   "sha256": "1ee7199199f577b79a2c6a40e60916951e3afedc34d34a4a46d2829c23869b83"
+  },
+  {
+   "branches": [
+    {
+     "insn": "jz 2f",
+     "labelInSameStringAndDirection": true,
+     "line": 10
+    },
+    {
+     "insn": "jnz 1b",
+     "labelInSameStringAndDirection": true,
+     "line": 68
+    },
+    {
+     "insn": "jz 3f",
+     "labelInSameStringAndDirection": true,
+     "line": 71
+    }
+   ],
+   "directives": [
+    ".p2align 4"
+   ],
+   "labels": [
+    "1",
+    "2",
+    "3"
+   ],
+   "mnemonicCount": 110,
+   "mnemonics": [
+    "addq",
+    "decl",
+    "jnz",
+    "jz",
+    "prefetcht0",
+    "testl",
+    "vbroadcastss",
+    "vcvtdq2ps",
+    "vfmadd231ps",
+    "vmovaps",
+    "vmulps",
+    "vpmovsxbd",
+    "vxorps"
+   ],
+   "ok": true,
+   "sha256": "4fa9504da56684a2e34ab82043295d981e32eb1f58aed74008fa88c06de2d33f"
+  },
+  {
+   "branches": [],
+   "directives": [],
+   "labels": [],
+   "mnemonicCount": 2,
+   "mnemonics": [
+    "lfence",
+    "rdtsc"
+   ],
+   "ok": true,
+   "sha256": "5fcf71e75ed00bfa45c47291c660cc72d50ff21d5b5d48a7d3c52912a33147e4"
+  },
+  {
+   "branches": [],
+   "directives": [],
+   "labels": [],
+   "mnemonicCount": 3,
+   "mnemonics": [
+    "cpuid",
+    "xchgq"
+   ],
+   "ok": true,
+   "sha256": "6c7a72c88bacf2d35530970fd80485087971060312345c109c94a3c4a9b2ced3"
+  }
+ ],
+ "translationUnits": 43,
+ "version": 1
+}
