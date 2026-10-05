@@ -29,6 +29,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <algorithm>
+#include <iterator>
 
 namespace {
   const int kMinVocabFileSize = 10000;
@@ -967,17 +968,141 @@ bool RunDecompression(const std::string& input_path,
   return true;
 }
 
+// hutter-enwik9 slice harness (hone capsule; not part of lexth11c).
+//
+// Codes a slice of the frozen preprocessed enwik9 stream -- the exact byte
+// sequence the -e run feeds its predictor, i.e. after article reordering,
+// phda9, the WRT dictionary transform and the payload_lex tail reorder --
+// with the complete -e model: the same vocabulary (that of the whole stream,
+// passed in as a 256-byte 0/1 file, so the byte mixer, the ppmd and the
+// bracket model are sized exactly as in the full run), Pretrain over the
+// dictionary, the native ppmd and the transformer, mixers and SSE. Each call
+// is a cold start: a fresh predictor that has seen only the dictionary.
+//   cmix -S <dictionary> <weights> <vocab> <slice> <output>
+//   cmix -D <dictionary> <weights> <input> <output>
+std::vector<bool> ReadSliceVocab(const std::string& path) {
+  FILE* f = fopen(path.c_str(), "rb");
+  if (f == NULL) Fail("cannot open vocabulary file %s", path.c_str());
+  unsigned char flags[257];
+  size_t n = fread(flags, 1, sizeof(flags), f);
+  fclose(f);
+  if (n != 256) Fail("vocabulary file %s must hold exactly 256 bytes", path.c_str());
+  std::vector<bool> vocab(256, false);
+  for (int i = 0; i < 256; ++i) {
+    if (flags[i] > 1) Fail("vocabulary file %s: byte %d is not 0 or 1", path.c_str(), i);
+    vocab[i] = flags[i] == 1;
+  }
+  return vocab;
+}
+
+FILE* OpenSliceDictionary(const std::string& path) {
+  FILE* dictionary = fopen(path.c_str(), "rb");
+  if (dictionary == NULL) Fail("cannot open dictionary %s", path.c_str());
+  return dictionary;
+}
+
+void CompressSlice(const std::string& dictionary_path,
+    const std::string& weights, const std::string& vocab_path,
+    const std::string& input_path, const std::string& output_path,
+    unsigned long long* input_bytes, unsigned long long* output_bytes) {
+  std::vector<bool> vocab = ReadSliceVocab(vocab_path);
+  std::ifstream is(input_path, std::ios::in | std::ios::binary);
+  if (!is.is_open()) Fail("cannot open input file %s", input_path.c_str());
+  std::vector<char> data((std::istreambuf_iterator<char>(is)),
+      std::istreambuf_iterator<char>());
+  *input_bytes = data.size();
+  if (*input_bytes < (unsigned long long)kMinVocabFileSize) {
+    Fail("slice %s has %llu bytes; at least %d are required so that the "
+        "header carries the vocabulary", input_path.c_str(), *input_bytes,
+        kMinVocabFileSize);
+  }
+  for (size_t i = 0; i < data.size(); ++i) {
+    if (!vocab[(unsigned char)data[i]]) {
+      Fail("byte 0x%02x at offset %zu of %s is outside the vocabulary",
+          (unsigned char)data[i], i, input_path.c_str());
+    }
+  }
+  is.clear();
+  is.seekg(0, std::ios::beg);
+  std::ofstream os(output_path, std::ios::out | std::ios::binary);
+  if (!os.is_open()) Fail("cannot open output file %s", output_path.c_str());
+  WriteHeader(*input_bytes, vocab, true, &os);
+  PredictorOptions options;
+  options.num_input_bytes = *input_bytes;
+  options.transformer_weights = weights;
+  Predictor p(vocab, options);
+  FILE* dictionary = OpenSliceDictionary(dictionary_path);
+  preprocessor::Pretrain(&p, dictionary);
+  fclose(dictionary);
+  Compress(*input_bytes, &is, &os, output_bytes, &p);
+  os.close();
+}
+
+void DecompressSlice(const std::string& dictionary_path,
+    const std::string& weights, const std::string& input_path,
+    const std::string& output_path, unsigned long long* input_bytes,
+    unsigned long long* output_bytes) {
+  std::ifstream is(input_path, std::ios::in | std::ios::binary);
+  if (!is.is_open()) Fail("cannot open input file %s", input_path.c_str());
+  is.seekg(0, std::ios::end);
+  *input_bytes = is.tellg();
+  is.seekg(0, std::ios::beg);
+  std::vector<bool> vocab(256, false);
+  bool dictionary_used = false;
+  ReadHeader(&is, output_bytes, &dictionary_used, &vocab);
+  if (!dictionary_used || *output_bytes < (unsigned long long)kMinVocabFileSize) {
+    Fail("%s is not a slice archive", input_path.c_str());
+  }
+  PredictorOptions options;
+  options.num_input_bytes = *output_bytes;
+  options.transformer_weights = weights;
+  Predictor p(vocab, options);
+  FILE* dictionary = OpenSliceDictionary(dictionary_path);
+  preprocessor::Pretrain(&p, dictionary);
+  fclose(dictionary);
+  std::ofstream os(output_path, std::ios::out | std::ios::binary);
+  if (!os.is_open()) Fail("cannot open output file %s", output_path.c_str());
+  Decompress(*output_bytes, &is, &os, &p);
+  os.close();
+}
+
 int main(int argc, char** argv) {
   ExtractionOptions extraction = ParseExtractionOptions(&argc, argv);
 
   char mode = 0;
   if (argc > 1) {
     if (strlen(argv[1]) != 2 || argv[1][0] != '-' ||
-        strchr("cdehnsx", argv[1][1]) == NULL) {
-      UsageError("unknown mode '%s' (expected -c, -d, -e, -h, -n, -s or -x)",
-          argv[1]);
+        strchr("cdehnsxSD", argv[1][1]) == NULL) {
+      UsageError("unknown mode '%s' (expected -c, -d, -e, -h, -n, -s, -x, "
+          "-S or -D)", argv[1]);
     }
     mode = argv[1][1];
+    if (mode == 'S' || mode == 'D') {
+      if (extraction.AnySet() || !extraction.transformer.empty() ||
+          !extraction.save_transformer_probs.empty()) {
+        UsageError("-%c takes no options", mode);
+      }
+      if (argc != (mode == 'S' ? 7 : 6)) {
+        UsageError(mode == 'S'
+            ? "-S requires <dictionary> <weights> <vocab> <slice> <output>"
+            : "-D requires <dictionary> <weights> <input> <output>");
+      }
+      // Same random state as every other mode (srand(SEED) below).
+      srand(SEED);
+      clock_t slice_start = clock();
+      unsigned long long in_bytes = 0, out_bytes = 0;
+      if (mode == 'S') {
+        CompressSlice(argv[2], argv[3], argv[4], argv[5], argv[6], &in_bytes,
+            &out_bytes);
+      } else {
+        DecompressSlice(argv[2], argv[3], argv[4], argv[5], &in_bytes,
+            &out_bytes);
+      }
+      ClearOutput();
+      printf("\r%lld bytes -> %lld bytes in %1.2f s.\n", in_bytes, out_bytes,
+          ((double)clock() - slice_start) / CLOCKS_PER_SEC);
+      return 0;
+    }
     if (mode == 'h') {
       if (argc != 6) {
         UsageError("-h requires exactly four arguments: comp_dict_size "

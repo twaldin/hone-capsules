@@ -29,3 +29,5 @@ capsules/**/toolchain/** linguist-vendored
 capsules/**/image/** linguist-vendored
 capsules/**/image-source/** linguist-vendored
 capsules/**/.candidate-*/** linguist-vendored
+capsules/hutter-enwik9/baseline/** linguist-vendored
+capsules/hutter-enwik9/evidence/asm-proof/*.o -text -diff
