@@ -1,0 +1,194 @@
+{
+ "entries": [
+  {
+   "assembly": {
+    "asm": "xgetbv",
+    "clobbers": [],
+    "inputs": [
+     "c"
+    ],
+    "outputs": [
+     "=a",
+     "=d"
+    ],
+    "volatile": true
+   },
+   "locations": [
+    {
+     "file": "cpp_infer/src/opt/qmat_cpu.cpp",
+     "line": 25
+    }
+   ],
+   "sha256": "1ee7199199f577b79a2c6a40e60916951e3afedc34d34a4a46d2829c23869b83",
+   "verification": {
+    "branchesSameBlockBoundaries": true,
+    "noDataDirectives": true,
+    "noForbiddenMnemonics": true
+   }
+  },
+  {
+   "assembly": {
+    "asm": "vxorps %%xmm0,%%xmm0,%%xmm0\nvxorps %%xmm1,%%xmm1,%%xmm1\nvxorps %%xmm2,%%xmm2,%%xmm2\nvxorps %%xmm3,%%xmm3,%%xmm3\nvxorps %%xmm4,%%xmm4,%%xmm4\nvxorps %%xmm5,%%xmm5,%%xmm5\nvxorps %%xmm6,%%xmm6,%%xmm6\nvxorps %%xmm7,%%xmm7,%%xmm7\ntestl %[n2], %[n2]\njz 2f\n.p2align 4\n1:\nvbroadcastss (%[eb]), %%ymm12\nvbroadcastss 4(%[eb]), %%ymm13\nprefetcht0 1024(%[v])\nprefetcht0 1088(%[v])\nvpmovsxbd 0+0(%[v]), %%ymm8\nvcvtdq2ps %%ymm8, %%ymm8\nvfmadd231ps %%ymm8, %%ymm12, %%ymm0\nvpmovsxbd 0+8(%[v]), %%ymm9\nvcvtdq2ps %%ymm9, %%ymm9\nvfmadd231ps %%ymm9, %%ymm12, %%ymm1\nvpmovsxbd 0+16(%[v]), %%ymm8\nvcvtdq2ps %%ymm8, %%ymm8\nvfmadd231ps %%ymm8, %%ymm12, %%ymm2\nvpmovsxbd 0+24(%[v]), %%ymm9\nvcvtdq2ps %%ymm9, %%ymm9\nvfmadd231ps %%ymm9, %%ymm12, %%ymm3\nvpmovsxbd 0+32(%[v]), %%ymm8\nvcvtdq2ps %%ymm8, %%ymm8\nvfmadd231ps %%ymm8, %%ymm12, %%ymm4\nvpmovsxbd 0+40(%[v]), %%ymm9\nvcvtdq2ps %%ymm9, %%ymm9\nvfmadd231ps %%ymm9, %%ymm12, %%ymm5\nvpmovsxbd 0+48(%[v]), %%ymm8\nvcvtdq2ps %%ymm8, %%ymm8\nvfmadd231ps %%ymm8, %%ymm12, %%ymm6\nvpmovsxbd 0+56(%[v]), %%ymm9\nvcvtdq2ps %%ymm9, %%ymm9\nvfmadd231ps %%ymm9, %%ymm12, %%ymm7\nvpmovsxbd 64+0(%[v]), %%ymm10\nvcvtdq2ps %%ymm10, %%ymm10\nvfmadd231ps %%ymm10, %%ymm13, %%ymm0\nvpmovsxbd 64+8(%[v]), %%ymm11\nvcvtdq2ps %%ymm11, %%ymm11\nvfmadd231ps %%ymm11, %%ymm13, %%ymm1\nvpmovsxbd 64+16(%[v]), %%ymm10\nvcvtdq2ps %%ymm10, %%ymm10\nvfmadd231ps %%ymm10, %%ymm13, %%ymm2\nvpmovsxbd 64+24(%[v]), %%ymm11\nvcvtdq2ps %%ymm11, %%ymm11\nvfmadd231ps %%ymm11, %%ymm13, %%ymm3\nvpmovsxbd 64+32(%[v]), %%ymm10\nvcvtdq2ps %%ymm10, %%ymm10\nvfmadd231ps %%ymm10, %%ymm13, %%ymm4\nvpmovsxbd 64+40(%[v]), %%ymm11\nvcvtdq2ps %%ymm11, %%ymm11\nvfmadd231ps %%ymm11, %%ymm13, %%ymm5\nvpmovsxbd 64+48(%[v]), %%ymm10\nvcvtdq2ps %%ymm10, %%ymm10\nvfmadd231ps %%ymm10, %%ymm13, %%ymm6\nvpmovsxbd 64+56(%[v]), %%ymm11\nvcvtdq2ps %%ymm11, %%ymm11\nvfmadd231ps %%ymm11, %%ymm13, %%ymm7\naddq $128, %[v]\naddq $8, %[eb]\ndecl %[n2]\njnz 1b\n2:\ntestl %[odd], %[odd]\njz 3f\nvbroadcastss (%[eb]), %%ymm12\nvpmovsxbd 0+0(%[v]), %%ymm8\nvcvtdq2ps %%ymm8, %%ymm8\nvfmadd231ps %%ymm8, %%ymm12, %%ymm0\nvpmovsxbd 0+8(%[v]), %%ymm9\nvcvtdq2ps %%ymm9, %%ymm9\nvfmadd231ps %%ymm9, %%ymm12, %%ymm1\nvpmovsxbd 0+16(%[v]), %%ymm8\nvcvtdq2ps %%ymm8, %%ymm8\nvfmadd231ps %%ymm8, %%ymm12, %%ymm2\nvpmovsxbd 0+24(%[v]), %%ymm9\nvcvtdq2ps %%ymm9, %%ymm9\nvfmadd231ps %%ymm9, %%ymm12, %%ymm3\nvpmovsxbd 0+32(%[v]), %%ymm8\nvcvtdq2ps %%ymm8, %%ymm8\nvfmadd231ps %%ymm8, %%ymm12, %%ymm4\nvpmovsxbd 0+40(%[v]), %%ymm9\nvcvtdq2ps %%ymm9, %%ymm9\nvfmadd231ps %%ymm9, %%ymm12, %%ymm5\nvpmovsxbd 0+48(%[v]), %%ymm8\nvcvtdq2ps %%ymm8, %%ymm8\nvfmadd231ps %%ymm8, %%ymm12, %%ymm6\nvpmovsxbd 0+56(%[v]), %%ymm9\nvcvtdq2ps %%ymm9, %%ymm9\nvfmadd231ps %%ymm9, %%ymm12, %%ymm7\n3:\nvbroadcastss %[rf], %%ymm13\nvmulps %%ymm13, %%ymm0, %%ymm0\nvmulps %%ymm13, %%ymm1, %%ymm1\nvmulps %%ymm13, %%ymm2, %%ymm2\nvmulps %%ymm13, %%ymm3, %%ymm3\nvmulps %%ymm13, %%ymm4, %%ymm4\nvmulps %%ymm13, %%ymm5, %%ymm5\nvmulps %%ymm13, %%ymm6, %%ymm6\nvmulps %%ymm13, %%ymm7, %%ymm7\nvmovaps %%ymm0, (%[out])\nvmovaps %%ymm1, 32(%[out])\nvmovaps %%ymm2, 64(%[out])\nvmovaps %%ymm3, 96(%[out])\nvmovaps %%ymm4, 128(%[out])\nvmovaps %%ymm5, 160(%[out])\nvmovaps %%ymm6, 192(%[out])\nvmovaps %%ymm7, 224(%[out])",
+    "clobbers": [
+     "ymm0",
+     "ymm1",
+     "ymm2",
+     "ymm3",
+     "ymm4",
+     "ymm5",
+     "ymm6",
+     "ymm7",
+     "ymm8",
+     "ymm9",
+     "ymm10",
+     "ymm11",
+     "ymm12",
+     "ymm13",
+     "cc",
+     "memory"
+    ],
+    "inputs": [
+     "x",
+     "r",
+     "r"
+    ],
+    "outputs": [
+     "+r",
+     "+r",
+     "+r"
+    ],
+    "volatile": true
+   },
+   "locations": [
+    {
+     "file": "cpp_infer/src/opt/attn.cpp",
+     "line": 304
+    }
+   ],
+   "sha256": "4fa9504da56684a2e34ab82043295d981e32eb1f58aed74008fa88c06de2d33f",
+   "verification": {
+    "branchesSameBlockBoundaries": true,
+    "noDataDirectives": true,
+    "noForbiddenMnemonics": true
+   }
+  },
+  {
+   "assembly": {
+    "asm": "lfence\nrdtsc",
+    "clobbers": [
+     "memory"
+    ],
+    "inputs": [],
+    "outputs": [
+     "=a",
+     "=d"
+    ],
+    "volatile": true
+   },
+   "locations": [
+    {
+     "file": "cpp_infer/src/opt/kda.cpp",
+     "line": 43
+    }
+   ],
+   "sha256": "5fcf71e75ed00bfa45c47291c660cc72d50ff21d5b5d48a7d3c52912a33147e4",
+   "verification": {
+    "branchesSameBlockBoundaries": true,
+    "noDataDirectives": true,
+    "noForbiddenMnemonics": true
+   }
+  },
+  {
+   "assembly": {
+    "asm": "xchgq %%rbx,%q1\ncpuid\nxchgq %%rbx,%q1",
+    "clobbers": [],
+    "inputs": [
+     "0",
+     "2"
+    ],
+    "outputs": [
+     "=a",
+     "=r",
+     "=c",
+     "=d"
+    ],
+    "volatile": false
+   },
+   "locations": [
+    {
+     "file": "cpp_infer/src/opt/qmat_cpu.cpp",
+     "line": 28
+    }
+   ],
+   "sha256": "6c7a72c88bacf2d35530970fd80485087971060312345c109c94a3c4a9b2ced3",
+   "verification": {
+    "branchesSameBlockBoundaries": true,
+    "noDataDirectives": true,
+    "noForbiddenMnemonics": true
+   }
+  }
+ ],
+ "evidence": {
+  "baselineQmatCppSha256": "d4672e0005afcd961137a75d09f30b0dd23f165af1e4680867b58362bcf8dd85",
+  "challengeSha256": "8dceba7dc409d9c7673168faa0bc278c51efa7b76c0ed33e33ed2ce4f225653e",
+  "derivation": {
+   "path": "evidence/helper-derivation.json",
+   "sha256": "787d95907821bf947c92b9e3ab02f7438d3db1403b3bd4e5b18fcbe9d45f20b2"
+  },
+  "emittedBlocksPerEntry": {
+   "1ee7199199f577b79a2c6a40e60916951e3afedc34d34a4a46d2829c23869b83": 1,
+   "4fa9504da56684a2e34ab82043295d981e32eb1f58aed74008fa88c06de2d33f": 1,
+   "5fcf71e75ed00bfa45c47291c660cc72d50ff21d5b5d48a7d3c52912a33147e4": 5,
+   "6c7a72c88bacf2d35530970fd80485087971060312345c109c94a3c4a9b2ced3": 3
+  },
+  "evalSha256": "1960622476e7f0fc04d94e4f90fdbdb799d1996c393365a5c5af9e42be19c4af",
+  "files": {
+   "evidence/asm-proof/cpp_infer_src_opt_attn.cpp.inst.nm.txt": "cfd177a2cd8be9c03cf4c7e64be8f61d3d7103fc82922aa516f33980180b0993",
+   "evidence/asm-proof/cpp_infer_src_opt_attn.cpp.inst.o": "489b9973d65d51a5c150fb66d5b4d54f7443a0ca31f401697552c17fc595dc23",
+   "evidence/asm-proof/cpp_infer_src_opt_attn.cpp.instrumented.s": "f9e1fb7a7f5c38127d42544955068e917bae4f2dfb46e4afc888870c52c275f1",
+   "evidence/asm-proof/cpp_infer_src_opt_attn.cpp.llvm-mc.nm.txt": "8c6af2747c68bd4dfb7213fcc79e3e085acdb39c658d59fab92f4ccae0d96269",
+   "evidence/asm-proof/cpp_infer_src_opt_attn.cpp.mc.o": "8a024e09285f7ca68f2bab142760e9c1716c52d0df284d459a179964381fc5fc",
+   "evidence/asm-proof/cpp_infer_src_opt_attn.cpp.objdump.txt": "15ec387201bfe8c5f0e242141de0398ec496549ef067d3b406fda4ccdfb03fb9",
+   "evidence/asm-proof/cpp_infer_src_opt_attn.cpp.real.o": "8064fd38a3adaf7ad2737f54aa84b61062d0d8b3f0fa731bf7dc7ad89cf75cca",
+   "evidence/asm-proof/cpp_infer_src_opt_attn.cpp.s": "e537ef92b4875371aff987af6d3e40ff651ae88a6e35159f2daf33e869578122",
+   "evidence/asm-proof/cpp_infer_src_opt_kda.cpp.inst.nm.txt": "b876e07b12d7d2417e51efec21bb98b3cc2182e2b1b4375c86b0ba39b3c8b0b5",
+   "evidence/asm-proof/cpp_infer_src_opt_kda.cpp.inst.o": "f86f6cc4c254e4a57e32fb71cc5123cf8ba5856b04d417ccde5f094d46f455df",
+   "evidence/asm-proof/cpp_infer_src_opt_kda.cpp.instrumented.s": "48591ee24c03f638ea82270b27bbba31bf386d14b4ca7c6114b86c8f3703867a",
+   "evidence/asm-proof/cpp_infer_src_opt_kda.cpp.llvm-mc.nm.txt": "eea14a8577b0874efe1ff17b6a11e2d954540bc0980a1e397e4d9a1d9f82c117",
+   "evidence/asm-proof/cpp_infer_src_opt_kda.cpp.mc.o": "912ae6b251f1bc74e63ee05cef55ab8f22bfdc3dcd25565a74eb91cd8cd77ce4",
+   "evidence/asm-proof/cpp_infer_src_opt_kda.cpp.objdump.txt": "1108d2e08be2c1f6de5b1cb5121a6af13e68af7d39604cea5b8f21b261060c2d",
+   "evidence/asm-proof/cpp_infer_src_opt_kda.cpp.real.o": "8ce6a8d0ceba3d26ba87644ae44cd3024a1270b308959dd774d4f6bac9e0ee14",
+   "evidence/asm-proof/cpp_infer_src_opt_kda.cpp.s": "dd6815833f2a51eddb3f086067c4b1f0859e8ad3891480299dc2981d0cf9423c",
+   "evidence/asm-proof/cpp_infer_src_opt_qmat_cpu.cpp.inst.nm.txt": "be8a50bd579c94fb1bbe237f97059e438aea4892447f8ed98959353303349135",
+   "evidence/asm-proof/cpp_infer_src_opt_qmat_cpu.cpp.inst.o": "6e0dc0b50d272521cd077cac01689b06aadc6bc9189597afb81c6a222ce4b7f6",
+   "evidence/asm-proof/cpp_infer_src_opt_qmat_cpu.cpp.instrumented.s": "b7b1d407883b7214218de0f57395acf6572e7f20e737d5e02a204ba620070e30",
+   "evidence/asm-proof/cpp_infer_src_opt_qmat_cpu.cpp.llvm-mc.nm.txt": "7354a1d4d5a4288d54eb9345a096a281f7f570113b130fb5f4b395fe6d05b3da",
+   "evidence/asm-proof/cpp_infer_src_opt_qmat_cpu.cpp.mc.o": "b5a201b91acca8e2457467331bec73894fedb7ec4312a632a85eec7f813b5db9",
+   "evidence/asm-proof/cpp_infer_src_opt_qmat_cpu.cpp.objdump.txt": "2e7987021cba034efdc55e4c5febe5aebd587a0f235f4a4c558fd41d9a1e1f3e",
+   "evidence/asm-proof/cpp_infer_src_opt_qmat_cpu.cpp.real.o": "923ab5d8591ce3ef6db036b222f8505a5164bf3fed9c32828921d785ce1c8276",
+   "evidence/asm-proof/cpp_infer_src_opt_qmat_cpu.cpp.s": "4ce1823ae0289bef8c8f00449fddf0be063044115d832503da5091300b08e537",
+   "evidence/asm-verification.json": "9f73ee1e7bd40494773d8de00ac1508ced561fdc62018340139b5c4e82c2c6fc",
+   "evidence/helper-derivation.json": "787d95907821bf947c92b9e3ab02f7438d3db1403b3bd4e5b18fcbe9d45f20b2",
+   "evidence/make-plan.txt": "fb49568dd394b6920205cea755812a65c937c5868ab5dbf75b1187b0d057121b"
+  },
+  "image": "hone-hutter-enwik9@sha256:2391980839f983b29a917f1842c66522ba0fa8c9ba9b3ad6685bcb2b42152d8d",
+  "makePlan": {
+   "path": "evidence/make-plan.txt",
+   "sha256": "fb49568dd394b6920205cea755812a65c937c5868ab5dbf75b1187b0d057121b"
+  },
+  "observedStatements": 4,
+  "root": "~/hutter/capsule-dev/evalfix/asm-allowlist",
+  "scripts": {
+   "derive_asm.py": "e818d155b193a9ea0953997784b3e89466e4b264503294c33aebc0a22a8b97fa",
+   "verify_asm.py": "1a58fcdca0bfc51878f449e056770e6d2b045238be1df08807ea7ddb0337b1c7"
+  },
+  "translationUnits": 43,
+  "uniqueEntries": 4,
+  "verification": {
+   "path": "evidence/asm-verification.json",
+   "sha256": "9f73ee1e7bd40494773d8de00ac1508ced561fdc62018340139b5c4e82c2c6fc"
+  }
+ },
+ "helperSha256": "b23cce41ffe7ecbceeb1bf7f7f7d7a5104643dfeebd791f075267a88d351345b",
+ "version": 1
+}
