@@ -1,0 +1,86 @@
+{
+ "variant": "lexth11c",
+ "knobs": {
+  "PPMD_MEM_MB": "3500",
+  "FXCM_CM_DIV": "2",
+  "CMIX_L0_MIXER_MASK": "0x42e72du",
+  "CMIX_L0_LR_SCALE": "0.6",
+  "CMIX_L1_LR_SCALE": "0.25",
+  "TF_CODEBOOK": "1",
+  "TF_SMALL_W8": "1",
+  "TF_ACTQ_DYN": "1",
+  "CM_OPT": "-O2",
+  "TF_AVX512": "1",
+  "PGO_INPUT_DICT": "./prof_input/input_4mb",
+  "TFWEIGHTS": "/results/sota/train/runs/lex_h1_run11/export/lex_h1_run11.tfwc2"
+ },
+ "tfweights": "/results/sota/train/runs/lex_h1_run11/export/lex_h1_run11.tfwc2",
+ "input": "enwik8[:3MB]",
+ "input_bytes": 3177212,
+ "cpu": {
+  "model": "unknown",
+  "flags": {
+   "avx2": true,
+   "fma": true,
+   "f16c": true,
+   "bmi2": true,
+   "avx512f": true,
+   "avx_vnni": false
+  }
+ },
+ "host_mem_gb": 96.0,
+ "mmap_to_disk": false,
+ "pipeline": "intro(29 lines)/main split, phda9 WIT encode of main, main_wit+intro -> cmix -c english.dic --transformer /results/sota/train/runs/lex_h1_run11/export/lex_h1_run11.tfwc2",
+ "preprocess_phda9": {
+  "wall_s": 0.1,
+  "main_wit_bytes": 3020948,
+  "intro_bytes": 1404,
+  "pre_bytes": 3022352
+ },
+ "compress": {
+  "wall_s": 433.7,
+  "user_s": 420.98,
+  "sys_s": 1.64,
+  "peak_rss_kb": 6046604,
+  "notes": [
+   "preprocessing...transformer kernels: AVX-512 VNNI (packed int4 + LUT arenas)",
+   "transformer vocabulary: 205 bytes; input vocabulary: 206 bytes, of which 3 outside the transformer's (coded with the ppmd's distribution, each resets the transformer context); 2 transformer bytes unused by this input",
+   "pretraining: 0.99%fxcm mixer input counts: layer1 516/544 layer2 17/64 final 6/64 models 518/560"
+  ],
+  "ppmd_heap": [
+   "ppmd heap usage: 39650345 of 3670016000 bytes (1.1%), text area 1758965 of 458752028 bytes, order 25"
+  ],
+  "loss_lines": [
+   "transformer loss: 1.242954 nats/token over 1000000 tokens",
+   "transformer loss: 1.212469 nats/token over 1802299 tokens"
+  ],
+  "us_per_byte": 136.5
+ },
+ "compressed_bytes": 392251,
+ "bpc": 0.9877,
+ "decompress": {
+  "wall_s": 404.4,
+  "user_s": 392.21,
+  "sys_s": 1.38,
+  "peak_rss_kb": 6042444,
+  "notes": [
+   "transformer kernels: AVX-512 VNNI (packed int4 + LUT arenas)",
+   "transformer vocabulary: 205 bytes; input vocabulary: 206 bytes, of which 3 outside the transformer's (coded with the ppmd's distribution, each resets the transformer context); 2 transformer bytes unused by this input",
+   "pretraining: 0.99%fxcm mixer input counts: layer1 516/544 layer2 17/64 final 6/64 models 518/560"
+  ],
+  "ppmd_heap": [
+   "ppmd heap usage: 39650345 of 3670016000 bytes (1.1%), text area 1758965 of 458752028 bytes, order 25"
+  ],
+  "loss_lines": [
+   "transformer loss: 1.242954 nats/token over 1000000 tokens",
+   "transformer loss: 1.212469 nats/token over 1802299 tokens"
+  ]
+ },
+ "restore_phda9": {
+  "wall_s": 0.1
+ },
+ "verified_byte_exact": true,
+ "sha256_in": "3f57418ec26f13727e5e686a9f7ae7ea0e58498866fa2a29c2aeee8efbdf6f23",
+ "sha256_out": "3f57418ec26f13727e5e686a9f7ae7ea0e58498866fa2a29c2aeee8efbdf6f23",
+ "total_wall_s": 838.3
+}
