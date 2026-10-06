@@ -2,7 +2,7 @@
 
 L1 hone capsule for lexth11c (cmix-lex-transformer, commit `653f64e5083e430503fbe3d885def946891e7ed0`, GPL-3.0-only). It scores frozen cold-start slices of the preprocessed enwik9 stream. It is not a full Hutter Prize run. License and upstream authorship are in `NOTICE` and `baseline/LICENSE`.
 
-This file is the operator contract. `capsule.config.json` `objective` is what the optimizer sees. Final runtime GO and provisional admission are recorded below; this is not owner approval or formal M1 admission.
+This file is the operator contract. `capsule.config.json` `objective` is what the optimizer sees. Final runtime GO, historical provisional admission and owner approval **(Tim, via meta)** are recorded below. Owner approval does not change the frozen manifest or establish that a formal campaign has launched.
 
 ## Two fresh-container phases
 
@@ -226,4 +226,17 @@ Provisional receipts were appended with `appendAdmissionReceipt` on 2026-10-05. 
 - Gate 1: `sha256:a916168b5dec4f417cdb8dd3ab65d92cd01ed8e28e0863f2213872de0ed40e55`.
 - Gate 2: `sha256:dcf6359cf544785feedafcf49c652ed91ab64cddc12d9efb755b79148e7ab747`.
 
-`evidence/admission/receipts.json` is the receipt companion. Final reviewer is **agent:omp-main**, delegated by **owner:tim**, scope **provisional-private-apply-none**, budget **$25**. No owner:tim approval is recorded. The fresh secondary reviewer shares the author's OpenAI family: that exception was explicitly authorized after Opus refused review, with Grok providing the other family. This does not authorize formal M1; Tim reviews the capsule before that. Probes stay blind and `apply:none`; operator-only exploratory findings are never supplied to mutation context.
+`evidence/admission/receipts.json` is the historical provisional receipt companion. Final reviewer was **agent:omp-main**, delegated by **owner:tim**, scope **provisional-private-apply-none**, budget **$25**. That chain records no owner approval and remains intact. The fresh secondary reviewer shares the author's OpenAI family: that exception was explicitly authorized after Opus refused review, with Grok providing the other family. The provisional receipts did not authorize formal M1. Probes stayed blind and `apply:none`; operator-only exploratory findings were never supplied to mutation context.
+
+### Owner approval — 2026-10-06 (Tim, via meta)
+
+Tim approved the frozen `hutter-enwik9` capsule for formal campaign work after reviewing the section-10 checklist, relayed by **meta@twaldin-home relaying Tim's approval, 2026-10-06**. Record the approval as **(Tim, via meta)**.
+
+`evidence/admission/owner-receipts.json` records the non-provisional owner-reviewed admission. Final reviewer and `approvalBasis.authorizedBy` are both **owner:tim**; there is no delegation:
+
+- Gate 1: `sha256:8a1f722af915a8d7af2798a3aa21c567b88e4a9e7ce245cd2b5581f671ead38b`.
+- Gate 2: `sha256:5e43650f802ef02832a82dc9d7248d733d99214071d9ffb09dbf24ae6e316f7a`.
+
+Both were appended through `appendAdmissionReceipt`; `verifyAdmissionApproval` returned `approved: true, provisional: false`. Approval was supplied with date-only precision: receipt timestamps and `authorizedAt` record admission recording time, not an independently known approval time. The owner ledger is under deckbox `~/hutter/m1-hutter/.hone-cas`. It is a new ledger because Hone fixes reviewer identities within a chain; the pilot's ledger and provisional receipt companion remain unchanged.
+
+Capsule digest remains `sha256:9e000e87d87778b0c23aaec59ffa40fcc3e751b538464acd6f45f5a2b01cc871`, manifest SHA256 `571b80c2997cb49f932a57e95aeeee286eee5e136d3be8c2f03d36dbd7fd8ed6`. This approval changes no objective, baseline, gate, calibration, asset or manifest budget. The frozen per-run ceilings remain **4M tokens / $25 / 24h / 40 evaluations**; holdout-66 remains uncut and outside the admitted assets. This record is not a frozen campaign configuration or a launch claim.

@@ -1,0 +1,87 @@
+{
+  "capsuleDigest": "sha256:9e000e87d87778b0c23aaec59ffa40fcc3e751b538464acd6f45f5a2b01cc871",
+  "approvalNote": "(Tim, via meta)",
+  "approvalDate": "2026-10-06",
+  "approvalTimePrecision": "date-only; receipt authorizedAt and timestamp record admission recording time",
+  "deliveredVia": "meta@twaldin-home relaying Tim's approval, 2026-10-06",
+  "ledgerRoot": "/home/tim/hutter/m1-hutter",
+  "ledgerRelation": "Fresh owner-reviewed campaign ledger. The pilot ledger and its provisional receipts remain intact; immutable identity continuity prevents replacing agent:omp-main with owner:tim inside that chain.",
+  "priorProvisionalReceipts": [
+    "sha256:a916168b5dec4f417cdb8dd3ab65d92cd01ed8e28e0863f2213872de0ed40e55",
+    "sha256:dcf6359cf544785feedafcf49c652ed91ab64cddc12d9efb755b79148e7ab747"
+  ],
+  "reviewDisclosure": {
+    "authorFamily": "OpenAI",
+    "secondaryReviewerFamily": "OpenAI",
+    "secondaryReviewerSharesAuthorFamily": true,
+    "exception": "Parent-authorized fresh reviewer after Opus policy refusals; Grok supplies the other model family",
+    "ownerApprovalRecorded": true
+  },
+  "scope": "Owner approves the frozen capsule for formal campaign work; this receipt does not change its objective, baseline, gates, calibration, manifest budget or assets, and is not a frozen campaign config or a launch claim.",
+  "receipts": [
+    {
+      "v": 1,
+      "sequence": 0,
+      "previousReceiptHash": null,
+      "capsuleDigest": "sha256:9e000e87d87778b0c23aaec59ffa40fcc3e751b538464acd6f45f5a2b01cc871",
+      "action": "gate1-accept",
+      "identities": {
+        "author": {
+          "identity": "hutter-capsule",
+          "kind": "agent"
+        },
+        "adversarial-validator": {
+          "identity": "hutter-capsule-adv",
+          "kind": "agent"
+        },
+        "final-reviewer": {
+          "identity": "tim",
+          "kind": "owner"
+        }
+      },
+      "provisional": false,
+      "timestamp": "2026-10-06T05:09:34.158Z",
+      "recordHash": "sha256:8a1f722af915a8d7af2798a3aa21c567b88e4a9e7ce245cd2b5581f671ead38b"
+    },
+    {
+      "v": 1,
+      "sequence": 1,
+      "previousReceiptHash": "sha256:8a1f722af915a8d7af2798a3aa21c567b88e4a9e7ce245cd2b5581f671ead38b",
+      "capsuleDigest": "sha256:9e000e87d87778b0c23aaec59ffa40fcc3e751b538464acd6f45f5a2b01cc871",
+      "action": "gate2-approve",
+      "identities": {
+        "author": {
+          "identity": "hutter-capsule",
+          "kind": "agent"
+        },
+        "adversarial-validator": {
+          "identity": "hutter-capsule-adv",
+          "kind": "agent"
+        },
+        "final-reviewer": {
+          "identity": "tim",
+          "kind": "owner"
+        }
+      },
+      "approvalBasis": {
+        "authorizationKey": "hutter-enwik9-formal-m1-owner-approval-2026-10-06",
+        "authorizedBy": {
+          "identity": "tim",
+          "kind": "owner"
+        },
+        "authorizedAt": "2026-10-06T05:09:34.169Z",
+        "deliveredVia": "meta@twaldin-home relaying Tim's approval, 2026-10-06",
+        "reviewEvidence": [
+          "(Tim, via meta): owner approval of the section-10 checklist and frozen hutter-enwik9 capsule, relayed 2026-10-06; exact approval time was not supplied, authorizedAt records admission recording time",
+          "evidence/admission/runtime-grok.txt",
+          "evidence/admission/runtime-openai.txt",
+          "manifest.json sha256:571b80c2997cb49f932a57e95aeeee286eee5e136d3be8c2f03d36dbd7fd8ed6",
+          "diagnostics/ordering-report.json sha256:cc6188e80db10d7bae2a6d6487bc5183e33347889a53ff8249e47aae79b8a4f0"
+        ]
+      },
+      "provisional": false,
+      "timestamp": "2026-10-06T05:09:34.169Z",
+      "recordHash": "sha256:5e43650f802ef02832a82dc9d7248d733d99214071d9ffb09dbf24ae6e316f7a"
+    }
+  ]
+}
